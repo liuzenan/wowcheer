@@ -1,0 +1,11 @@
+{
+	"name":"wowcheer",
+	"dependencies":{
+		"express" : "*",
+		"mongoose": "*"
+	},
+	"engines": {
+    "node": "0.10.11",
+    "npm": "1.2.25"
+  	}
+}
