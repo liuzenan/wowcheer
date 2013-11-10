@@ -12,6 +12,7 @@ var config = require('./config')();
 var app = express();
 
 // all environments
+app.set('env',config.mode);
 app.set('port', config.port);
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.favicon());
