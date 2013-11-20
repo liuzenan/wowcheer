@@ -1,0 +1,51 @@
+#header
+  .container
+    a.logo(href="/") 
+      img(src="img/logo.png", alt="wowcheer")
+    ul.nav-top
+      li
+        a(href="/login") 登录
+      li
+        a(href="/signup") 注册
+      li
+        a(href="/about") 关于
+#main-content
+  .intro
+    .hero-image
+    .container
+      .hero-text
+        h1 你的演唱会，你做主。
+        h2 在全国34个城市找到你想去的演唱会，你的支持将使其成为现实。
+      .hero-search
+        form(id="search-form", method="post", action="")
+          input#city(type="text", name="city", placeholder="你所在的城市")
+          input#time(type="text", name="time", placeholder="时间")
+          input#category(type="text", name="category", placeholder="类别")
+          input(type="submit", value="搜索")
+  .container
+    .section
+      h2 推荐歌手
+      .featured-item
+        img#featured-img-1(src="img/artist1.png", alt="")
+      .featured-item
+        img#featured-img-2(src="img/artist2.png", alt="")
+      .featured-item
+        img#featured-img-3(src="img/artist3.png", alt="")
+      .featured-item
+        img#featured-img-4(src="img/artist4.png", alt="")
+    .section
+      h2 最新项目
+
+      
+script(src='//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+script window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\\/script>')
+script(defer, src='js/plugins.js')
+script(defer, src='js/script.js')
+script.
+  var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview'],['_trackPageLoadTime']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));  
+//if lt IE 7
+  script(src='//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js', defer)
+  script(defer) window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})

@@ -1,0 +1,26 @@
+// Typography
+@import 'compass';
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+$base-font-size: 14px;
+$base-line-height: 22px;
+@include establish-baseline;
+
+html { font-family: 'Open Sans', sans-serif; }
+
+h1 { 
+
+	@include adjust-font-size-to(64px); 
+	font-weight: 700;
+}
+
+h2, h4, h5, h6{
+	@include adjust-font-size-to(24px);
+	font-weight: normal;
+}
+
+h3 {
+	@include adjust-font-size-to(22px);
+	font-weight: 700;
+	text-transform:uppercase;
+}
