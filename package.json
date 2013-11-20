@@ -1,11 +1,9 @@
 {
-	"name":"wowcheer",
-	"dependencies":{
-		"express" : "*",
-		"mongoose": "*"
-	},
-	"engines": {
-    "node": "0.10.11",
-    "npm": "1.2.25"
-  	}
+    "name": "wowcheer"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": "2.5.0"
+    , "jade": ">= 0.0.1"
+  }
 }
