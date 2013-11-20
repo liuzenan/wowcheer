@@ -1,8 +1,7 @@
 
 /*
- * GET users listing.
+ * User related route
  */
+module.exports = function(app){
 
-exports.list = function(req, res){
-  res.send("respond with a resource");
 };

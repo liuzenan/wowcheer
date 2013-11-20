@@ -4,38 +4,51 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-var config = require('./config')();
+var passport = require("passport");
+var mongoose = require("mongoose");
+
+var config = require('./config/config');
+var env = config.env();
+var routes = require('./routes');
+
 var app = express();
 
 // all environments
-app.set('env',config.mode);
-app.set('port', config.port);
-app.set('views', path.join(__dirname, 'views'));
+app.set('env',env.mode);
+app.set('port', env.port);
+app.set('views', path.join(__dirname, 'app/views'));
+
+// all middle ware
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(app.router);
+app.use(express.cookieParser());
+app.use(express.bodyParser());
+app.use(express.session({ secret: 'really cool website' }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(app.router);
+
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', function(req,res){
-	var body = 'Hello World';
-	res.setHeader('Content-Type', 'text/plain');
-	res.setHeader('Content-Length', body.length);
-	res.end(body);
-});
+// connect database
+mongoose.connect(env.db);
 
+// set up passport
+require('./config/passport')(passport,config);
+
+// set up routes
+require('./routes')(app,passport)
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('server ('+config.mode+') listening on port ' + app.get('port'));
+  console.log('server ('+app.get('env')+') listening on port ' + app.get('port'));
 });

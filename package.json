@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "express": "*",
-	"mocha":"*"
+	"mocha":"*",
+	"passport":"*",
+	"passport-facebook":"*",
+	"mongoose":"*"
   }
 }
