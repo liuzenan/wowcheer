@@ -369,7 +369,7 @@ html {
 
 /* line 15, ../../../sass/_base.scss */
 body, label, input, textarea, select, button {
-  font-family: "Open Sans", "Helvetica Neue", Arial, "Liberation Sans", FreeSans, "Hiragino Sans GB", sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Arial, "Liberation Sans", FreeSans, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 /* line 17, ../../../sass/_base.scss */
