@@ -3,7 +3,7 @@
  */
 
 module.exports = function (app,passport,db) {
-	/*Attach database to every request*/
+	/*Attach database,passport to every request*/
 	app.all('*', function(req, res, next) {
 		req.db = db;
 		req.passport =passport;

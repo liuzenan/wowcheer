@@ -7,4 +7,5 @@ var venueSchema = mongoose.Schema({
 		address:String,
 		createdAt: { type: Date, default: Date.now }
 	})
-exports = venueSchema;
+// Bootstrap models
+mongoose.model('Venue',venueSchema);
