@@ -3,13 +3,16 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "latest",
+    "express": "3.1.x",
     "jade": "latest",
   	"mocha":"*",
   	"passport":"*",
   	"passport-facebook":"*",
     "passport-local":"*",
-  	"mongoose":"*",
-	"underscore":"*"
+  	"mongoose":"*"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
   }
 }
