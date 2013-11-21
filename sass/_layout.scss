@@ -300,3 +300,68 @@ $zen-gutter-width: 0;
 		}	
 	}
 }
+
+
+// categories
+
+
+
+// about wowcheer
+
+
+// footer
+
+#footer {
+	.container {
+		@include zen-grid-container;
+	}
+	background: $dark-gray;
+	color:white;
+
+	.footer-links {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.footer-link-item {
+		padding: 2px 0;
+	}
+
+	.bottom-nav-discover {
+		@include zen-grid-item(3, 1);
+	}
+	.bottom-nav-profile {
+		@include zen-grid-item(3, 4);
+	}
+	.bottom-nav-about {
+		@include zen-grid-item(3, 7);
+	}
+	.bottom-nav-contact {
+		@include zen-grid-item(3, 10);
+	}
+	.footer-bottom {
+		font-size: .8em;
+		padding: 40px;
+		margin-top: 40px;
+		border-top: 1px solid $seam-gray;
+		@include zen-clear();
+		@include zen-grid-item(12, 1);
+		@include clearfix;
+
+		.copy-right {
+			float:left;
+		}
+
+		.footer-bottom-links{
+			float: right;
+			padding: 0;
+			margin: 0;
+			li {
+				display: inline-block;
+				margin-left: 1em;
+			}
+		}
+	}
+
+}
