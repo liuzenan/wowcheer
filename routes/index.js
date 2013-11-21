@@ -2,6 +2,11 @@
  * Base level routes
  */
 module.exports = function (app,passport) {
+	/* GET "404" page. */
+	app.all('*', function(req,res){
+		res.render('index', { title: 'Lost' })
+	});
+	
 	require('./user')(app,passport);
 	
 	// index page
@@ -10,8 +15,4 @@ module.exports = function (app,passport) {
 	});
 }
 
-/* GET "404" page. */
-exports.lost = function(req, res){
-  res.render('index', { title: 'Lost' })
-};
  

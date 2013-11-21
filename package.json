@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "2.5.0",
+    "express": "latest",
     "jade": ">= 0.0.1",
   	"mocha":"*",
   	"passport":"*",
