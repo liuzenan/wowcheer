@@ -47,7 +47,7 @@ app.configure('production', function(){
 });
 
 // connect database
-mongoose.connect(env.db);
+// mongoose.connect(env.db);
 
 // set up passport
 require('./config/passport')(passport,config);
