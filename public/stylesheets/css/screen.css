@@ -368,8 +368,8 @@ html {
 }
 
 /* line 15, ../../../sass/_base.scss */
-html {
-  font-family: "Open Sans", sans-serif;
+body, label, input, textarea, select, button {
+  font-family: "Open Sans", "Helvetica Neue", Arial, "Liberation Sans", FreeSans, "Hiragino Sans GB", sans-serif;
 }
 
 /* line 17, ../../../sass/_base.scss */
