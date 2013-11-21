@@ -171,6 +171,25 @@ $zen-gutter-width: 0;
 }
 
 
+.section-header{
+	@include clearfix;
+	.main-title {
+		display: inline-block;
+	}
+
+	.second-title {
+		float: right;
+	}
+
+	.control {
+		margin-left: 1em;
+		font-size: .6em;
+		border-bottom: 1px solid $primary-green;
+	}
+
+
+}
+
 // project card wide
 
 .project-card-wide{
@@ -321,7 +340,7 @@ $zen-gutter-width: 0;
 	.category-item {
 		display: inline-block;
 		margin: 1em 0 0 2em;
-		border-bottom: 1px dotted $primary-green;
+		border-bottom: 1px solid $primary-green;
 		a {
 			@include single-transition(all, 0.2s, ease-in, 0);
 			&:hover {
@@ -363,7 +382,7 @@ $zen-gutter-width: 0;
 
 	a {
 		color:$dark-gray;
-		border-bottom: 1px dotted $dark-gray;	
+		border-bottom: 1px solid $dark-gray;	
 	}
 }
 
