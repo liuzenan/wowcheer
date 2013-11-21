@@ -1,10 +1,16 @@
 // Typography
 @import 'compass';
+@import 'module/_color.scss';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 $base-font-size: 14px;
 $base-line-height: 22px;
 @include establish-baseline;
+
+@mixin large-button-text{
+	@include adjust-font-size-to(24px); 
+	font-weight: normal;
+}
 
 html { font-family: 'Open Sans', sans-serif; }
 
@@ -23,4 +29,10 @@ h3 {
 	@include adjust-font-size-to(22px);
 	font-weight: 700;
 	text-transform:uppercase;
+	margin: 0.2em 0;
+}
+
+a {
+	text-decoration: none;
+	color:$primary-green;
 }

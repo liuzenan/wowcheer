@@ -367,31 +367,38 @@ html {
   line-height: 1.57143em;
 }
 
-/* line 9, ../../../sass/_base.scss */
+/* line 15, ../../../sass/_base.scss */
 html {
   font-family: "Open Sans", sans-serif;
 }
 
-/* line 11, ../../../sass/_base.scss */
+/* line 17, ../../../sass/_base.scss */
 h1 {
   font-size: 4.57143em;
   line-height: 1.375em;
   font-weight: 700;
 }
 
-/* line 17, ../../../sass/_base.scss */
+/* line 23, ../../../sass/_base.scss */
 h2, h4, h5, h6 {
   font-size: 1.71429em;
   line-height: 1.83333em;
   font-weight: normal;
 }
 
-/* line 22, ../../../sass/_base.scss */
+/* line 28, ../../../sass/_base.scss */
 h3 {
   font-size: 1.57143em;
   line-height: 2em;
   font-weight: 700;
   text-transform: uppercase;
+  margin: 0.2em 0;
+}
+
+/* line 35, ../../../sass/_base.scss */
+a {
+  text-decoration: none;
+  color: #b6dcc1;
 }
 
 /* line 3, ../../../sass/module/_nav.scss */
@@ -411,7 +418,7 @@ h3 {
   font-weight: bold;
 }
 
-/* line 6, ../../../sass/_layout.scss */
+/* line 41, ../../../sass/_layout.scss */
 .container {
   display: block;
   width: 960px;
@@ -419,33 +426,41 @@ h3 {
   padding: 0 10px;
 }
 
-/* line 14, ../../../sass/_layout.scss */
+/* line 51, ../../../sass/_layout.scss */
 #header {
   background: #b6dcc1;
   display: block;
   height: 60px;
   padding-top: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
-/* line 19, ../../../sass/_layout.scss */
+/* line 57, ../../../sass/_layout.scss */
 #header .logo {
   position: relative;
   display: inline-block;
   height: 100%;
 }
-/* line 24, ../../../sass/_layout.scss */
+/* line 62, ../../../sass/_layout.scss */
 #header .nav-top {
   height: 100%;
   display: inline-block;
   float: right;
 }
 
-/* line 31, ../../../sass/_layout.scss */
+/* line 70, ../../../sass/_layout.scss */
+#main-content {
+  background: url(/img/geometry.png);
+  height: 100%;
+}
+
+/* line 77, ../../../sass/_layout.scss */
 .intro {
   position: relative;
   height: 340px;
   padding-top: 80px;
+  background: black;
 }
-/* line 35, ../../../sass/_layout.scss */
+/* line 82, ../../../sass/_layout.scss */
 .intro .hero-image {
   background-image: url(/img/hero.png);
   background-position: center top;
@@ -459,22 +474,22 @@ h3 {
   height: 100%;
   z-index: 2;
 }
-/* line 48, ../../../sass/_layout.scss */
+/* line 95, ../../../sass/_layout.scss */
 .intro .hero-text {
   color: white;
   z-index: 3;
   position: relative;
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
 }
-/* line 53, ../../../sass/_layout.scss */
+/* line 100, ../../../sass/_layout.scss */
 .intro .hero-text h1 {
   margin: 0;
 }
-/* line 56, ../../../sass/_layout.scss */
+/* line 103, ../../../sass/_layout.scss */
 .intro .hero-text h2 {
   margin: 0 0 1em 0;
 }
-/* line 60, ../../../sass/_layout.scss */
+/* line 107, ../../../sass/_layout.scss */
 .intro .hero-search {
   z-index: 3;
   position: relative;
@@ -485,11 +500,11 @@ h3 {
   border: 1px solid black;
 }
 
-/* line 73, ../../../sass/_layout.scss */
+/* line 120, ../../../sass/_layout.scss */
 #search-form input {
   margin: 0 4px;
 }
-/* line 77, ../../../sass/_layout.scss */
+/* line 124, ../../../sass/_layout.scss */
 #search-form input[type="text"] {
   background-color: white;
   box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.08), 0 1px 0 0 white;
@@ -497,9 +512,9 @@ h3 {
   border: 0;
   padding: 10px 10px 11px 10px;
 }
-/* line 81, ../../../sass/_layout.scss */
+/* line 128, ../../../sass/_layout.scss */
 #search-form input[type="submit"] {
-  background-color: #b6dcc1;
+  background-color: rgba(67, 219, 186, 0.95);
   text-decoration: none;
   cursor: pointer;
   outline: none;
@@ -510,11 +525,387 @@ h3 {
   border-radius: 4px;
   border: 0;
   color: white;
+  -moz-box-shadow: 0px 0px 10px 0px rgba(69, 92, 54, 0.5);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(69, 92, 54, 0.5);
+  box-shadow: 0px 0px 10px 0px rgba(69, 92, 54, 0.5);
   padding: 10px 19px;
 }
 
-/* line 87, ../../../sass/_layout.scss */
+/* line 135, ../../../sass/_layout.scss */
+.featured-container {
+  height: 240px;
+}
+
+/* line 139, ../../../sass/_layout.scss */
 .featured-item {
+  height: 100%;
   display: inline-block;
   width: 25%;
+}
+/* line 143, ../../../sass/_layout.scss */
+.featured-item .featured-img {
+  z-index: 2;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-size: cover;
+}
+
+/* line 151, ../../../sass/_layout.scss */
+.project-card-wide {
+  background: #FFFFFF;
+  -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);
+  *position: relative;
+  *zoom: 1;
+  height: 270px;
+  margin-bottom: 32px;
+}
+/* line 46, ../../../../../../../../../../usr/local/rvm/gems/ruby-1.9.3-p392/gems/zen-grids-1.4/stylesheets/zen/_grids.scss */
+.project-card-wide:before, .project-card-wide:after {
+  content: "";
+  display: table;
+}
+/* line 50, ../../../../../../../../../../usr/local/rvm/gems/ruby-1.9.3-p392/gems/zen-grids-1.4/stylesheets/zen/_grids.scss */
+.project-card-wide:after {
+  clear: both;
+}
+/* line 157, ../../../sass/_layout.scss */
+.project-card-wide .project-card-lead {
+  height: 100%;
+  float: left;
+  width: 33.33333%;
+  margin-left: 0%;
+  margin-right: -33.33333%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  position: relative;
+}
+/* line 161, ../../../sass/_layout.scss */
+.project-card-wide .project-card-lead .project-card-img {
+  z-index: 2;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-size: cover;
+}
+/* line 164, ../../../sass/_layout.scss */
+.project-card-wide .project-card-lead .project-card-button {
+  background-color: rgba(67, 219, 186, 0.95);
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 4px;
+  border: 0;
+  color: white;
+  -moz-box-shadow: 0px 0px 10px 0px rgba(69, 92, 54, 0.5);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(69, 92, 54, 0.5);
+  box-shadow: 0px 0px 10px 0px rgba(69, 92, 54, 0.5);
+  padding: 15px 48px;
+  font-size: 1.71429em;
+  line-height: 1.83333em;
+  font-weight: normal;
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -37px;
+  margin-left: -84px;
+}
+/* line 171, ../../../sass/_layout.scss */
+.project-card-wide .project-card-detail {
+  height: 100%;
+  float: left;
+  width: 66.66667%;
+  margin-left: 33.33333%;
+  margin-right: -100%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  padding: 0 20px;
+}
+
+/* line 180, ../../../sass/_layout.scss */
+.project-card-detail {
+  *position: relative;
+  *zoom: 1;
+}
+/* line 46, ../../../../../../../../../../usr/local/rvm/gems/ruby-1.9.3-p392/gems/zen-grids-1.4/stylesheets/zen/_grids.scss */
+.project-card-detail:before, .project-card-detail:after {
+  content: "";
+  display: table;
+}
+/* line 50, ../../../../../../../../../../usr/local/rvm/gems/ruby-1.9.3-p392/gems/zen-grids-1.4/stylesheets/zen/_grids.scss */
+.project-card-detail:after {
+  clear: both;
+}
+/* line 182, ../../../sass/_layout.scss */
+.project-card-detail .project-card-singer {
+  float: left;
+  width: 66.66667%;
+  margin-left: 0%;
+  margin-right: -66.66667%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+}
+/* line 185, ../../../sass/_layout.scss */
+.project-card-detail .project-card-date {
+  float: left;
+  width: 33.33333%;
+  margin-left: 66.66667%;
+  margin-right: -100%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+}
+/* line 187, ../../../sass/_layout.scss */
+.project-card-detail .project-card-date h3 {
+  text-align: right;
+  color: #cdcdcd;
+}
+/* line 192, ../../../sass/_layout.scss */
+.project-card-detail .project-card-des {
+  clear: left;
+  float: left;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: -100%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  height: 138px;
+  overflow: hidden;
+}
+/* line 198, ../../../sass/_layout.scss */
+.project-card-detail .project-card-city {
+  margin: 0;
+  clear: left;
+  float: left;
+  width: 66.66667%;
+  margin-left: 0%;
+  margin-right: -66.66667%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+}
+/* line 202, ../../../sass/_layout.scss */
+.project-card-detail .project-card-city .city {
+  color: #cdcdcd;
+}
+/* line 206, ../../../sass/_layout.scss */
+.project-card-detail .project-card-city .venue {
+  padding-left: .6em;
+}
+/* line 211, ../../../sass/_layout.scss */
+.project-card-detail .project-card-other-city {
+  float: left;
+  width: 33.33333%;
+  margin-left: 66.66667%;
+  margin-right: -100%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  position: relative;
+}
+/* line 214, ../../../sass/_layout.scss */
+.project-card-detail .project-card-other-city a {
+  display: block;
+  text-align: right;
+  line-height: 2em;
+  padding-top: 0.9em;
+}
+/* line 222, ../../../sass/_layout.scss */
+.project-card-detail .project-card-progress {
+  clear: left;
+  float: left;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: -100%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  height: 5px;
+  background: #f6f6f6;
+}
+/* line 227, ../../../sass/_layout.scss */
+.project-card-detail .project-card-progress .progress-bar {
+  height: 5px;
+  background: #7bd3f3;
+}
+/* line 232, ../../../sass/_layout.scss */
+.project-card-detail .project-card-number {
+  clear: left;
+  float: left;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: -100%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  text-align: right;
+  font-size: .8em;
+}
+
+/* line 242, ../../../sass/_layout.scss */
+.project-card-container {
+  margin-left: -30px;
+}
+
+/* line 246, ../../../sass/_layout.scss */
+.project-card-small {
+  background: #FFFFFF;
+  -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);
+  width: 300px;
+  margin-left: 30px;
+  display: inline-block;
+}
+/* line 251, ../../../sass/_layout.scss */
+.project-card-small .project-card-lead {
+  height: 270px;
+  position: relative;
+  display: block;
+}
+/* line 255, ../../../sass/_layout.scss */
+.project-card-small .project-card-lead .project-card-img {
+  z-index: 2;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-size: cover;
+  background-origin: top center;
+}
+/* line 259, ../../../sass/_layout.scss */
+.project-card-small .project-card-lead .project-card-button {
+  background-color: rgba(67, 219, 186, 0.95);
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 4px;
+  border: 0;
+  color: white;
+  -moz-box-shadow: 0px 0px 10px 0px rgba(69, 92, 54, 0.5);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(69, 92, 54, 0.5);
+  box-shadow: 0px 0px 10px 0px rgba(69, 92, 54, 0.5);
+  padding: 15px 48px;
+  font-size: 1.71429em;
+  line-height: 1.83333em;
+  font-weight: normal;
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -37px;
+  margin-left: -84px;
+  opacity: 0;
+  -webkit-transition: all 0.2s ease-in;
+  -webkit-transition-delay: 0;
+  -moz-transition: all 0.2s ease-in 0;
+  -o-transition: all 0.2s ease-in 0;
+  transition: all 0.2s ease-in 0;
+}
+/* line 269, ../../../sass/_layout.scss */
+.project-card-small .project-card-detail {
+  *position: relative;
+  *zoom: 1;
+  height: 120px;
+  overflow: hidden;
+  display: block;
+  padding: 5px 10px;
+  font-size: .8em;
+}
+/* line 46, ../../../../../../../../../../usr/local/rvm/gems/ruby-1.9.3-p392/gems/zen-grids-1.4/stylesheets/zen/_grids.scss */
+.project-card-small .project-card-detail:before, .project-card-small .project-card-detail:after {
+  content: "";
+  display: table;
+}
+/* line 50, ../../../../../../../../../../usr/local/rvm/gems/ruby-1.9.3-p392/gems/zen-grids-1.4/stylesheets/zen/_grids.scss */
+.project-card-small .project-card-detail:after {
+  clear: both;
+}
+/* line 276, ../../../sass/_layout.scss */
+.project-card-small .project-card-detail .project-card-number {
+  font-size: 1em;
+}
+/* line 282, ../../../sass/_layout.scss */
+.project-card-small:hover .project-card-button {
+  opacity: 1;
 }
