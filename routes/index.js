@@ -1,6 +1,8 @@
 /**
  * Base level routes
  */
+var mongoose = require('mongoose')
+
 
 module.exports = function (app,passport,db) {
 	/*Attach database,passport to every request*/
@@ -15,7 +17,9 @@ module.exports = function (app,passport,db) {
 	
 	// index page
 	app.get("/", function (req, res) {
-		 res.render('index', { title: '我去' })
+		var Artist = mongoose.model('Artist')
+		var artists = Artist.find();
+		res.render('index', { title: '我去', artists:artists})
 	});
 	
 	
