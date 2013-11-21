@@ -1,0 +1,28 @@
+@mixin button($color) {
+	background-color: $color;
+	text-decoration: none;
+	cursor: pointer;
+	outline: none;
+	-webkit-appearance: none;
+	display: inline-block;
+	text-align: center;
+	font-weight: bold;
+	border-radius: 4px;
+	border: 0;
+	color:white;
+}
+
+@mixin button-small($color) {
+	@include button($color);
+	padding: 5px 10px;
+}
+
+@mixin button-primary($color) {
+	@include button($color);
+	padding: 10px 19px;
+}
+
+@mixin button-large($color) {
+	@include button($color);
+	padding: 15px 24px;
+}
