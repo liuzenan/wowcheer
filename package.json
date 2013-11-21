@@ -8,6 +8,7 @@
   	"mocha":"*",
   	"passport":"*",
   	"passport-facebook":"*",
+    "passport-local":"*",
   	"mongoose":"*"
   }
 }
