@@ -367,26 +367,26 @@ html {
   line-height: 1.57143em;
 }
 
-/* line 15, ../../../sass/_base.scss */
+/* line 19, ../../../sass/_base.scss */
 body, label, input, textarea, select, button {
   font-family: "Open Sans", "Helvetica Neue", Arial, "Liberation Sans", FreeSans, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
-/* line 17, ../../../sass/_base.scss */
+/* line 21, ../../../sass/_base.scss */
 h1 {
   font-size: 4.57143em;
   line-height: 1.375em;
   font-weight: 700;
 }
 
-/* line 23, ../../../sass/_base.scss */
+/* line 27, ../../../sass/_base.scss */
 h2, h4, h5, h6 {
   font-size: 1.71429em;
   line-height: 1.83333em;
   font-weight: normal;
 }
 
-/* line 28, ../../../sass/_base.scss */
+/* line 32, ../../../sass/_base.scss */
 h3 {
   font-size: 1.57143em;
   line-height: 2em;
@@ -395,7 +395,7 @@ h3 {
   margin: 0.2em 0;
 }
 
-/* line 35, ../../../sass/_base.scss */
+/* line 39, ../../../sass/_base.scss */
 a {
   text-decoration: none;
   color: #b6dcc1;
@@ -418,7 +418,7 @@ a {
   font-weight: bold;
 }
 
-/* line 41, ../../../sass/_layout.scss */
+/* line 50, ../../../sass/_layout.scss */
 .container {
   display: block;
   width: 960px;
@@ -426,7 +426,7 @@ a {
   padding: 0 10px;
 }
 
-/* line 51, ../../../sass/_layout.scss */
+/* line 60, ../../../sass/_layout.scss */
 #header {
   background: #b6dcc1;
   display: block;
@@ -434,37 +434,38 @@ a {
   padding-top: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
-/* line 57, ../../../sass/_layout.scss */
+/* line 66, ../../../sass/_layout.scss */
 #header .logo {
   position: relative;
   display: inline-block;
   height: 100%;
 }
-/* line 62, ../../../sass/_layout.scss */
+/* line 71, ../../../sass/_layout.scss */
 #header .nav-top {
   height: 100%;
   display: inline-block;
   float: right;
 }
 
-/* line 70, ../../../sass/_layout.scss */
+/* line 79, ../../../sass/_layout.scss */
 #main-content {
   background: url(/img/geometry.png);
   height: 100%;
 }
 
-/* line 77, ../../../sass/_layout.scss */
+/* line 86, ../../../sass/_layout.scss */
 .intro {
   position: relative;
   height: 340px;
   padding-top: 80px;
   background: black;
 }
-/* line 82, ../../../sass/_layout.scss */
+/* line 91, ../../../sass/_layout.scss */
 .intro .hero-image {
   background-image: url(/img/hero.png);
   background-position: center top;
   background-repeat: no-repeat;
+  background-size: auto 100%;
   background-size: cover;
   background-attachment: fixed;
   position: absolute;
@@ -474,22 +475,22 @@ a {
   height: 100%;
   z-index: 2;
 }
-/* line 95, ../../../sass/_layout.scss */
+/* line 105, ../../../sass/_layout.scss */
 .intro .hero-text {
   color: white;
   z-index: 3;
   position: relative;
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
 }
-/* line 100, ../../../sass/_layout.scss */
+/* line 110, ../../../sass/_layout.scss */
 .intro .hero-text h1 {
   margin: 0;
 }
-/* line 103, ../../../sass/_layout.scss */
+/* line 113, ../../../sass/_layout.scss */
 .intro .hero-text h2 {
   margin: 0 0 1em 0;
 }
-/* line 107, ../../../sass/_layout.scss */
+/* line 117, ../../../sass/_layout.scss */
 .intro .hero-search {
   z-index: 3;
   position: relative;
@@ -500,11 +501,11 @@ a {
   border: 1px solid black;
 }
 
-/* line 120, ../../../sass/_layout.scss */
+/* line 130, ../../../sass/_layout.scss */
 #search-form input {
   margin: 0 4px;
 }
-/* line 124, ../../../sass/_layout.scss */
+/* line 134, ../../../sass/_layout.scss */
 #search-form input[type="text"] {
   background-color: white;
   box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.08), 0 1px 0 0 white;
@@ -512,7 +513,7 @@ a {
   border: 0;
   padding: 10px 10px 11px 10px;
 }
-/* line 128, ../../../sass/_layout.scss */
+/* line 138, ../../../sass/_layout.scss */
 #search-form input[type="submit"] {
   background-color: rgba(67, 219, 186, 0.95);
   text-decoration: none;
@@ -531,18 +532,19 @@ a {
   padding: 10px 19px;
 }
 
-/* line 135, ../../../sass/_layout.scss */
+/* line 145, ../../../sass/_layout.scss */
 .featured-container {
   height: 240px;
 }
 
-/* line 139, ../../../sass/_layout.scss */
+/* line 149, ../../../sass/_layout.scss */
 .featured-item {
   height: 100%;
   display: inline-block;
   width: 25%;
+  position: relative;
 }
-/* line 143, ../../../sass/_layout.scss */
+/* line 154, ../../../sass/_layout.scss */
 .featured-item .featured-img {
   z-index: 2;
   height: 100%;
@@ -551,8 +553,19 @@ a {
   background-size: 100% 100%;
   background-size: cover;
 }
+/* line 157, ../../../sass/_layout.scss */
+.featured-item .artist-name {
+  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 20px;
+  margin-left: 40px;
+  color: white;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
+}
 
-/* line 151, ../../../sass/_layout.scss */
+/* line 167, ../../../sass/_layout.scss */
 .project-card-wide {
   background: #FFFFFF;
   -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);
@@ -572,7 +585,7 @@ a {
 .project-card-wide:after {
   clear: both;
 }
-/* line 157, ../../../sass/_layout.scss */
+/* line 173, ../../../sass/_layout.scss */
 .project-card-wide .project-card-lead {
   height: 100%;
   float: left;
@@ -591,7 +604,7 @@ a {
   _overflow-y: visible;
   position: relative;
 }
-/* line 161, ../../../sass/_layout.scss */
+/* line 177, ../../../sass/_layout.scss */
 .project-card-wide .project-card-lead .project-card-img {
   z-index: 2;
   height: 100%;
@@ -600,7 +613,7 @@ a {
   background-size: 100% 100%;
   background-size: cover;
 }
-/* line 164, ../../../sass/_layout.scss */
+/* line 180, ../../../sass/_layout.scss */
 .project-card-wide .project-card-lead .project-card-button {
   background-color: rgba(67, 219, 186, 0.95);
   text-decoration: none;
@@ -627,7 +640,7 @@ a {
   margin-top: -37px;
   margin-left: -84px;
 }
-/* line 171, ../../../sass/_layout.scss */
+/* line 187, ../../../sass/_layout.scss */
 .project-card-wide .project-card-detail {
   height: 100%;
   float: left;
@@ -647,7 +660,7 @@ a {
   padding: 0 20px;
 }
 
-/* line 180, ../../../sass/_layout.scss */
+/* line 196, ../../../sass/_layout.scss */
 .project-card-detail {
   *position: relative;
   *zoom: 1;
@@ -661,7 +674,7 @@ a {
 .project-card-detail:after {
   clear: both;
 }
-/* line 182, ../../../sass/_layout.scss */
+/* line 198, ../../../sass/_layout.scss */
 .project-card-detail .project-card-singer {
   float: left;
   width: 66.66667%;
@@ -678,7 +691,7 @@ a {
   _overflow: hidden;
   _overflow-y: visible;
 }
-/* line 185, ../../../sass/_layout.scss */
+/* line 201, ../../../sass/_layout.scss */
 .project-card-detail .project-card-date {
   float: left;
   width: 33.33333%;
@@ -695,12 +708,12 @@ a {
   _overflow: hidden;
   _overflow-y: visible;
 }
-/* line 187, ../../../sass/_layout.scss */
+/* line 203, ../../../sass/_layout.scss */
 .project-card-detail .project-card-date h3 {
   text-align: right;
   color: #cdcdcd;
 }
-/* line 192, ../../../sass/_layout.scss */
+/* line 208, ../../../sass/_layout.scss */
 .project-card-detail .project-card-des {
   clear: left;
   float: left;
@@ -720,7 +733,7 @@ a {
   height: 138px;
   overflow: hidden;
 }
-/* line 198, ../../../sass/_layout.scss */
+/* line 214, ../../../sass/_layout.scss */
 .project-card-detail .project-card-city {
   margin: 0;
   clear: left;
@@ -739,15 +752,15 @@ a {
   _overflow: hidden;
   _overflow-y: visible;
 }
-/* line 202, ../../../sass/_layout.scss */
+/* line 218, ../../../sass/_layout.scss */
 .project-card-detail .project-card-city .city {
   color: #cdcdcd;
 }
-/* line 206, ../../../sass/_layout.scss */
+/* line 222, ../../../sass/_layout.scss */
 .project-card-detail .project-card-city .venue {
   padding-left: .6em;
 }
-/* line 211, ../../../sass/_layout.scss */
+/* line 227, ../../../sass/_layout.scss */
 .project-card-detail .project-card-other-city {
   float: left;
   width: 33.33333%;
@@ -765,14 +778,14 @@ a {
   _overflow-y: visible;
   position: relative;
 }
-/* line 214, ../../../sass/_layout.scss */
+/* line 230, ../../../sass/_layout.scss */
 .project-card-detail .project-card-other-city a {
   display: block;
   text-align: right;
   line-height: 2em;
   padding-top: 0.9em;
 }
-/* line 222, ../../../sass/_layout.scss */
+/* line 238, ../../../sass/_layout.scss */
 .project-card-detail .project-card-progress {
   clear: left;
   float: left;
@@ -792,12 +805,12 @@ a {
   height: 5px;
   background: #f6f6f6;
 }
-/* line 227, ../../../sass/_layout.scss */
+/* line 243, ../../../sass/_layout.scss */
 .project-card-detail .project-card-progress .progress-bar {
   height: 5px;
   background: #7bd3f3;
 }
-/* line 232, ../../../sass/_layout.scss */
+/* line 248, ../../../sass/_layout.scss */
 .project-card-detail .project-card-number {
   clear: left;
   float: left;
@@ -818,12 +831,12 @@ a {
   font-size: .8em;
 }
 
-/* line 242, ../../../sass/_layout.scss */
+/* line 258, ../../../sass/_layout.scss */
 .project-card-container {
   margin-left: -30px;
 }
 
-/* line 246, ../../../sass/_layout.scss */
+/* line 262, ../../../sass/_layout.scss */
 .project-card-small {
   background: #FFFFFF;
   -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);
@@ -833,13 +846,13 @@ a {
   margin-left: 30px;
   display: inline-block;
 }
-/* line 251, ../../../sass/_layout.scss */
+/* line 267, ../../../sass/_layout.scss */
 .project-card-small .project-card-lead {
   height: 270px;
   position: relative;
   display: block;
 }
-/* line 255, ../../../sass/_layout.scss */
+/* line 271, ../../../sass/_layout.scss */
 .project-card-small .project-card-lead .project-card-img {
   z-index: 2;
   height: 100%;
@@ -849,7 +862,7 @@ a {
   background-size: cover;
   background-origin: top center;
 }
-/* line 259, ../../../sass/_layout.scss */
+/* line 275, ../../../sass/_layout.scss */
 .project-card-small .project-card-lead .project-card-button {
   background-color: rgba(67, 219, 186, 0.95);
   text-decoration: none;
@@ -882,7 +895,7 @@ a {
   -o-transition: all 0.2s ease-in 0;
   transition: all 0.2s ease-in 0;
 }
-/* line 269, ../../../sass/_layout.scss */
+/* line 285, ../../../sass/_layout.scss */
 .project-card-small .project-card-detail {
   *position: relative;
   *zoom: 1;
@@ -901,11 +914,11 @@ a {
 .project-card-small .project-card-detail:after {
   clear: both;
 }
-/* line 276, ../../../sass/_layout.scss */
+/* line 292, ../../../sass/_layout.scss */
 .project-card-small .project-card-detail .project-card-number {
   font-size: 1em;
 }
-/* line 282, ../../../sass/_layout.scss */
+/* line 298, ../../../sass/_layout.scss */
 .project-card-small:hover .project-card-button {
   opacity: 1;
 }

@@ -29,6 +29,15 @@ $zen-gutter-width: 0;
 	margin-left: -$width/2;
 }
 
+@mixin bottomOverlay{
+	z-index: 3;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 20px;
+	margin-left: 40px;
+}
+
 @mixin card {
 	background: #FFFFFF;
 	-moz-box-shadow:    0px 1px 2px 0px rgba(0,0,0,0.24);
@@ -83,6 +92,7 @@ $zen-gutter-width: 0;
 		background-image: url(/img/hero.png);
 		background-position: center top;
 		background-repeat: no-repeat;
+		background-size: auto 100%;
 		background-size: cover;
 		background-attachment: fixed;
 		position: absolute;
@@ -96,7 +106,7 @@ $zen-gutter-width: 0;
 		color: white;
 		z-index: 3;
 		position: relative;
-		text-shadow:0 -1px 1px black(0.6);
+		@include letter-press;
 		h1 {
 			margin: 0;
 		}
@@ -140,8 +150,14 @@ $zen-gutter-width: 0;
 	height: 100%;
 	display: inline-block;
 	width: 25%;
+	position: relative;
 	.featured-img {
 		@include backgroundImage;
+	}
+	.artist-name {
+		@include bottomOverlay;
+		color:white;
+		@include letter-press;
 	}
 }
 
