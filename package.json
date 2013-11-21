@@ -9,6 +9,7 @@
   	"passport":"*",
   	"passport-facebook":"*",
     "passport-local":"*",
-  	"mongoose":"*"
+  	"mongoose":"*",
+	"underscore":"*"
   }
 }
