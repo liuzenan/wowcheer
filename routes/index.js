@@ -6,11 +6,12 @@ module.exports = function (app,passport) {
 	
 	// index page
 	app.get("/", function (req, res) {
-		var body = '<a href="auth/facebook">login with facebook</a>';
-        res.setHeader('Content-Type', 'text/html');
-        res.setHeader('Content-Length', body.length);
-        res.end(body);
+		 res.render('index', { title: '我去' })
 	});
-	
 }
+
+/* GET "404" page. */
+exports.lost = function(req, res){
+  res.render('index', { title: 'Lost' })
+};
  

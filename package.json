@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "*",
-	"mocha":"*",
-	"passport":"*",
-	"passport-facebook":"*",
-	"mongoose":"*"
+    "express": "2.5.0",
+    "jade": ">= 0.0.1",
+  	"mocha":"*",
+  	"passport":"*",
+  	"passport-facebook":"*",
+  	"mongoose":"*"
   }
 }

@@ -1,0 +1,6 @@
+@mixin vertical-center($height){
+	position: absolute;
+	top: 50%;
+	height: $height;
+	margin-top: -$height/2;
+}
