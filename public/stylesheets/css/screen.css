@@ -380,7 +380,7 @@ h1 {
 }
 
 /* line 27, ../../../sass/_base.scss */
-h2, h4, h5, h6 {
+h2, h4, h6 {
   font-size: 1.71429em;
   line-height: 1.83333em;
   font-weight: normal;
@@ -396,6 +396,13 @@ h3 {
 }
 
 /* line 39, ../../../sass/_base.scss */
+h5 {
+  font-size: 1.14286em;
+  line-height: 1.375em;
+  font-weight: bold;
+}
+
+/* line 44, ../../../sass/_base.scss */
 a {
   text-decoration: none;
   color: #b6dcc1;
@@ -921,4 +928,141 @@ a {
 /* line 298, ../../../sass/_layout.scss */
 .project-card-small:hover .project-card-button {
   opacity: 1;
+}
+
+/* line 314, ../../../sass/_layout.scss */
+#footer {
+  background: #151815;
+  color: white;
+}
+/* line 315, ../../../sass/_layout.scss */
+#footer .container {
+  *position: relative;
+  *zoom: 1;
+}
+/* line 46, ../../../../../../../../../../usr/local/rvm/gems/ruby-1.9.3-p392/gems/zen-grids-1.4/stylesheets/zen/_grids.scss */
+#footer .container:before, #footer .container:after {
+  content: "";
+  display: table;
+}
+/* line 50, ../../../../../../../../../../usr/local/rvm/gems/ruby-1.9.3-p392/gems/zen-grids-1.4/stylesheets/zen/_grids.scss */
+#footer .container:after {
+  clear: both;
+}
+/* line 321, ../../../sass/_layout.scss */
+#footer .footer-links {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+/* line 327, ../../../sass/_layout.scss */
+#footer .footer-link-item {
+  padding: 2px 0;
+}
+/* line 331, ../../../sass/_layout.scss */
+#footer .bottom-nav-discover {
+  float: left;
+  width: 25%;
+  margin-left: 0%;
+  margin-right: -25%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+}
+/* line 334, ../../../sass/_layout.scss */
+#footer .bottom-nav-profile {
+  float: left;
+  width: 25%;
+  margin-left: 25%;
+  margin-right: -50%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+}
+/* line 337, ../../../sass/_layout.scss */
+#footer .bottom-nav-about {
+  float: left;
+  width: 25%;
+  margin-left: 50%;
+  margin-right: -75%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+}
+/* line 340, ../../../sass/_layout.scss */
+#footer .bottom-nav-contact {
+  float: left;
+  width: 25%;
+  margin-left: 75%;
+  margin-right: -100%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+}
+/* line 343, ../../../sass/_layout.scss */
+#footer .footer-bottom {
+  font-size: .8em;
+  padding: 40px;
+  margin-top: 40px;
+  border-top: 1px solid #333333;
+  clear: left;
+  float: left;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: -100%;
+  padding-left: 0;
+  padding-right: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 352, ../../../sass/_layout.scss */
+#footer .footer-bottom .copy-right {
+  float: left;
+}
+/* line 356, ../../../sass/_layout.scss */
+#footer .footer-bottom .footer-bottom-links {
+  float: right;
+  padding: 0;
+  margin: 0;
+}
+/* line 360, ../../../sass/_layout.scss */
+#footer .footer-bottom .footer-bottom-links li {
+  display: inline-block;
+  margin-left: 1em;
 }
