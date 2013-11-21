@@ -20,6 +20,20 @@ $zen-gutter-width: 0;
 	background-size: cover;
 }
 
+@mixin heroImage {
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+	background-size: cover;
+	background-attachment: fixed;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+}
+
 @mixin centerOverlay($height, $width) {
 	z-index: 3;
 	position: absolute;
@@ -62,7 +76,6 @@ $zen-gutter-width: 0;
 	display: block;
 	height: 60px;
 	padding-top: 20px;
-	box-shadow: 0px 4px 10px black(0.2);
 	.logo{
 		position: relative;
 		display: inline-block;
@@ -79,9 +92,15 @@ $zen-gutter-width: 0;
 #main-content {
 	background: url(/img/geometry.png);
 	height: 100%;
+	padding-bottom: 80px;
 }
 
 // intro section
+
+
+.hero-image{ 
+	@include heroImage;
+}
 
 .intro {
 	position: relative;
@@ -90,18 +109,8 @@ $zen-gutter-width: 0;
 	background: black;
 	.hero-image{
 		background-image: url(/img/hero.png);
-		background-position: center top;
-		background-repeat: no-repeat;
-		background-size: auto 100%;
-		background-size: cover;
-		background-attachment: fixed;
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 2;
 	}
+
 	.hero-text{
 		color: white;
 		z-index: 3;
@@ -177,11 +186,11 @@ $zen-gutter-width: 0;
 		.project-card-img{
 			@include backgroundImage;
 		}
-	    .project-card-button{
+		.project-card-button{
 			@include button-large($button-primary);
 			@include large-button-text;
 			@include centerOverlay(74px, 168px);
-	    }
+		}
 	}
 
 	.project-card-detail{
@@ -195,62 +204,62 @@ $zen-gutter-width: 0;
 
 .project-card-detail{
 	@include zen-grid-container;
-		.project-card-singer {
-			@include zen-grid-item(8, 1);
-		}
-	    .project-card-date {
-			@include zen-grid-item(4, 9); 
-			h3 {
-				text-align: right;
-				color:$primary-gray;
-			}
-	    }
-	    .project-card-des {
-			@include zen-clear();
-			@include zen-grid-item(12, 1); 
-			height: 138px;
-			overflow: hidden;
-	    }
-	    .project-card-city {
-	    	margin: 0;
-			@include zen-clear();
-			@include zen-grid-item(8, 1); 
-			.city {
-				color:$primary-gray;
-			}
-
-			.venue {
-				padding-left: .6em;
-			}
-
-	    }
-	    .project-card-other-city {
-			@include zen-grid-item(4, 9);
-			position: relative;
-			a {
-				display: block;
-				text-align: right;
-				line-height: 2em;
-				padding-top: 0.9em
-			}
-
-	    }
-	    .project-card-progress {
-	    	@include zen-clear();
-			@include zen-grid-item(12, 1); 
-			height: 5px;
-			background: $light-gray;
-			.progress-bar{
-				height: 5px;
-				background: $progress-blue;
-			}
-	    }
-	    .project-card-number {
-			@include zen-clear();
-			@include zen-grid-item(12, 1); 
+	.project-card-singer {
+		@include zen-grid-item(8, 1);
+	}
+	.project-card-date {
+		@include zen-grid-item(4, 9); 
+		h3 {
 			text-align: right;
-			font-size: .8em;
-	    }
+			color:$primary-gray;
+		}
+	}
+	.project-card-des {
+		@include zen-clear();
+		@include zen-grid-item(12, 1); 
+		height: 138px;
+		overflow: hidden;
+	}
+	.project-card-city {
+		margin: 0;
+		@include zen-clear();
+		@include zen-grid-item(8, 1); 
+		.city {
+			color:$primary-gray;
+		}
+
+		.venue {
+			padding-left: .6em;
+		}
+
+	}
+	.project-card-other-city {
+		@include zen-grid-item(4, 9);
+		position: relative;
+		a {
+			display: block;
+			text-align: right;
+			line-height: 2em;
+			padding-top: 0.9em
+		}
+
+	}
+	.project-card-progress {
+		@include zen-clear();
+		@include zen-grid-item(12, 1); 
+		height: 5px;
+		background: $light-gray;
+		.progress-bar{
+			height: 5px;
+			background: $progress-blue;
+		}
+	}
+	.project-card-number {
+		@include zen-clear();
+		@include zen-grid-item(12, 1); 
+		text-align: right;
+		font-size: .8em;
+	}
 }
 
 
@@ -299,4 +308,119 @@ $zen-gutter-width: 0;
 			opacity: 1;
 		}	
 	}
+}
+
+
+// categories
+
+.category-links{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	@include adjust-font-size-to(32px); 
+	.category-item {
+		display: inline-block;
+		margin: 1em 0 0 2em;
+		border-bottom: 1px dotted $primary-green;
+		a {
+			@include single-transition(all, 0.2s, ease-in, 0);
+			&:hover {
+				color: $dark-gray;
+			}			
+		}
+
+	}
+}
+
+// about wowcheer
+
+#about {
+	position: relative;
+	height: 320px;
+	padding: 40px 0;
+	color: $dark-gray;
+	@include adjust-font-size-to(24px); 
+	.hero-image {
+		background-image: url(/img/hero2.png);
+	}
+	.container {
+		z-index: 3;
+		position: relative;
+		background: white(0.6);
+		padding: 40px 0 0 0;
+		height: 280px;
+	}
+
+	.title, .des {
+		margin: 0;
+		padding: 10px 40px;
+	}
+
+	.title {
+		font-weight: bold;
+		padding-top: 20px;
+	}
+
+	a {
+		color:$dark-gray;
+		border-bottom: 1px dotted $dark-gray;	
+	}
+}
+
+
+// footer
+
+#footer {
+	.container {
+		@include zen-grid-container;
+	}
+	background: $dark-gray;
+	color:white;
+
+	.footer-links {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.footer-link-item {
+		padding: 2px 0;
+	}
+
+	.bottom-nav-discover {
+		@include zen-grid-item(3, 1);
+	}
+	.bottom-nav-profile {
+		@include zen-grid-item(3, 4);
+	}
+	.bottom-nav-about {
+		@include zen-grid-item(3, 7);
+	}
+	.bottom-nav-contact {
+		@include zen-grid-item(3, 10);
+	}
+	.footer-bottom {
+		font-size: .8em;
+		padding: 40px;
+		margin-top: 40px;
+		border-top: 1px solid $seam-gray;
+		@include zen-clear();
+		@include zen-grid-item(12, 1);
+		@include clearfix;
+
+		.copy-right {
+			float:left;
+		}
+
+		.footer-bottom-links{
+			float: right;
+			padding: 0;
+			margin: 0;
+			li {
+				display: inline-block;
+				margin-left: 1em;
+			}
+		}
+	}
+
 }
