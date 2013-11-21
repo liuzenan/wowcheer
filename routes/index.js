@@ -1,8 +1,20 @@
-/* GET home page. */
-exports.index = function(req, res){
-  res.render('index', { title: '我去' })
-};
-/* GET "404" page. */
-exports.lost = function(req, res){
-  res.render('index', { title: 'Lost' })
-};
+/**
+ * Base level routes
+ */
+
+module.exports = function (app,passport) {
+	/* GET "404" page. */
+	app.all('*', function(req,res){
+		res.render('index', { title: 'Lost' })
+	});
+	
+	/* User authentication*/
+	require('./user')(app,passport);
+	
+	// index page
+	app.get("/", function (req, res) {
+		 res.render('index', { title: '我去' })
+	});
+}
+
+ 
