@@ -1,114 +1,98 @@
-#header
-  .container
-    a.logo(href="/") 
-      img(src="img/logo.png", alt="wowcheer")
-    ul.nav-top
-      li
-        a(href="/login") 登录
-      li
-        a(href="/signup") 注册
-      li
-        a(href="/about") 关于
-#main-content
-  .intro
-    .hero-image
+extends layout
+block body
+  #header
     .container
-      .hero-text
-        h1 你的演唱会，你做主。
-        h2 在全国34个城市找到你想去的演唱会，你的支持将使其成为现实。
-      .hero-search
-        form(id="search-form", method="post", action="")
-          input#city(type="text", name="city", placeholder="你所在的城市")
-          input#time(type="text", name="time", placeholder="时间")
-          input#category(type="text", name="category", placeholder="类别")
-          input(type="submit", value="搜索")
-  .container
-    .section
-      h2 推荐歌手
-      .featured-container
-        .featured-item
-          .featured-img(style="background-image:url(/img/artist1.png)")
-          .artist-name
-            h3 John Smith
-        .featured-item
-          .featured-img(style="background-image:url(/img/artist2.png)")
-          .artist-name 
-            h3 孙燕姿
-        .featured-item
-          .featured-img(style="background-image:url(/img/artist3.png)")
-          .artist-name
-            h3 Lady Gaga
-        .featured-item
-          .featured-img(style="background-image:url(/img/artist4.png)")
-          .artist-name
-            h3 王力宏
-      .featured-container
-        .featured-item
-          .featured-img(style="background-image:url(/img/artist5.png)")
-          .artist-name 
-            h3 陈奕迅
-        .featured-item
-          .featured-img(style="background-image:url(/img/artist6.png)")
-          .artist-name 
-            h3 Katy Perry
-        .featured-item
-          .featured-img(style="background-image:url(/img/artist7.png)")
-          .artist-name 
-            h3 梁静茹
-        .featured-item
-          .featured-img(style="background-image:url(/img/artist8.png)")
-          .artist-name 
-            h3 张敬轩
-    .section
-      h2 最新项目
-      .project-card-wide
-        .project-card-lead
-          .project-card-img(style="background-image:url(/img/card1.png)")
-          a.project-card-button(href="http://", target="_blank") 我要去
-        .project-card-detail
-          .project-card-singer
-            h3 Phillip Phillips
-          .project-card-date
-            h3 2013.09.12
-          .project-card-des
-            p Phillip Phillips，1990年9月20日生于美国乔治亚州，美国偶像第十一季冠军。外表俊朗的Phillip Phillips参加比赛的时候是一名即将毕业的大学生。他以令人惊艳的音乐天赋从海选开始大热到决赛，并最终夺冠。Phillip Phillips是一名歌手兼词曲创作人，他在比赛中对经典歌曲的改编极具个人风格，令人印象深刻。音乐风格偏向Indie Rock/Jazz。2012年11月19日出版首张录音室专辑《The World from the Side of the Moon》。
-          h4.project-card-city
-            span.city 北京
-            span.venue 国家体育馆
-          .project-card-other-city
-            a(href="http://", target="_blank") 查看其它城市
-          .project-card-progress
-            .progress-bar(style="width:60%")
-          .project-card-number 2412/3000
-      .project-card-wide
-        .project-card-lead
-          .project-card-img(style="background-image:url(/img/card2.png)")
-          a.project-card-button(href="http://", target="_blank") 我要去
-        .project-card-detail
-          .project-card-singer
-            h3 Taylor Swift
-          .project-card-date
-            h3 2013.11.15
-          .project-card-des
-            p 美国乡村音乐 著名创作女歌手、演员。1989年12月13日出生于美国宾夕法尼亚州。2006年与独立唱片公司Big Machine签约并发行首张个人同名专辑。第二张专辑《Fearless》于2008年11月11日发行，在Billboard排行榜上一共夺得11周冠军，首支单曲《Love Story》更是提前两个月发行，在公告牌最热100中最高排到第四，成为美国史上第二畅销的乡村单曲。
-          h4.project-card-city
-            span.city 北京
-            span.venue 五棵松体育馆
-          .project-card-other-city
-            a(href="http://", target="_blank") 查看其它城市
-          .project-card-progress
-            .progress-bar(style="width:40%")
-          .project-card-number 1412/3000
-      .project-card-container
-        .project-card-small
+      a.logo(href="/") 
+        img(src="img/logo.png", alt="wowcheer")
+      ul.nav-top
+        li
+          a(href="/login") 登录
+        li
+          a(href="/signup") 注册
+        li
+          a(href="/about") 关于
+  #main-content
+    .intro
+      .hero-image
+      .container
+        .hero-text
+          h1 你的演唱会，你做主。
+          h2 在全国34个城市找到你想去的演唱会，你的支持将使其成为现实。
+        .hero-search
+          form(id="search-form", method="post", action="")
+            input#city(type="text", name="city", placeholder="你所在的城市")
+            input#time(type="text", name="time", placeholder="时间")
+            input#category(type="text", name="category", placeholder="类别")
+            input(type="submit", value="搜索")
+    .container
+      .section
+        h2 推荐歌手
+        .featured-container
+          .featured-item
+            .featured-img(style="background-image:url(/img/artist1.png)")
+            .artist-name
+              h3 John Smith
+          .featured-item
+            .featured-img(style="background-image:url(/img/artist2.png)")
+            .artist-name 
+              h3 孙燕姿
+          .featured-item
+            .featured-img(style="background-image:url(/img/artist3.png)")
+            .artist-name
+              h3 Lady Gaga
+          .featured-item
+            .featured-img(style="background-image:url(/img/artist4.png)")
+            .artist-name
+              h3 王力宏
+        .featured-container
+          .featured-item
+            .featured-img(style="background-image:url(/img/artist5.png)")
+            .artist-name 
+              h3 陈奕迅
+          .featured-item
+            .featured-img(style="background-image:url(/img/artist6.png)")
+            .artist-name 
+              h3 Katy Perry
+          .featured-item
+            .featured-img(style="background-image:url(/img/artist7.png)")
+            .artist-name 
+              h3 梁静茹
+          .featured-item
+            .featured-img(style="background-image:url(/img/artist8.png)")
+            .artist-name 
+              h3 张敬轩
+      .section
+        h2 最新项目
+        .project-card-wide
           .project-card-lead
-            .project-card-img(style="background-image:url(/img/card3.png)")
+            .project-card-img(style="background-image:url(/img/card1.png)")
             a.project-card-button(href="http://", target="_blank") 我要去
           .project-card-detail
             .project-card-singer
-              h3 田馥甄
+              h3 Phillip Phillips
+            .project-card-date
+              h3 2013.09.12
+            .project-card-des
+              p Phillip Phillips，1990年9月20日生于美国乔治亚州，美国偶像第十一季冠军。外表俊朗的Phillip Phillips参加比赛的时候是一名即将毕业的大学生。他以令人惊艳的音乐天赋从海选开始大热到决赛，并最终夺冠。Phillip Phillips是一名歌手兼词曲创作人，他在比赛中对经典歌曲的改编极具个人风格，令人印象深刻。音乐风格偏向Indie Rock/Jazz。2012年11月19日出版首张录音室专辑《The World from the Side of the Moon》。
+            h4.project-card-city
+              span.city 北京
+              span.venue 国家体育馆
+            .project-card-other-city
+              a(href="http://", target="_blank") 查看其它城市
+            .project-card-progress
+              .progress-bar(style="width:60%")
+            .project-card-number 2412/3000
+        .project-card-wide
+          .project-card-lead
+            .project-card-img(style="background-image:url(/img/card2.png)")
+            a.project-card-button(href="http://", target="_blank") 我要去
+          .project-card-detail
+            .project-card-singer
+              h3 Taylor Swift
             .project-card-date
               h3 2013.11.15
+            .project-card-des
+              p 美国乡村音乐 著名创作女歌手、演员。1989年12月13日出生于美国宾夕法尼亚州。2006年与独立唱片公司Big Machine签约并发行首张个人同名专辑。第二张专辑《Fearless》于2008年11月11日发行，在Billboard排行榜上一共夺得11周冠军，首支单曲《Love Story》更是提前两个月发行，在公告牌最热100中最高排到第四，成为美国史上第二畅销的乡村单曲。
             h4.project-card-city
               span.city 北京
               span.venue 五棵松体育馆
@@ -117,59 +101,77 @@
             .project-card-progress
               .progress-bar(style="width:40%")
             .project-card-number 1412/3000
-        .project-card-small
-          .project-card-lead
-            .project-card-img(style="background-image:url(/img/card4.png)")
-            a.project-card-button(href="http://", target="_blank") 我要去
-          .project-card-detail
-            .project-card-singer
-              h3 林俊杰
-            .project-card-date
-              h3 2013.11.15
-            h4.project-card-city
-              span.city 北京
-              span.venue 五棵松体育馆
-            .project-card-other-city
-              a(href="http://", target="_blank") 查看其它城市
-            .project-card-progress
-              .progress-bar(style="width:40%")
-            .project-card-number 1412/3000
-        .project-card-small
-          .project-card-lead
-            .project-card-img(style="background-image:url(/img/card5.png)")
-            a.project-card-button(href="http://", target="_blank") 我要去
-          .project-card-detail
-            .project-card-singer
-              h3 蔡依林
-            .project-card-date
-              h3 2013.11.15
-            h4.project-card-city
-              span.city 北京
-              span.venue 五棵松体育馆
-            .project-card-other-city
-              a(href="http://", target="_blank") 查看其它城市
-            .project-card-progress
-              .progress-bar(style="width:40%")
-            .project-card-number 1412/3000
-    .section
-      h2 演出类别
-      ul
-        li 流行
-        li 摇滚
-        li 民族
-        li 校园
-        li 原创
-    .section
-      
-script(src='//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
-script window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\\/script>')
-script(defer, src='js/plugins.js')
-script(defer, src='js/script.js')
-script.
-  var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview'],['_trackPageLoadTime']];
-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g,s)}(document,'script'));  
-//if lt IE 7
-  script(src='//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js', defer)
-  script(defer) window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})
+        .project-card-container
+          .project-card-small
+            .project-card-lead
+              .project-card-img(style="background-image:url(/img/card3.png)")
+              a.project-card-button(href="http://", target="_blank") 我要去
+            .project-card-detail
+              .project-card-singer
+                h3 田馥甄
+              .project-card-date
+                h3 2013.11.15
+              h4.project-card-city
+                span.city 北京
+                span.venue 五棵松体育馆
+              .project-card-other-city
+                a(href="http://", target="_blank") 查看其它城市
+              .project-card-progress
+                .progress-bar(style="width:40%")
+              .project-card-number 1412/3000
+          .project-card-small
+            .project-card-lead
+              .project-card-img(style="background-image:url(/img/card4.png)")
+              a.project-card-button(href="http://", target="_blank") 我要去
+            .project-card-detail
+              .project-card-singer
+                h3 林俊杰
+              .project-card-date
+                h3 2013.11.15
+              h4.project-card-city
+                span.city 北京
+                span.venue 五棵松体育馆
+              .project-card-other-city
+                a(href="http://", target="_blank") 查看其它城市
+              .project-card-progress
+                .progress-bar(style="width:40%")
+              .project-card-number 1412/3000
+          .project-card-small
+            .project-card-lead
+              .project-card-img(style="background-image:url(/img/card5.png)")
+              a.project-card-button(href="http://", target="_blank") 我要去
+            .project-card-detail
+              .project-card-singer
+                h3 蔡依林
+              .project-card-date
+                h3 2013.11.15
+              h4.project-card-city
+                span.city 北京
+                span.venue 五棵松体育馆
+              .project-card-other-city
+                a(href="http://", target="_blank") 查看其它城市
+              .project-card-progress
+                .progress-bar(style="width:40%")
+              .project-card-number 1412/3000
+      .section
+        h2 演出类别
+        ul
+          li 流行
+          li 摇滚
+          li 民族
+          li 校园
+          li 原创
+      .section
+        
+  script(src='//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+  script window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\\/script>')
+  script(defer, src='js/plugins.js')
+  script(defer, src='js/script.js')
+  script.
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview'],['_trackPageLoadTime']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));  
+  //if lt IE 7
+    script(src='//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js', defer)
+    script(defer) window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})

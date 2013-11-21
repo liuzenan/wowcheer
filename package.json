@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "2.5.0",
-    "jade": ">= 0.0.1",
+    "express": "latest",
+    "jade": "latest",
   	"mocha":"*",
   	"passport":"*",
   	"passport-facebook":"*",
