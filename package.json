@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "express": "latest",
-    "jade": ">= 0.0.1",
+    "jade": "latest",
   	"mocha":"*",
   	"passport":"*",
   	"passport-facebook":"*",
