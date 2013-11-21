@@ -53,15 +53,14 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mongodb connection error:'));
 db.once('open', function callback () {
 	console.log("mongodb successfully connected");
-	// Bootstrap models
-	fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
-	  if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file)
-	})
 	// Load predefined data
 	initialize();
 });
 mongoose.connect(env.db);
-
+// Bootstrap models
+fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
+	 if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file)
+})
 
 // set up passport
 require('./config/passport')(passport,config);
