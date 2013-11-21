@@ -1,7 +1,42 @@
+@import "_base.scss";
 @import "module/_color.scss";
 @import "module/_button.scss";
 @import "module/_form.scss";
 @import "module/_nav.scss";
+@import "zen";
+
+$zen-column-count: 12; // Set the total number of columns in the grid.
+$zen-gutter-width: 0;
+
+
+// mixins
+
+@mixin backgroundImage {
+	z-index: 2;
+	height:100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 100% 100%;
+	background-size: cover;
+}
+
+@mixin centerOverlay($height, $width) {
+	z-index: 3;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -$height/2;
+	margin-left: -$width/2;
+}
+
+@mixin card {
+	background: #FFFFFF;
+	-moz-box-shadow:    0px 1px 2px 0px rgba(0,0,0,0.24);
+	-webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.24);
+	box-shadow:         0px 1px 2px 0px rgba(0,0,0,0.24);
+}
+
+// container layout
 
 .container{
 	display: block;
@@ -10,12 +45,15 @@
 	padding: 0 10px;
 }
 
+// header
+
 
 #header{
 	background: $primary-green;
 	display: block;
 	height: 60px;
 	padding-top: 20px;
+	box-shadow: 0px 4px 10px black(0.2);
 	.logo{
 		position: relative;
 		display: inline-block;
@@ -28,10 +66,19 @@
 	}
 }
 
+
+#main-content {
+	background: url(/img/geometry.png);
+	height: 100%;
+}
+
+// intro section
+
 .intro {
 	position: relative;
 	height: 340px;
 	padding-top: 80px;
+	background: black;
 	.hero-image{
 		background-image: url(/img/hero.png);
 		background-position: center top;
@@ -79,12 +126,161 @@
 	}
 
 	input[type="submit"] {
-		@include button-primary($primary-green);
+		@include button-primary($button-primary);
+	}
+}
+
+// featured
+
+.featured-container{
+	height: 240px;
+}
+
+.featured-item {
+	height: 100%;
+	display: inline-block;
+	width: 25%;
+	.featured-img {
+		@include backgroundImage;
 	}
 }
 
 
-.featured-item {
+// project card wide
+
+.project-card-wide{
+	@include card;
+	@include zen-grid-container;
+	height:270px;
+	margin-bottom: 32px;
+
+	.project-card-lead {
+		height:100%;
+		@include zen-grid-item(4, 1); 
+		position: relative;
+		.project-card-img{
+			@include backgroundImage;
+		}
+	    .project-card-button{
+			@include button-large($button-primary);
+			@include large-button-text;
+			@include centerOverlay(74px, 168px);
+	    }
+	}
+
+	.project-card-detail{
+		height:100%;
+		@include zen-grid-item(8, 5);
+		padding: 0 20px;
+	}
+
+}
+
+
+.project-card-detail{
+	@include zen-grid-container;
+		.project-card-singer {
+			@include zen-grid-item(8, 1);
+		}
+	    .project-card-date {
+			@include zen-grid-item(4, 9); 
+			h3 {
+				text-align: right;
+				color:$primary-gray;
+			}
+	    }
+	    .project-card-des {
+			@include zen-clear();
+			@include zen-grid-item(12, 1); 
+			height: 138px;
+			overflow: hidden;
+	    }
+	    .project-card-city {
+	    	margin: 0;
+			@include zen-clear();
+			@include zen-grid-item(8, 1); 
+			.city {
+				color:$primary-gray;
+			}
+
+			.venue {
+				padding-left: .6em;
+			}
+
+	    }
+	    .project-card-other-city {
+			@include zen-grid-item(4, 9);
+			position: relative;
+			a {
+				display: block;
+				text-align: right;
+				line-height: 2em;
+				padding-top: 0.9em
+			}
+
+	    }
+	    .project-card-progress {
+	    	@include zen-clear();
+			@include zen-grid-item(12, 1); 
+			height: 5px;
+			background: $light-gray;
+			.progress-bar{
+				height: 5px;
+				background: $progress-blue;
+			}
+	    }
+	    .project-card-number {
+			@include zen-clear();
+			@include zen-grid-item(12, 1); 
+			text-align: right;
+			font-size: .8em;
+	    }
+}
+
+
+// small project cards
+.project-card-container {
+	margin-left: -30px;
+}
+
+.project-card-small {
+	@include card;
+	width: 300px;
+	margin-left: 30px;
 	display: inline-block;
-	width: 25%;
+	.project-card-lead {
+		height: 270px;
+		position: relative;
+		display: block;
+		.project-card-img{
+			@include backgroundImage;
+			background-origin: top center;
+		}
+		.project-card-button{
+			@include button-large($button-primary);
+			@include large-button-text;
+			@include centerOverlay(74px, 168px);
+			opacity: 0;
+			@include single-transition(all, 0.2s, ease-in, 0);
+		}
+
+	}
+
+	.project-card-detail {
+		@include zen-grid-container;
+		height: 120px;
+		overflow: hidden;
+		display: block;
+		padding: 5px 10px;
+		font-size: .8em;
+		.project-card-number {
+			font-size: 1em;
+		}
+	}
+
+	&:hover{
+		.project-card-button{
+			opacity: 1;
+		}	
+	}
 }
