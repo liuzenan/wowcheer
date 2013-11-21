@@ -11,6 +11,7 @@ var initialize = require("./init");
 var config = require('./config/config');
 var env = config.env();
 var routes = require('./routes');
+var fs = require('fs')
 
 var app = module.exports = express();
 
@@ -52,8 +53,12 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mongodb connection error:'));
 db.once('open', function callback () {
 	console.log("mongodb successfully connected");
-	// bootstrap models
-	initialize(db);
+	// Bootstrap models
+	fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
+	  if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file)
+	})
+	// Load predefined data
+	initialize();
 });
 mongoose.connect(env.db);
 

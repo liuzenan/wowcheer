@@ -1,15 +1,14 @@
-var models = require("./app/models/models");
-var mongoose = require('mongoose')
+var mongoose = require("mongoose");
 
-module.exports = function(db) {
+module.exports = function() {
 	// Bootstrap models
-	var Artists =db.model('Artists', models.Artists);
-	var Venues =db.model('Venues', models.Venues);
-	
+	var Artists = mongoose.model('Artist')
+	var Venues =mongoose.model('Venue')
+
 	Artists.count({},function(err, count){
 		if (count == 0) {
 			console.log("initialized artists");
-			var artists= require('./app/models/artists.json')
+			var artists= require('./data/artists.json')
 			Artists.create(artists);
 		}
 	});
@@ -17,7 +16,7 @@ module.exports = function(db) {
 	Venues.count({},function(err, count){
 		if (count == 0) {
 			console.log("initialized venues");
-			var venues= require('./app/models/venues.json')
+			var venues= require('./data/venues.json')
 			Venues.create(venues);
 		}
 	});
