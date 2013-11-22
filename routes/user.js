@@ -4,7 +4,7 @@
  */
 module.exports = function(app){
 	app.get("/login", function(req,res){
-			res.render("login");
+			res.render("login",{providerConfig:req.config.provider});
 	});
 	
 	app.get("/signup", function(req,res){
@@ -31,17 +31,20 @@ module.exports = function(app){
 		}
 	});
 
-	
-	
-	/*
-	app.get("/auth/facebook", passport.authenticate("facebook",{ scope : "email"}));
-	app.get("/auth/facebook/callback",
-		passport.authenticate("facebook",{ failureRedirect: '/login'}),
-		function(req,res){
-			var body = "login as " + req.user.name +"<br>" + "<a href = '/logout'></a>";
-			res.setHeader('Content-Type', 'text/html');
-			res.setHeader('Content-Length', body.length);
-			res.end(body);
+	app.get('/auth/:provider', 
+		function(req,res) {
+			req.passport.authenticate(req.params.provider)(req, res);
 		}
-	);*/
+	);
+
+	app.get('/auth/:provider/callback',  
+		function (req,res){
+			req.passport.authenticate(req.params.provider, { failureRedirect: '/login' })(req, res);
+		},  
+		function(req, res) {
+			// Successful authentication, redirect home.
+			res.redirect('/');
+		}
+	);
+	
 };

@@ -4,11 +4,12 @@
 var mongoose = require('mongoose')
 
 
-module.exports = function (app,passport,db) {
+module.exports = function (app,passport,db,config) {
 	/*Attach database,passport to every request*/
 	app.all('*', function(req, res, next) {
 		req.db = db;
 		req.passport =passport;
+		req.config = config;
 		next();
     });
 	

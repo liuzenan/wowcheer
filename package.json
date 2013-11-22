@@ -7,8 +7,9 @@
     "jade": "latest",
   	"mocha":"*",
   	"passport":"*",
-  	"passport-facebook":"*",
-    "passport-local":"*",
+  	"passport-weibo":"*",
+    "passport-qq":"*",
+	"passport-local":"*",
   	"mongoose":"*"
   },
   "engines": {
