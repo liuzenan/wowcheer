@@ -2,14 +2,39 @@
 /*
  * User related route
  */
-module.exports = function(app, passport){
-	app.get("/auth/facebook", passport.authenticate("facebook",{ scope : "email"}));
-	
-	app.get('/logout', function(req, res){
-	  req.logout();
-	  res.redirect('/');
+module.exports = function(app){
+	app.get("/login", function(req,res){
+			res.render("login");
 	});
 	
+	app.get("/signup", function(req,res){
+			res.render("signup");
+	});
+	
+	app.get('/logout', function (req, res) {
+		req.session.destroy(function () {
+			res.redirect('/');
+		});
+	});
+	
+	app.post("/login", function(req,res){
+		req.passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+	});
+	
+	app.get("/signup", function (req, res) {
+		if (req.session.user) {
+			res.redirect("/");
+		} else {
+			res.render("signup");
+		}
+	});
+
+	
+	
+	/*
+	app.get("/auth/facebook", passport.authenticate("facebook",{ scope : "email"}));
 	app.get("/auth/facebook/callback",
 		passport.authenticate("facebook",{ failureRedirect: '/login'}),
 		function(req,res){
@@ -18,5 +43,5 @@ module.exports = function(app, passport){
 			res.setHeader('Content-Length', body.length);
 			res.end(body);
 		}
-	);
+	);*/
 };
