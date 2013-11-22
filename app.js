@@ -63,10 +63,10 @@ fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
 })
 
 // set up passport
-require('./config/passport')(passport,config);
+require('./config/passport')(app,passport,config);
 
 // set up routes
-require('./routes')(app,passport,db)
+require('./routes')(app,passport,db,config)
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('server ('+app.get('env')+') listening on port ' + app.get('port'));
