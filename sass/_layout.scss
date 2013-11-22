@@ -131,6 +131,12 @@ $zen-gutter-width: 0;
 		padding: 3px 0;
 		border-radius: 4px;
 		border: 1px solid black;
+		#city {
+			width: 220px;
+		}
+		#singer,#time,#category {
+			width: 80px;
+		}
 	}
 
 }
