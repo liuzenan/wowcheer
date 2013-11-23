@@ -3,7 +3,7 @@
  * User related route
  */
 module.exports = function(app){
-	app.get("/login", function(req,res){
+	app.get("/login", function(req,res){			
 			res.render("login",{providerConfig:req.config.provider});
 	});
 	
@@ -11,8 +11,18 @@ module.exports = function(app){
 			res.render("signup");
 	});
 	
+	app.get("/signup", function (req, res) {
+		if (req.session.user) {
+			req.flash('info', 'Welcome to the site, a welcome email has been sent to you.');
+			res.redirect("/");
+		} else {
+			res.render("signup");
+		}
+	});
+	
 	app.get('/logout', function (req, res) {
 		req.session.destroy(function () {
+			
 			res.redirect('/');
 		});
 	});
@@ -20,31 +30,16 @@ module.exports = function(app){
 	app.post("/login", function(req,res){
 		req.passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/login',
-                                   failureFlash: true })
+                                   failureFlash: true })(req,res);
 	});
 	
-	app.get("/signup", function (req, res) {
-		if (req.session.user) {
-			res.redirect("/");
-		} else {
-			res.render("signup");
-		}
+	app.post("/signup", function(req,res){
+		req.passport.authenticate('local', { 
+									successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })(req,res);
 	});
-
-	app.get('/auth/:provider', 
-		function(req,res) {
-			req.passport.authenticate(req.params.provider)(req, res);
-		}
-	);
-
-	app.get('/auth/:provider/callback',  
-		function (req,res){
-			req.passport.authenticate(req.params.provider, { failureRedirect: '/login' })(req, res);
-		},  
-		function(req, res) {
-			// Successful authentication, redirect home.
-			res.redirect('/');
-		}
-	);
+	
+	
 	
 };

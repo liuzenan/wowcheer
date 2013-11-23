@@ -6,6 +6,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var passport = require("passport");
+var flash = require('connect-flash');
 var mongoose = require("mongoose");
 var initialize = require("./init");
 var config = require('./config/config');
@@ -31,10 +32,11 @@ app.configure(function(){
 	app.use(express.cookieParser());
 	app.use(express.json());
 	app.use(express.urlencoded());
-	app.use(express.session({ secret: 'really cool website' }));
+	app.use(express.session({ secret: 'really cool website',cookie: { maxAge: 60000 }}));
 	app.use(passport.initialize());
 	app.use(passport.session());
-	app.use(express.static(__dirname + '/public'));
+	app.use(flash());
+	app.use(express.static(path.join(__dirname, 'public')));
 	app.use(app.router);
 });
 
@@ -56,6 +58,7 @@ db.once('open', function callback () {
 	// Load predefined data
 	initialize();
 });
+
 mongoose.connect(env.db);
 // Bootstrap models
 fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
