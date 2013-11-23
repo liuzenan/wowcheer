@@ -1,8 +1,9 @@
-var mongoose = require("mongoose");
+﻿var mongoose = require("mongoose");
 
 ProjectSchema = mongoose.Schema({
         visible:Boolean,
 		name:String,
+		types:{type:[{type:String}],default:['流行']},
         description:String,
         main_poster_url:String,
         video_url:String,
