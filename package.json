@@ -10,7 +10,9 @@
   	"passport-weibo":"*",
     "passport-qq":"*",
 	"passport-local":"*",
-  	"mongoose":"*"
+  	"mongoose":"*",
+	"connect-flash":"*",
+	"nodemon":"*"
   },
   "engines": {
     "node": "0.10.x",
