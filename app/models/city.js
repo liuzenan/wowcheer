@@ -3,4 +3,4 @@ var mongoose = require('mongoose');
 var citySchema =  mongoose.Schema({
 		name: String,
 })
-mongoose.model('City', citySchema);
+module.exports = mongoose.model('City', citySchema);

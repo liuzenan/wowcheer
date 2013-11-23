@@ -8,4 +8,4 @@ var venueSchema = mongoose.Schema({
 		createdAt: { type: Date, default: Date.now }
 	})
 // Bootstrap models
-mongoose.model('Venue',venueSchema);
+module.exports = mongoose.model('Venue',venueSchema);

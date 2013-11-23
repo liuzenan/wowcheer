@@ -7,9 +7,12 @@
     "jade": "latest",
   	"mocha":"*",
   	"passport":"*",
-  	"passport-facebook":"*",
-    "passport-local":"*",
-  	"mongoose":"*"
+  	"passport-weibo":"*",
+    "passport-qq":"*",
+	"passport-local":"*",
+  	"mongoose":"*",
+	"connect-flash":"*",
+	"nodemon":"*"
   },
   "engines": {
     "node": "0.10.x",
