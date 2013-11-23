@@ -1,14 +1,8 @@
 extends layout
 block body
-	form(action='/signup', method='post')
-		div
-			label email:
-			input(type='text', name='email')
-		div
-			label email-confirm:
-			input(type='text', name='email_confirm')
-		div
-			label Password:
-			input(type='password', name='password')
-		div
-			input(type='submit', value='Sign up')
+	form(id="signup", method="POST", action="/signup")
+		lable(for='email') Email
+		input#email(type='text', name='email')
+		lable(for='password') Password
+		input#password(type='text', name='password')
+		input(type="submit", value="SignUp")
