@@ -1,0 +1,8 @@
+.project-progress {
+	height: 5px;
+	background: $light-gray;
+	.progress-bar{
+		height: 5px;
+		background: $progress-blue;
+	}
+}
