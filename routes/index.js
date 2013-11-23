@@ -1,20 +1,20 @@
 /**
  * Base level routes
  */
-var User = require('../app/models/user');
-var Auth = require('./middlewares/authorization.js');
+ var User = require('../app/models/user');
+ var Auth = require('./middlewares/authorization.js');
 
-module.exports = function (app,passport,db,config) {
-	/*Attach database,passport to every request*/
-	app.all('*', function(req, res, next) {
-		req.db = db;
-		req.passport =passport;
-		req.config = config;
-		res.locals.message = req.flash();
-		next();
-    });
-	
-	/* User authentication*/
+ module.exports = function (app,passport,db,config) {
+ 	/*Attach database,passport to every request*/
+ 	app.all('*', function(req, res, next) {
+ 		req.db = db;
+ 		req.passport =passport;
+ 		req.config = config;
+ 		res.locals.message = req.flash();
+ 		next();
+ 	});
+
+ 	/* User authentication*/
 	//require('./user')(app);
 	
 	// index page
@@ -37,7 +37,7 @@ module.exports = function (app,passport,db,config) {
 			successRedirect : "/",
 			failureRedirect : "/login",
 		})
-	);
+		);
 	
 	app.get("/signup", function (req, res) {
 		res.render("signup");
@@ -63,20 +63,24 @@ module.exports = function (app,passport,db,config) {
 	});
 	
 	app.get('/auth/:provider', 
-			function(req,res) {
-					passport.authenticate(req.params.provider)(req, res);
-			}
-	);
+		function(req,res) {
+			passport.authenticate(req.params.provider)(req, res);
+		}
+		);
 
 	app.get('/auth/:provider/callback',  
-			function (req,res){
-					passport.authenticate(req.params.provider, { failureRedirect: '/login' })(req, res);
-			},  
-			function(req, res) {
+		function (req,res){
+			passport.authenticate(req.params.provider, { failureRedirect: '/login' })(req, res);
+		},  
+		function(req, res) {
 					// Successful authentication, redirect home.
 					res.redirect('/');
-			}
-	);
+				}
+				);
+
+	app.get('/project', function(req, res){
+		res.render('project', {title:"Project"});
+	});
 	
 	/*Other page 404*/
 	app.all('*',function(req,res) {
@@ -84,4 +88,4 @@ module.exports = function (app,passport,db,config) {
 	});
 }
 
- 
+

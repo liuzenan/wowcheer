@@ -107,9 +107,6 @@ $zen-gutter-width: 0;
 	height: 340px;
 	padding-top: 80px;
 	background: black;
-	.hero-image{
-		background-image: url(/img/hero.png);
-	}
 
 	.hero-text{
 		color: white;
@@ -447,5 +444,21 @@ $zen-gutter-width: 0;
 			}
 		}
 	}
+}
 
+
+
+// project
+
+
+.project {
+	$zen-gutter-width: 10px;
+	@include zen-grid-container;
+	.project-info {
+		@include zen-grid-item(8, 1);
+	}
+
+	.project-package {
+		@include zen-grid-item(4, 9);
+	}
 }
