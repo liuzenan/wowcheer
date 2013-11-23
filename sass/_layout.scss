@@ -3,6 +3,7 @@
 @import "module/_button.scss";
 @import "module/_form.scss";
 @import "module/_nav.scss";
+@import "module/_progress.scss";
 @import "zen";
 
 $zen-column-count: 12; // Set the total number of columns in the grid.
@@ -266,16 +267,11 @@ $zen-gutter-width: 0;
 		}
 
 	}
-	.project-card-progress {
+	.project-progress {
 		@include zen-clear();
 		@include zen-grid-item(12, 1); 
-		height: 5px;
-		background: $light-gray;
-		.progress-bar{
-			height: 5px;
-			background: $progress-blue;
-		}
 	}
+
 	.project-card-number {
 		@include zen-clear();
 		@include zen-grid-item(12, 1); 
@@ -460,5 +456,6 @@ $zen-gutter-width: 0;
 
 	.project-package {
 		@include zen-grid-item(4, 9);
+		@include card;
 	}
 }
