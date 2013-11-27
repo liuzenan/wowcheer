@@ -2,44 +2,66 @@
 /*
  * User related route
  */
-module.exports = function(app){
-	app.get("/login", function(req,res){			
-			res.render("login",{providerConfig:req.config.provider});
-	});
-	
-	app.get("/signup", function(req,res){
-			res.render("signup");
-	});
-	
-	app.get("/signup", function (req, res) {
-		if (req.session.user) {
-			req.flash('info', 'Welcome to the site, a welcome email has been sent to you.');
-			res.redirect("/");
+var User = require('../app/models/user');
+var Auth = require('./middlewares/authorization.js');
+module.exports = function(app,passport){
+	/*Auth*/
+	app.get("/login", function(req, res){
+		if (req.user) {
+			res.redirect("/profile")
 		} else {
-			res.render("signup");
+			res.render("login");
 		}
 	});
+
+	app.post("/login" 
+		,passport.authenticate('local',{
+			successRedirect : "/profile",
+			failureRedirect : "/login",
+		})
+	);
 	
-	app.get('/logout', function (req, res) {
-		req.session.destroy(function () {
-			
-			res.redirect('/');
+	app.get("/signup", function (req, res) {
+		if (!req.user) {
+			res.render("signup");
+		} else {
+			res.redirect("/profile");
+		}
+	});
+
+	app.post("/signup", Auth.userExist, function (req, res, next) {
+		User.signup(req.body.email, req.body.password, function(err, user){
+			if(err) throw err;
+			req.login(user, function(err){
+				if(err) return next(err);
+				return res.redirect("profile");
+			});
 		});
 	});
 	
-	app.post("/login", function(req,res){
-		req.passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })(req,res);
+	app.get("/profile", Auth.isAuthenticated , function(req, res){ 
+		res.render("profile", { user : req.user});
+	});
+
+	app.get('/logout', function(req, res){
+		req.logout();
+		res.redirect('/login');
 	});
 	
-	app.post("/signup", function(req,res){
-		req.passport.authenticate('local', { 
-									successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })(req,res);
-	});
-	
-	
+	app.get('/auth/:provider', 
+		function(req,res) {
+			passport.authenticate(req.params.provider)(req, res);
+		}
+		);
+
+	app.get('/auth/:provider/callback',  
+		function (req,res){
+			passport.authenticate(req.params.provider, { failureRedirect: '/login' })(req, res);
+		},  
+		function(req, res) {
+					// Successful authentication, redirect home.
+					res.redirect('/');
+		}
+	);
 	
 };
