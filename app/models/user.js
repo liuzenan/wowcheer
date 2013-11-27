@@ -3,7 +3,7 @@ var hash = require('../util/hash');
 
 
 UserSchema = mongoose.Schema({
-        name:      String,
+        email:      String,
         salt:       String,
         hash:       String,
         username:String,
