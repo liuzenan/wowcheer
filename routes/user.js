@@ -49,18 +49,18 @@ module.exports = function(app,passport){
 	});
 	
 	app.get('/auth/:provider', 
-		function(req,res) {
-			passport.authenticate(req.params.provider)(req, res);
+		function(req,res,next) {
+			passport.authenticate(req.params.provider)(req, res,next);
 		}
 		);
 
 	app.get('/auth/:provider/callback',  
-		function (req,res){
-			passport.authenticate(req.params.provider, { failureRedirect: '/login' })(req, res);
+		function (req,res,next){
+			passport.authenticate(req.params.provider, { failureRedirect: '/login' })(req, res,next);
 		},  
 		function(req, res) {
-					// Successful authentication, redirect home.
-					res.redirect('/');
+			// Successful authentication, redirect home.
+			res.redirect('/');
 		}
 	);
 	
