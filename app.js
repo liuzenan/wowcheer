@@ -59,7 +59,7 @@ db.once('open', function callback () {
 	initialize();
 });
 
-mongoose.connect(env.db);
+mongoose.connect(env.db,env.dbConfig);
 // Bootstrap models
 fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
 	 if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file)

@@ -11,7 +11,7 @@ UserSchema = mongoose.Schema({
 		description:String,
 		createdAt: { type: Date, default: Date.now }
 });
-
+// For signup:
 UserSchema.statics.signup = function(email, password, done){
         var User = this;
         hash(password, function(err, salt, hash){
@@ -29,7 +29,7 @@ UserSchema.statics.signup = function(email, password, done){
                 });
         });
 }
-
+// For login
 UserSchema.statics.isValidUserPassword = function(email, password, done) {
         this.findOne({email : email}, function(err, user){
                 // if(err) throw err;
