@@ -11,20 +11,31 @@ UserSchema = mongoose.Schema({
 		description:String,
 		createdAt: { type: Date, default: Date.now }
 });
+
+UserSchema.statics.isExistingUser = function(email, done) {
+	User.count({email:email},function(err, count){
+			if (err) throw err;
+			if(count == 0) {
+				done(false);
+			} else {
+				done(true)
+			}
+	});
+}
+
 // For signup:
 UserSchema.statics.signup = function(email, password, done){
         var User = this;
-        hash(password, function(err, salt, hash){
+		hash(password, function(err, salt, hash){
                 if(err) throw err;
-                // if (err) return done(err);
-                User.create({
+                
+				User.create({
                         email : email,
                         salt : salt,
                         hash : hash
                 }, function(err, user){
                         if(err) throw err;
-                        // if (err) return done(err);
-                        
+                      
 						done(null, user);
                 });
         });

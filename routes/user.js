@@ -2,8 +2,8 @@
 /*
  * User related route
  */
+var Auth = require('./middlewares/authentication');
 var User = require('../app/models/user');
-var Auth = require('./middlewares/authorization.js');
 module.exports = function(app,passport){
 	/*Auth*/
 	app.get("/login", function(req, res){
@@ -18,6 +18,7 @@ module.exports = function(app,passport){
 		,passport.authenticate('local',{
 			successRedirect : "/profile",
 			failureRedirect : "/login",
+			failureFlash: true
 		})
 	);
 	
@@ -29,13 +30,25 @@ module.exports = function(app,passport){
 		}
 	});
 
-	app.post("/signup", Auth.userExist, function (req, res, next) {
-		User.signup(req.body.email, req.body.password, function(err, user){
-			if(err) throw err;
-			req.login(user, function(err){
-				if(err) return next(err);
-				return res.redirect("profile");
-			});
+	app.post("/signup", function (req, res,next) {
+		var email = req.body.email;
+		var password = req.body.password;
+		var confirmPassword = req.body.password_confirm;
+		if (password!=confirmPassword) {
+			res.json({error:'Password not the same'});
+		}
+		User.isExistingUser(email,function(isExistingUser){
+			if (isExistingUser) {
+				res.json({error:'This email is already registered'});
+			} else {
+				User.signup(email, password, function(err, user, opt){
+					if(err) throw err;
+					req.login(user, function(err){
+						if(err) return next(err);
+						return res.redirect("profile");
+					});
+				});
+			}
 		});
 	});
 	
