@@ -9,7 +9,8 @@ UserSchema = mongoose.Schema({
         username:String,
 		city:String,
 		description:String,
-		createdAt: { type: Date, default: Date.now }
+		createdAt: { type: Date, default: Date.now },
+		updatedAt: { type: Date}
 });
 
 UserSchema.statics.isExistingUser = function(email, done) {
@@ -25,21 +26,35 @@ UserSchema.statics.isExistingUser = function(email, done) {
 
 // For signup:
 UserSchema.statics.signup = function(email, password, done){
-        var User = this;
-		hash(password, function(err, salt, hash){
-                if(err) throw err;
-                
-				User.create({
-                        email : email,
-                        salt : salt,
-                        hash : hash
-                }, function(err, user){
-                        if(err) throw err;
-                      
-						done(null, user);
-                });
-        });
+	var User = this;
+	hash(password, function(err, salt, hash){
+			if(err) throw err;
+			
+			User.create({
+					email : email,
+					salt : salt,
+					hash : hash
+			}, function(err, user){
+					if(err) throw err;
+				
+					done(null, user);
+			});
+	});
 }
+
+UserSchema.statics.update = function(email, data,done) {
+	User.findOne({email:email}, function(err, user){
+		if (err) throw err;
+		console.log(user);
+		user.username = data.username;
+		user.city = data.city;
+		user.description = data.description;
+		user.updatedAt = Date.now();
+		user.save();
+		done(err)
+	});
+}
+
 // For login
 UserSchema.statics.isValidUserPassword = function(email, password, done) {
         this.findOne({email : email}, function(err, user){

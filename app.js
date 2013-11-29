@@ -37,7 +37,13 @@ app.configure(function(){
 	app.use(passport.session());
 	app.use(flash());
 	app.use(express.static(path.join(__dirname, 'public')));
+	// Attach user info to all page rendering
+	app.use(function(req, res, next) {
+		res.locals.user = req.user;
+		next();
+	});
 	app.use(app.router);
+	
 });
 
 app.configure('development', function(){
