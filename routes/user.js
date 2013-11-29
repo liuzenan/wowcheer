@@ -45,17 +45,32 @@ module.exports = function(app,passport){
 					if(err) throw err;
 					req.login(user, function(err){
 						if(err) return next(err);
-						return res.redirect("profile");
+						return res.redirect("/signup/profile");
 					});
 				});
 			}
 		});
 	});
 	
-	app.get("/profile", Auth.isAuthenticated , function(req, res){ 
-		res.render("profile", { user : req.user});
+	app.get("/signup/profile",Auth.isAuthenticated, function(req,res){
+		res.render("signup_profile");
+	});
+	
+	app.post("/signup/profile", Auth.isAuthenticated, function(req,res,next) {
+		var username = req.body.username,
+			city = req.body.city,
+			description = req.body.description;
+		var data = {username:username,city:city,description:description}
+		User.update(req.user.email, data, function(err){
+			if (err) next(err);
+			res.redirect("/profile");
+		})
 	});
 
+	app.get("/profile", Auth.isAuthenticated , function(req, res){ 
+		res.render("profile");
+	});
+	
 	app.get('/logout', function(req, res){
 		req.logout();
 		res.redirect('/login');

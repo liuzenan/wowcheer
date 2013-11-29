@@ -12,7 +12,7 @@
  		res.locals.message = req.flash();
  		next();
  	});
-
+	
  	/* User authentication*/
 	require('./user')(app,passport);
 	
