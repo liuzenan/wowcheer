@@ -37,6 +37,13 @@ app.configure(function(){
 	app.use(passport.session());
 	app.use(flash());
 	app.use(express.static(path.join(__dirname, 'public')));
+	// Define global returning json format
+	app.use(function(req,res,next){
+		res._json = function(code, data) {
+			res.json()
+		}
+		next();
+	})
 	// Attach user info to all page rendering
 	app.use(function(req, res, next) {
 		res.locals.user = req.user;
