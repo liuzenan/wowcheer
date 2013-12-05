@@ -1,8 +1,13 @@
-extends layout
+﻿extends layout
 block body
 	form(id="signup", method="POST", action="/signup")
-		lable(for='email') Email
+		lable(for='email') 邮箱:
 		input#email(type='text', name='email')
-		lable(for='password') Password
-		input#password(type='text', name='password')
+		br
+		lable(for='password') 密码:
+		input#password(type='password', name='password')
+		br
+		lable(for='password_confirm') 确认密码:
+		input#password_confirm(type='password', name='password_confirm')
+		br
 		input(type="submit", value="SignUp")

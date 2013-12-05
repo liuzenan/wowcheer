@@ -1,6 +1,6 @@
-if user.name
-	h1 #{user.name}'s Profile
-else
-	h1 #{user.email}'s Profile
-
-a(href="/logout") Logout
+﻿extends layout
+block body
+	h1 #{user.email}'s Profile	
+	p #{user.username} #{user.city} #{user.description} 	
+	a(href="/logout") 
+		h3 Logout
