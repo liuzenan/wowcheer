@@ -9,7 +9,6 @@
 $zen-column-count: 12; // Set the total number of columns in the grid.
 $zen-gutter-width: 0;
 
-
 // mixins
 
 @mixin backgroundImage {
@@ -450,12 +449,16 @@ $zen-gutter-width: 0;
 .project {
 	$zen-gutter-width: 10px;
 	@include zen-grid-container;
+	margin-top: 20px;
 	.project-info {
 		@include zen-grid-item(8, 1);
+		@include card;
+		padding: 0 20px;
 	}
 
 	.project-package {
 		@include zen-grid-item(4, 9);
-		@include card;
+		padding: 0 10px;
+		margin-top: 20px;
 	}
 }
