@@ -1,7 +1,7 @@
 ﻿var mongoose = require("mongoose");
-
-ProjectSchema = mongoose.Schema({
-        visible:Boolean,
+var lastModified = require("./plugins").lastModifiedPlugin;
+var ProjectSchema = mongoose.Schema({
+        visible:{type:Boolean,default:true},
 		name:String,
 		types:{type:[{type:String}],default:['流行']},
         description:String,
@@ -13,11 +13,25 @@ ProjectSchema = mongoose.Schema({
 		performance_time:Date,
 		ticket_prices:[Number],
 		sale_limit:Number,
-		venue:mongoose.Schema.Types.ObjectId,
-		artist:mongoose.Schema.Types.ObjectId,
-		comments:[{content:String,user:mongoose.Schema.Types.ObjectId,createdAt:{ type: Date, default: Date.now }}],
+		venue:{type:Number,ref:"Venue"},
+		artist:{type:Number,ref:"Artist"},
+		bookingCount:Number,
+		comments:[{content:String,user:String,createdAt:{ type: Date, default: Date.now }}],
 		createdAt: { type: Date, default: Date.now }
 });
 
+ProjectSchema.statics.featureProjects = function(callback,limit){
+	var limit = limit || 20;
+	var q= this.find({
+					visible:true, 
+					}).populate("venue artist").sort("bookingCount").limit(limit);
+	q.exec(function(err,projects){
+					if (err) return callback(err);
+					else return callback(null,projects);
+			});
+}
 
-module.exports = mongoose.model("Project", ProjectSchema);
+// Record last modified date
+ProjectSchema.plugin(lastModified);
+
+module.exports = ProjectSchema

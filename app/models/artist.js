@@ -7,4 +7,4 @@ var artistSchema =  mongoose.Schema({
 		poster:String,
 		createdAt: { type: Date, default: Date.now }
 })
-module.exports = mongoose.model('Artist', artistSchema);
+module.exports = artistSchema;

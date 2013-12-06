@@ -3,7 +3,7 @@ var hash = require('../util/hash');
 
 
 UserSchema = mongoose.Schema({
-        email:      String,
+        email:      String, //ID
         salt:       String,
         hash:       String,
         username:String,
@@ -14,7 +14,7 @@ UserSchema = mongoose.Schema({
 });
 
 UserSchema.statics.isExistingUser = function(email, done) {
-	User.count({email:email},function(err, count){
+	this.count({email:email},function(err, count){
 			if (err) throw err;
 			if(count == 0) {
 				done(false);
@@ -70,5 +70,4 @@ UserSchema.statics.isValidUserPassword = function(email, password, done) {
                 });
         });
 };
-var User = mongoose.model("User", UserSchema);
-module.exports = User;
+module.exports = UserSchema;

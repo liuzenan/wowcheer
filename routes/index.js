@@ -1,7 +1,9 @@
 /**
  * Base level routes
  */
-
+var mongoose = require('mongoose')
+var Artists = mongoose.model('Artist');
+var Projects = mongoose.model('Project');
 
  module.exports = function (app,passport,db,config) {
  	/*Attach database,passport to every request*/
@@ -18,16 +20,23 @@
 	
 	// index page
 	app.get("/", function (req, res) {
-		res.render('index', {title: '我去'})
+		Projects.featureProjects(function(err,projects){
+			if (err) throw err;
+			Artists.find(function(err,artists){
+				if (err) throw err;
+				res.render('index', {title: '我去',projects:projects,artists:artists})
+			});
+		}); 
 	});
 	
 	app.get('/project', function(req, res){
 		res.render('project', {title:"Project"});
 	});
-	
+
+  
 	/*Other page 404*/
 	app.all('*',function(req,res) {
-		res.render('index', {title:'404 Not found'});
+		res.send(404);
 	});
 }
 
