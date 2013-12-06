@@ -21,9 +21,10 @@ var ProjectSchema = mongoose.Schema({
 });
 
 ProjectSchema.statics.featureProjects = function(callback,limit){
-	var limit = limit || 20;
+	var limit = limit || 50;
 	var q= this.find({
 					visible:true, 
+          performance_time:{$gt:new Date()}
 					}).populate("venue artist").sort("bookingCount").limit(limit);
 	q.exec(function(err,projects){
 					if (err) return callback(err);

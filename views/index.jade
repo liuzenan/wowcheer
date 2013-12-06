@@ -34,77 +34,50 @@ block body
           else
             h2.second-title 北京
               a.control(href="project/1", target="_blank") 更换城市
-          each project in projects
+          - for (var i = 0; i < 3; i ++) {
+          - var project = projects[i];
             .project-card-wide
               .project-card-lead
-                .project-card-img(style="background-image:url(/img/#{project.artist.poster})")
+                .project-card-img(style="background-image:url(/img/#{project.main_poster_url})")
                 a.project-card-button(href="/project/#{project.id}", target="_blank") 我要去
               .project-card-detail
                 .project-card-singer
-                  h3 #{project.artist.name}
+                   h3  
+                    a(href="/artist/#{project.artist._id}", target="_blank" style="none") #{project.artist.name}
                 .project-card-date
-                  h3 #{project.performance_time}
+                  h3 3月12号 晚上8点
                 .project-card-des
                   p #{project.artist.introduction}
                 h4.project-card-city
-                  span.city #{project.venue.city}
+                  span.venue 
+                     a(href="/venue/#{project.venue._id}" ,target="_blank" style="none")  #{project.venue.name}
                 .project-card-other-city
                   a(href="http://", target="_blank") 查看其它城市
                 .project-progress
                   .progress-bar(style="width:60%")
                 .project-card-number 2412/3000
-        .project-card-container
-          .project-card-small
-            .project-card-lead
-              .project-card-img(style="background-image:url(/img/card3.png)")
-              a.project-card-button(href="http://", target="_blank") 我要去
-            .project-card-detail
-              .project-card-singer
-                h3 田馥甄
-              .project-card-date
-                h3 2013.11.15
-              h4.project-card-city
-                span.city 北京
-                span.venue 五棵松体育馆
-              .project-card-other-city
-                a(href="http://", target="_blank") 查看其它城市
-              .project-progress
-                .progress-bar(style="width:40%")
-              .project-card-number 1412/3000
-          .project-card-small
-            .project-card-lead
-              .project-card-img(style="background-image:url(/img/card4.png)")
-              a.project-card-button(href="http://", target="_blank") 我要去
-            .project-card-detail
-              .project-card-singer
-                h3 林俊杰
-              .project-card-date
-                h3 2013.11.15
-              h4.project-card-city
-                span.city 北京
-                span.venue 五棵松体育馆
-              .project-card-other-city
-                a(href="http://", target="_blank") 查看其它城市
-              .project-progress
-                .progress-bar(style="width:40%")
-              .project-card-number 1412/3000
-          .project-card-small
-            .project-card-lead
-              .project-card-img(style="background-image:url(/img/card5.png)")
-              a.project-card-button(href="http://", target="_blank") 我要去
-            .project-card-detail
-              .project-card-singer
-                h3 蔡依林
-              .project-card-date
-                h3 2013.11.15
-              h4.project-card-city
-                span.city 北京
-                span.venue 五棵松体育馆
-              .project-card-other-city
-                a(href="http://", target="_blank") 查看其它城市
-              .project-progress
-                .progress-bar(style="width:40%")
-              .project-card-number 1412/3000
+           - }
+      .project-card-container
+        - for (var i = 3; i < 6;i++) {
+        - var project = projects[i];
+            .project-card-small
+              .project-card-lead
+                .project-card-img(style="background-image:url(/img/#{project.main_poster_url})")
+                a.project-card-button(href="/project/#{project.id}", target="_blank") 我要去
+              .project-card-detail
+                .project-card-singer
+                  h3  #{project.artist.name}
+                .project-card-date
+                  h3 2014.3.18
+                h5.project-card-city
+                  span.venue #{project.venue.name}
+                .project-card-other-city
+                  a(href="http://", target="_blank") 查看其它城市
+                .project-progress
+                  .progress-bar(style="width:40%")
+                .project-card-number 1412/3000
+         - }
+      
       .section
         h2 演出类别
         ul.category-links

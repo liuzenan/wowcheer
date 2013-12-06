@@ -4,7 +4,7 @@
 var mongoose = require('mongoose')
 var Artists = mongoose.model('Artist');
 var Projects = mongoose.model('Project');
-
+var _ = require("underscore")
  module.exports = function (app,passport,db,config) {
  	/*Attach database,passport to every request*/
  	app.all('*', function(req, res, next) {
@@ -24,8 +24,8 @@ var Projects = mongoose.model('Project');
 			if (err) throw err;
 			Artists.find(function(err,artists){
 				if (err) throw err;
-				res.render('index', {title: '我去',projects:projects,artists:artists})
-			});
+				res.render('index', {title: '我去',projects:_.shuffle(projects),artists:_.shuffle(artists)})
+			})
 		}); 
 	});
 	

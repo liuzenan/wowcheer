@@ -11,6 +11,7 @@
     "passport-qq":"*",
 	"passport-local":"*",
   	"mongoose":"*",
+    "underscore":"*",
     "mongoose-auto-increment":"*",
 	"connect-flash":"*",
 	"nodemon":"*"
