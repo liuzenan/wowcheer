@@ -43,8 +43,7 @@ block body
                 .project-card-singer
                   h3 #{project.artist.name}
                 .project-card-date
-                  - var time = the_time();
-                  h3 #{time}
+                  h3 #{project.performance_time}
                 .project-card-des
                   p #{project.artist.introduction}
                 h4.project-card-city
