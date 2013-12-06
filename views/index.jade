@@ -34,7 +34,7 @@ block body
           else
             h2.second-title 北京
               a.control(href="project/1", target="_blank") 更换城市
-          - for (var i = 0; i < 3; i ++) {
+          - for (var i = 0; i < 2; i ++) {
           - var project = projects[i];
             .project-card-wide
               .project-card-lead
@@ -58,7 +58,7 @@ block body
                 .project-card-number 2412/3000
            - }
       .project-card-container
-        - for (var i = 3; i < 6;i++) {
+        - for (var i = 2; i < 5;i++) {
         - var project = projects[i];
             .project-card-small
               .project-card-lead
@@ -66,11 +66,13 @@ block body
                 a.project-card-button(href="/project/#{project.id}", target="_blank") 我要去
               .project-card-detail
                 .project-card-singer
-                  h3  #{project.artist.name}
+                  h3  
+                    a(href="/artist/#{project.artist._id}", target="_blank" style="none") #{project.artist.name}
                 .project-card-date
                   h3 2014.3.18
                 h5.project-card-city
-                  span.venue #{project.venue.name}
+                  span.venue 
+                     a(href="/venue/#{project.venue._id}" ,target="_blank" style="none")  #{project.venue.name}
                 .project-card-other-city
                   a(href="http://", target="_blank") 查看其它城市
                 .project-progress
@@ -81,34 +83,10 @@ block body
       .section
         h2 演出类别
         ul.category-links
-          li.category-item 
-            a(href="http://", target="_blank") 流行
-          li.category-item
-            a(href="http://", target="_blank") 摇滚
-          li.category-item
-            a(href="http://", target="_blank") 民族
-          li.category-item
-            a(href="http://", target="_blank") 校园
-          li.category-item
-            a(href="http://", target="_blank") 原创
-          li.category-item
-            a(href="http://", target="_blank") 比赛
-          li.category-item 
-            a(href="http://", target="_blank") 流行
-          li.category-item
-            a(href="http://", target="_blank") 摇滚
-          li.category-item
-            a(href="http://", target="_blank") 民族
-          li.category-item
-            a(href="http://", target="_blank") 校园
-          li.category-item
-            a(href="http://", target="_blank") 原创
-          li.category-item
-            a(href="http://", target="_blank") 比赛
-          li.category-item
-            a(href="http://", target="_blank") 原创
-          li.category-item
-            a(href="http://", target="_blank") 比赛
+          each type in types
+            li.category-item 
+              a(href="/search?type=#{type}", target="_blank") #{type}
+         
   #about
     .hero-image
     .container
