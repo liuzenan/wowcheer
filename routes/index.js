@@ -24,7 +24,7 @@ var _ = require("underscore")
 			if (err) throw err;
 			Artists.find(function(err,artists){
 				if (err) throw err;
-				res.render('index', {title: '我去',projects:_.shuffle(projects),artists:_.shuffle(artists)})
+				res.render('index', {title: '我去',types:Projects.types,projects:_.shuffle(projects),artists:_.shuffle(artists)})
 			})
 		}); 
 	});

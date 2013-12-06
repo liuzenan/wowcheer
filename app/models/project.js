@@ -20,6 +20,8 @@ var ProjectSchema = mongoose.Schema({
 		createdAt: { type: Date, default: Date.now }
 });
 
+ProjectSchema.statics.types =  ['流行','摇滚','民族','校园','原创','比赛'];
+
 ProjectSchema.statics.featureProjects = function(callback,limit){
 	var limit = limit || 50;
 	var q= this.find({
