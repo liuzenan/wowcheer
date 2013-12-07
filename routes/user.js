@@ -3,7 +3,9 @@
  * User related route
  */
 var Auth = require('./middlewares/authentication');
-var User = require('../app/models/user');
+var mongoose = require('mongoose')
+var User = mongoose.model('User');
+var Util = require('./util');
 module.exports = function(app,passport){
 	/*Auth*/
 	app.get("/login", function(req, res){
@@ -34,12 +36,17 @@ module.exports = function(app,passport){
 		var email = req.body.email;
 		var password = req.body.password;
 		var confirmPassword = req.body.password_confirm;
+		
 		if (password!=confirmPassword) {
-			res.json({error:'Password not the same'});
+			return res._json(false,{password:"请输入相同密码"});
+		} else if (!Util.validateEmail(email)) {
+			return res._json(false,{email:"邮箱格式不正确"});
+		} else if (password.length < 6){
+			return res._json(false,{password:"密码至少六位"})
 		}
 		User.isExistingUser(email,function(isExistingUser){
 			if (isExistingUser) {
-				res.json({error:'This email is already registered'});
+				res._json(false, {email:'邮箱已被注册'});
 			} else {
 				User.signup(email, password, function(err, user, opt){
 					if(err) throw err;
@@ -51,7 +58,7 @@ module.exports = function(app,passport){
 			}
 		});
 	});
-	
+
 	app.get("/signup/profile",Auth.isAuthenticated, function(req,res){
 		res.render("signup_profile");
 	});

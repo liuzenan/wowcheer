@@ -1,8 +1,10 @@
 /**
  * Base level routes
  */
-
-
+var mongoose = require('mongoose')
+var Artists = mongoose.model('Artist');
+var Projects = mongoose.model('Project');
+var _ = require("underscore")
  module.exports = function (app,passport,db,config) {
  	/*Attach database,passport to every request*/
  	app.all('*', function(req, res, next) {
@@ -12,22 +14,36 @@
  		res.locals.message = req.flash();
  		next();
  	});
-	
- 	/* User authentication*/
-	require('./user')(app,passport);
-	
-	// index page
+
+	/* index page */
 	app.get("/", function (req, res) {
-		res.render('index', {title: '我去'})
+		Projects.featureProjects(function(err,projects){
+			if (err) throw err;
+			Artists.find(function(err,artists){
+				if (err) throw err;
+				res.render('index', {title: '我去',types:Projects.types,projects:_.shuffle(projects),artists:_.shuffle(artists)})
+			})
+		}); 
 	});
 	
-	app.get('/project', function(req, res){
-		res.render('project', {title:"Project"});
-	});
+  /* Project routes*/
+	require('./project')(app);
+  
+  /* Artist routes*/
+	require('./artist')(app);
+  
+  /* Venue routes*/
+	require('./venue')(app);
 	
+  /* Search*/
+  require('./search')(app);
+  
+  /* User authentication*/
+	require('./user')(app,passport);
+  
 	/*Other page 404*/
 	app.all('*',function(req,res) {
-		res.render('index', {title:'404 Not found'});
+		res.send(404);
 	});
 }
 

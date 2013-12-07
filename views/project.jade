@@ -2,11 +2,12 @@ extends layout
 block body
   #main-content
     .intro
-      .hero-image(style="background-image: url(/img/hero_artist1.png);")
+      .hero-image(style="background-image: url(/img/#{project.artist.poster_large});")
       .container
         .hero-text
-          h1.artist-name Phillip Phillips
-          h2.location 北京 国家体育馆
+          h1.artist-name #{project.artist.name}
+          h3.artist-name #{project.name}
+          h2.location #{project.venue.name}
     .container
       .project
         .project-info
@@ -17,8 +18,11 @@ block body
           .project-des
             h2 项目介绍
             .project-des-wrapper
-              iframe(src='//player.vimeo.com/video/53160877?title=0&byline=0&portrait=0', width='600', height='337', frameborder='0', webkitallowfullscreen='webkitallowfullscreen', mozallowfullscreen='mozallowfullscreen', allowfullscreen='allowfullscreen')
-              h3 Phillip Phillips
+              if project.video_url
+                iframe(src='#{project.video_url}', width='600', height='337', frameborder='0', webkitallowfullscreen='webkitallowfullscreen', mozallowfullscreen='mozallowfullscreen', allowfullscreen='allowfullscreen')
+              #{project.description}
+              h3 #{project.artist.name}
+              p #{project.artist.introduction}
           .project-comments
             h2 讨论
         .project-package
@@ -34,4 +38,4 @@ block body
             div.text 预定票价 原价
               span.strike 400
               元
-          a.btn-primary.block(href="http://", target="_blank") 立即预定
+          a.btn-primary.block(href="booking", target="_blank") 立即预定
