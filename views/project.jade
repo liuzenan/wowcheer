@@ -2,11 +2,11 @@ extends layout
 block body
   #main-content
     .intro
-      .hero-image(style="background-image: url(/img/hero_artist1.png);")
+      .hero-image(style="background-image: url(/img/#{project.artist.poster_large});")
       .container
         .hero-text
-          h1.artist-name Phillip Phillips
-          h2.location 北京 国家体育馆
+          h1.artist-name #{project.artist.name}
+          h2.location #{project.venue.name}
     .container
       .project
         .project-info
