@@ -1,0 +1,46 @@
+﻿extends layout
+block body
+  #main-content
+    .container
+      .section
+        .hero-search
+          form(id="search-form", method="get", action="")
+            input#city(type="text", name="city", placeholder="你所在的城市")
+            input#singer(type="text", name="artist", placeholder="歌手")
+            select(name='time' style="height:40px")
+              option(value='30') 一个月之内
+              option(value='60') 两个月之内
+              option(value='120') 四个月之内
+              option(value='180') 半年之内
+              option(value='' selected='selected') 任何时间
+            input#category(type="text", name="type", placeholder="类别")
+            input(type="submit", value="搜索")
+      .section
+        .section-header
+          h2.main-title 搜索结果
+        - if (search_result.data.length > 0) {
+        each project in search_result.data 
+         .project-card-wide
+          .project-card-lead
+            .project-card-img(style="background-image:url(/img/#{project.main_poster_url})")
+            a.project-card-button(href="/project/#{project.id}", target="_self") 我要去
+          .project-card-detail
+            .project-card-singer
+               h3  
+                a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
+            .project-card-date
+              h3 3月12号 晚上8点
+            .project-card-des
+              p #{project.artist.introduction}
+            h5.project-card-city
+              span.venue 
+                 a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}
+            .project-card-other-city
+              a(href="http://", target="_self") 查看其它城市
+            .project-progress
+              .progress-bar(style="width:60%")
+            .project-card-number 2412/3000
+        -} else {
+          h5  抱歉,没有找到符合条件的演出
+        -}
+      
