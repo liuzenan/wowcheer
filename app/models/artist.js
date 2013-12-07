@@ -1,7 +1,7 @@
 /*Artist schema, model and model behaviours*/
 var mongoose = require('mongoose');
 var artistSchema =  mongoose.Schema({
-		name: String,
+		name: {type:String,index:true},
 		birthday:String,
 		introduction:String,
 		poster:String,

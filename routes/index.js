@@ -35,9 +35,12 @@ var _ = require("underscore")
   /* Venue routes*/
 	require('./venue')(app);
 	
+  /* Search*/
+  require('./search')(app);
+  
   /* User authentication*/
 	require('./user')(app,passport);
-
+  
 	/*Other page 404*/
 	app.all('*',function(req,res) {
 		res.send(404);

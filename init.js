@@ -42,21 +42,22 @@ module.exports = function() {
         presale_start_time.setHours(0);
         presale_start_time.setMinutes(0);
         presale_start_time.setSeconds(0);
-        presale_start_time.setDate(presale_start_time.getDate() -  Math.floor(Math.random()*30+1));
+        presale_start_time.setTime(presale_start_time.getTime() - 24* 1000*60*60*Math.floor(Math.random()*30+1));
         project.presale_start_time =  presale_start_time;
-        var presale_duration = 30 * Math.floor(Math.random()*2+2);
+        var presale_duration = 30 * 24* 1000*60*60*Math.floor(Math.random()*2+2);
         var confirm_time = new Date();
         confirm_time.setHours(23);
         confirm_time.setMinutes(59);
         confirm_time.setSeconds(59);
-        project.confirm_time = confirm_time.setDate(confirm_time.getDate() + presale_duration);
+        project.confirm_time = confirm_time.setTime(confirm_time.getTime() + presale_duration);
         var performance_time = new Date();
-        var prepare_duration = Math.floor(Math.random()*60+2);
+        var prepare_duration = 24* 1000*60*60* Math.floor(Math.random()*60+2);
         performance_time.setHours(20);
         performance_time.setMinutes(0);
         performance_time.setSeconds(0);
-        project.performance_time = performance_time.setDate(confirm_time.getDate() + prepare_duration);
+        project.performance_time = performance_time.setTime(confirm_time.getTime() + prepare_duration);
       }
+      
 			Projects.create(projects,function(err){
           if (err) throw err;
       });

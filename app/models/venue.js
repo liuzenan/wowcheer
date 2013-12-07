@@ -1,7 +1,7 @@
 /*Venue schema, model and model behaviours*/
 var mongoose = require('mongoose');
 var venueSchema = mongoose.Schema({
-		name:String,
+		name:{type:String,index:true},
 		description:String,
 		image:String,
 		address:String,
