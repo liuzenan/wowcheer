@@ -7,7 +7,7 @@ module.exports = function(app){
      q.exec(function(err,project){
        if (err) throw err;
        if (project) {
-         res.render('project', {title:"Project", project:project});
+         res.render('project', {title:project.name, project:project});
        } else {
          next();
        }

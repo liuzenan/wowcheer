@@ -23,8 +23,18 @@ block body
               #{project.description}
               h3 #{project.artist.name}
               p #{project.artist.introduction}
+              .jiathis_style
+                span.jiathis_txt 分享到:
+                a.jiathis_button_qzone QQ空间
+                a.jiathis_button_tsina 新浪微博
+                a.jiathis_button_tqq 腾讯QQ
+                a.jiathis_button_weixin 微信
+                a.jiathis.jiathis_txt.jiathis_separator.jtico.jtico_jiathis(href='http://www.jiathis.com/share', target='_blank') 更多
+                a.jiathis_counter_style
+              script(type='text/javascript', src='http://v3.jiathis.com/code/jia.js', charset='utf-8')
           .project-comments
             h2 讨论
+         
         .project-package
           .project-stats
             span.large-number 3,633

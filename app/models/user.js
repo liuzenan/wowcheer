@@ -1,27 +1,21 @@
 var mongoose = require('mongoose');
 var hash = require('../util/hash');
 
-
-AuthSchema = mongoose.Schema({
-	provider:String,
-	accessToken:String,
-	refreshToken:String,
-	profile:mongoose.Schema.Types.Mixed,
-	createdAt:{type:Date,default:Date.now}
-});
-
 UserSchema = mongoose.Schema({
-    email:      String, //ID
+    email:      {type:String,index:{unique:true}} ,//ID
     salt:       String,
     hash:       String,
     username:String,
 		city:String,
 		description:String,
-		createdAt: { type: Date, default: Date.now },
+    createdAt:{type:Date,default:Date.now},
 		updatedAt: { type: Date}
 });
 
-
+UserSchema.pre('save', function(next){
+  this.updated_at = new Date;
+  next();
+})
 
 UserSchema.statics.isExistingUser = function(email, done) {
 	this.count({email:email},function(err, count){
@@ -33,6 +27,8 @@ UserSchema.statics.isExistingUser = function(email, done) {
 			}
 	});
 }
+
+
 
 // For signup:
 UserSchema.statics.signup = function(email, password, done){
