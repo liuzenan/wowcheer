@@ -49,8 +49,9 @@ block body
                 .project-card-singer
                    h3  
                     a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
+                   h5 #{project.name}
                 .project-card-date
-                  h3 3月12号 晚上8点
+                  h3 #{timeFormatter('Y年m月d日', project.performance_time)}
                 .project-card-des
                   p #{project.artist.introduction}
                 h5.project-card-city
@@ -73,8 +74,9 @@ block body
                 .project-card-singer
                   h3  
                     a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
+                  h5 #{project.name}
                 .project-card-date
-                  h3 2014.3.18
+                  h3 #{timeFormatter('Y.m.d', project.performance_time)}
                 h5.project-card-city
                   span.venue 
                      a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}

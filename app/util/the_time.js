@@ -30,7 +30,7 @@
  * w 0-6 一周中第几天，周日为0
  * N 1-7 一周中第几天，周日为7
  */
-	function the_time(format, timestamp){
+ module.exports = function(format, timestamp){
 		var d=new Date();
 		if(timestamp){
 			if(!/^\d+$/.test(timestamp)){

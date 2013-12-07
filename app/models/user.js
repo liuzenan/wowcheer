@@ -2,16 +2,26 @@ var mongoose = require('mongoose');
 var hash = require('../util/hash');
 
 
+AuthSchema = mongoose.Schema({
+	provider:String,
+	accessToken:String,
+	refreshToken:String,
+	profile:mongoose.Schema.Types.Mixed,
+	createdAt:{type:Date,default:Date.now}
+});
+
 UserSchema = mongoose.Schema({
-        email:      String, //ID
-        salt:       String,
-        hash:       String,
-        username:String,
+    email:      String, //ID
+    salt:       String,
+    hash:       String,
+    username:String,
 		city:String,
 		description:String,
 		createdAt: { type: Date, default: Date.now },
 		updatedAt: { type: Date}
 });
+
+
 
 UserSchema.statics.isExistingUser = function(email, done) {
 	this.count({email:email},function(err, count){
