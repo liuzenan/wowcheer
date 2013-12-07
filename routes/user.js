@@ -38,15 +38,15 @@ module.exports = function(app,passport){
 		var confirmPassword = req.body.password_confirm;
 		
 		if (password!=confirmPassword) {
-			return res._json(false,{password:"Inconsistent password"});
+			return res._json(false,{password:"请输入相同密码"});
 		} else if (!Util.validateEmail(email)) {
-			return res._json(false,{email:"Invalid email address"});
+			return res._json(false,{email:"邮箱格式不正确"});
 		} else if (password.length < 6){
-			return res._json(false,{password:"Password is too short"})
+			return res._json(false,{password:"密码至少六位"})
 		}
 		User.isExistingUser(email,function(isExistingUser){
 			if (isExistingUser) {
-				res._json(false, {email:'This email is already registered'});
+				res._json(false, {email:'邮箱已被注册'});
 			} else {
 				User.signup(email, password, function(err, user, opt){
 					if(err) throw err;

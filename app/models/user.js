@@ -43,7 +43,7 @@ UserSchema.statics.signup = function(email, password, done){
 }
 
 UserSchema.statics.update = function(email, data,done) {
-	User.findOne({email:email}, function(err, user){
+	this.findOne({email:email}, function(err, user){
 		if (err) throw err;
 		console.log(user);
 		user.username = data.username;

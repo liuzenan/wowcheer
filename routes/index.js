@@ -14,11 +14,8 @@ var _ = require("underscore")
  		res.locals.message = req.flash();
  		next();
  	});
-	
- 	/* User authentication*/
-	require('./user')(app,passport);
-	
-	// index page
+
+	/* index page */
 	app.get("/", function (req, res) {
 		Projects.featureProjects(function(err,projects){
 			if (err) throw err;
@@ -29,11 +26,18 @@ var _ = require("underscore")
 		}); 
 	});
 	
-	app.get('/project', function(req, res){
-		res.render('project', {title:"Project"});
-	});
-
+  /* Project routes*/
+	require('./project')(app);
   
+  /* Artist routes*/
+	require('./artist')(app);
+  
+  /* Venue routes*/
+	require('./venue')(app);
+	
+  /* User authentication*/
+	require('./user')(app,passport);
+
 	/*Other page 404*/
 	app.all('*',function(req,res) {
 		res.send(404);
