@@ -1,20 +1,19 @@
 ﻿var mongoose = require("mongoose");
 var lastModified = require("./plugins").lastModifiedPlugin;
 var ProjectSchema = mongoose.Schema({
-        visible:{type:Boolean,default:true},
+    visible:{type:Boolean,default:true,index:true},
 		name:String,
-		types:{type:[{type:String}],default:['流行']},
-        description:String,
-        main_poster_url:String,
-        video_url:String,
-		city:String,
+		types:{type:[{type:String}],default:['流行'],index:true},
+    description:String,
+    main_poster_url:String,
+    video_url:String,
 		presale_start_time:Date,
 		confirm_time:Date,
 		performance_time:Date,
 		ticket_prices:[Number],
 		sale_limit:Number,
 		venue:{type:Number,ref:"Venue"},
-		artist:{type:Number,ref:"Artist"},
+		artist:{type:Number,ref:"Artist",index:true},
 		bookingCount:Number,
 		comments:[{content:String,user:String,createdAt:{ type: Date, default: Date.now }}],
 		createdAt: { type: Date, default: Date.now }
@@ -28,7 +27,7 @@ ProjectSchema.statics.featureProjects = function(callback,limit){
 					visible:true, 
           performance_time:{$gt:new Date()}
 					}).populate("venue artist").sort("bookingCount").limit(limit);
-	q.exec(function(err,projects){
+  q.exec(function(err,projects){
 					if (err) return callback(err);
 					else return callback(null,projects);
 			});
