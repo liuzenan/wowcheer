@@ -29,7 +29,7 @@ block body
                h3  
                 a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
             .project-card-date
-              h3 3月12号 晚上8点
+              h3 #{timeFormatter('Y.m.d', project.performance_time)}
             .project-card-des
               p #{project.artist.introduction}
             h5.project-card-city

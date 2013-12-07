@@ -13,8 +13,9 @@ var config = require('./config/config');
 var env = config.env();
 var routes = require('./routes');
 var fs = require('fs')
-var app = module.exports = express();
+var timeFormatter = require('./app/util/the_time');
 
+var app = module.exports = express();
 
 
 // Configuration
@@ -53,6 +54,7 @@ app.configure(function(){
 	// Attach user info to all page rendering
 	app.use(function(req, res, next) {
 		res.locals.user = req.user;
+    res.locals.timeFormatter = timeFormatter;
 		next();
 	});
 	app.use(app.router);

@@ -5,9 +5,9 @@ block body
       .hero-image(style="background-image: url(/img/#{project.artist.poster_large});")
       .container
         .hero-text
-          h1.artist-name #{project.artist.name}
-          h3.artist-name #{project.name}
-          h2.location #{project.venue.name}
+          h1.artist-name #{project.artist.name} 
+          h3.artist-name #{project.name} 
+          h2.location #{timeFormatter('Y年m月d日', project.performance_time)} #{project.venue.name}
     .container
       .project
         .project-info
