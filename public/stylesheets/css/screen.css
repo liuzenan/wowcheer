@@ -408,6 +408,18 @@ a {
   color: #b6dcc1;
 }
 
+/* line 49, ../../../sass/_base.scss */
+.large-number {
+  font-size: 4em;
+  line-height: 1.17857em;
+  font-weight: 700;
+}
+
+/* line 54, ../../../sass/_base.scss */
+.strike {
+  text-decoration: line-through;
+}
+
 /* line 33, ../../../sass/module/_button.scss */
 .btn-primary {
   background-color: rgba(67, 219, 186, 0.95);

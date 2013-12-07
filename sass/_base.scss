@@ -45,3 +45,12 @@ a {
 	text-decoration: none;
 	color:$primary-green;
 }
+
+.large-number {
+	@include adjust-font-size-to(56px); 
+	font-weight: 700;
+}
+
+.strike {
+	text-decoration: line-through;
+}
