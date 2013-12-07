@@ -8,6 +8,7 @@ var _ = require("underscore")
  module.exports = function (app,passport,db,config) {
  	/*Attach database,passport to every request*/
  	app.all('*', function(req, res, next) {
+    console.log(req.route);
  		req.db = db;
  		req.passport =passport;
  		req.config = config;

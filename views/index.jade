@@ -8,11 +8,16 @@ block body
           h1 你的演唱会，你做主。
           h2 在全国34个城市找到你想去的演唱会，你的支持将使其成为现实。
         .hero-search
-          form(id="search-form", method="post", action="")
+          form(id="search-form", method="get", action="search")
             input#city(type="text", name="city", placeholder="你所在的城市")
-            input#singer(type="text", name="category", placeholder="歌手")
-            input#time(type="text", name="time", placeholder="时间")
-            input#category(type="text", name="category", placeholder="类别")
+            input#singer(type="text", name="artist", placeholder="歌手")
+            select(name='time' style="height:40px")
+              option(value='30') 一个月之内
+              option(value='60') 两个月之内
+              option(value='120') 四个月之内
+              option(value='180') 半年之内
+              option(value='' selected='selected') 任何时间
+            input#category(type="text", name="type", placeholder="类别")
             input(type="submit", value="搜索")
     .container
       .section
@@ -48,7 +53,7 @@ block body
                   h3 3月12号 晚上8点
                 .project-card-des
                   p #{project.artist.introduction}
-                h4.project-card-city
+                h5.project-card-city
                   span.venue 
                      a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}
                 .project-card-other-city

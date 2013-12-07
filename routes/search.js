@@ -4,12 +4,17 @@ var Projects = mongoose.model("Project");
 var Artists = mongoose.model("Artist");
 var Venues = mongoose.model("Venue")
 module.exports = function(app) {
-  app.get('/search', function(req,res){
-  
+  var search = function(req,res,callback){
+    // Paging
+    //var req.param('page')
     // Visibility
     var q = Projects.where("visible",true);
     // Type
-    if(req.param('type')) q.where("types",req.param('type'));
+    if(req.param('type')) {
+      var types = req.param('type').split(" ");
+      console.log(types)
+      q.where("types",types);
+     }
     // Project performance_time should be with period from now to the query date 
     var time = req.param('time');
     var beforeDate = new Date()
@@ -22,15 +27,19 @@ module.exports = function(app) {
     // Query limit
     var limit = req.param('limit') ? req.param('limit'):50;
     q.limit(limit);                      
-   
+    
+    // Reference query is a bit tricky, this is the best solution I can get
     if (req.param('city') && req.param('artist')) {
       q.populate('venue',null,{name:new RegExp(req.param('city'))});
       q.populate('artist',null,{name:req.param('artist')});
     } else if (req.param('city')) {
       q.populate('venue',null,{name:new RegExp(req.param('city'))});
       q.populate('artist');
-    } else {
+    } else if (req.param('artist')) {
       q.populate('artist',null,{name:req.param('artist')});
+      q.populate('venue');
+    } else {
+      q.populate('artist');
       q.populate('venue');
     }
     
@@ -39,7 +48,13 @@ module.exports = function(app) {
       projects = projects.filter(function(project){
           return project.artist && project.venue;
       })
-      res._json(true,projects);
+      callback(projects)
     })
-  })  
+  }
+  app.get('/search', function(req,res){
+    search(req,res,function(projects){
+      console.log("Search result:" + projects.length + " record")
+      res.render("search",{title:"search",search_result:{type:'project',data:projects}})
+    })
+  })
 }
