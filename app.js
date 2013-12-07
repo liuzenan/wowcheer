@@ -7,22 +7,21 @@ var http = require('http');
 var path = require('path');
 var passport = require("passport");
 var flash = require('connect-flash');
-var mongoose = require("mongoose");
+var mongoose = require("./app/models/models");
 var initialize = require("./init");
 var config = require('./config/config');
 var env = config.env();
 var routes = require('./routes');
 var fs = require('fs')
-
 var app = module.exports = express();
 
-// Configuration
 
+
+// Configuration
 app.configure(function(){
 	// all environments
 	app.set('env',env.mode);
 	app.set('port', env.port);
-	
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
 	app.set('view options', {
@@ -37,6 +36,20 @@ app.configure(function(){
 	app.use(passport.session());
 	app.use(flash());
 	app.use(express.static(path.join(__dirname, 'public')));
+	// Define global returning json format
+	app.use(function(req,res,next){
+		res._json = function(status, data, errorCode) {
+			if (status) {
+				var status = 'success';
+			} else {
+				var status = 'fail';
+			}
+			var data = data || {};
+			var errorCode = errorCode || 200;
+			res.send(errorCode,{status:status,data:data});
+		}
+		next();
+	})
 	// Attach user info to all page rendering
 	app.use(function(req, res, next) {
 		res.locals.user = req.user;
@@ -58,18 +71,15 @@ app.configure('production', function(){
 
 // connect database
 var db = mongoose.connection;
+
 db.on('error', console.error.bind(console, 'mongodb connection error:'));
 db.once('open', function callback () {
 	console.log("mongodb successfully connected");
-	// Load predefined data
+   // Initialize data 
 	initialize();
 });
 
 mongoose.connect(env.db,env.dbConfig);
-// Bootstrap models
-fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
-	 if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file)
-})
 
 // set up passport
 require('./config/passport')(app,passport,config);
