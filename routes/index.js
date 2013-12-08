@@ -12,7 +12,6 @@ var _ = require("underscore")
  		req.db = db;
  		req.passport =passport;
  		req.config = config;
- 		res.locals.message = req.flash();
  		next();
  	});
 

@@ -8,7 +8,7 @@ var citySchema = require("./city");
 var projectSchema = require("./project");
 var venueSchema = require("./venue");
 var userSchema = require("./user");
-var userSchema = require("./auth");
+var authSchema = require("./auth");
 artistSchema.plugin(autoIncrement.plugin, 'Artist');
 citySchema.plugin(autoIncrement.plugin, 'City');
 projectSchema.plugin(autoIncrement.plugin, 'Project');
@@ -19,6 +19,6 @@ mongoose.model('City',citySchema);
 mongoose.model('Project',projectSchema);
 mongoose.model('Venue',venueSchema);
 mongoose.model('User',userSchema);
-mongoose.model('Auth',userSchema);
+mongoose.model('Auth',authSchema);
 
 module.exports = mongoose;
