@@ -8,7 +8,7 @@
   	"mocha":"*",
   	"passport":"*",
   	"passport-weibo":"*",
-    "passport-qq":"*",
+    "passport-qq":"git://github.com/AndyShang/passport-qq.git",
 	"passport-local":"*",
   	"mongoose":"*",
     "underscore":"*",
