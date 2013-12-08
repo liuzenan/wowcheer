@@ -16,13 +16,19 @@ module.exports = function(app,passport){
 		}
 	});
 
-	app.post("/login" 
-		,passport.authenticate('local',{
-			successRedirect : "/profile",
-			failureRedirect : "/login",
-			failureFlash: true
-		})
-	);
+	app.post("/login", function(req,res,next) {
+    passport.authenticate('local', function(err, user, info) {
+      if (err) { return next(err); }
+      if (!user) {
+        return res.render('login', {message:info.message}); 
+      } else {
+        req.logIn(user, function(err) {
+          if (err) { return next(err); }
+          return res.redirect('/profile');
+        });
+      }
+    })(req, res, next);
+  });
 	
 	app.get("/signup", function (req, res) {
 		if (!req.user) {
@@ -52,7 +58,7 @@ module.exports = function(app,passport){
 					if(err) throw err;
 					req.login(user, function(err){
 						if(err) return next(err);
-						return res.redirect("/signup/profile");
+            return res.redirect("/signup/profile");
 					});
 				});
 			}

@@ -1,28 +1,31 @@
 ﻿extends layout
 block body
-	form(action='/login', method='post')
-					div
-							label 邮箱:
-							input(type='text', name='email')
-					div
-							label 密码:
-							input(type='password', name='password')
-					div
-							input(type='submit', value='Log In')
-			a(href='#', onclick='toLoginQQ();')
-					img(src='/img/qq_login.png')
-			a(href='#', onclick='toLoginWeibo();')
-					img(src='/img/weibo_login.png')
-			script(type='text/javascript').
-					function toLoginQQ() {
-							window.open("/auth/qq","连接QQ",
-							"width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1");
-					}
-					function toLoginWeibo() {
-							window.open("/auth/weibo","连接微博",
-							"width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1");
-					}
+  form(action='/login', method='post')
+          div
+              label 邮箱:
+              input(type='text', name='email')
+          div
+              label 密码:
+              input(type='password', name='password')
+          div
+              input(type='submit', value='Log In')
+      - if (message){
+         p #{message}
+      - }
+      a(href='#', onclick='toLoginQQ();')
+          img(src='/img/qq_login.png')
+      a(href='#', onclick='toLoginWeibo();')
+          img(src='/img/weibo_login.png')
+      script(type='text/javascript').
+          function toLoginQQ() {
+              window.open("/auth/qq","连接QQ",
+              "width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1");
+          }
+          function toLoginWeibo() {
+              window.open("/auth/weibo","连接微博",
+              "width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1");
+          }
 
 
 
-	
+  

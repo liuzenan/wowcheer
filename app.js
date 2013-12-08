@@ -6,7 +6,6 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var passport = require("passport");
-var flash = require('connect-flash');
 var mongoose = require("./app/models/models");
 var initialize = require("./init");
 var config = require('./config/config');
@@ -35,7 +34,6 @@ app.configure(function(){
 	app.use(express.session({ secret: 'really cool website',cookie: { maxAge: 60000 }}));
 	app.use(passport.initialize());
 	app.use(passport.session());
-	app.use(flash());
 	app.use(express.static(path.join(__dirname, 'public')));
 	// Define global returning json format
 	app.use(function(req,res,next){
