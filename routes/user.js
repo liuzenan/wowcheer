@@ -98,8 +98,9 @@ module.exports = function(app,passport){
             return res.redirect('/profile');
           });
         } else {
-          var url = '/signup?provider=' + info.provider + '&' + 'provider_id=' + info.provider_id; 
-          return res.render('temp');
+          var url = 'signup?provider=' + info.provider + '&' + 'provider_id=' + info.provider_id; 
+	  console.log(url);
+	  return res.redirect('redirect?redirect_url='+ encodeURIComponent(url));
         }
       })(req, res,next);
   });

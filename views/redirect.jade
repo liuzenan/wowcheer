@@ -2,9 +2,10 @@ p redirecting...
   script(type='text/javascript').
     setTimeout(function () {
       var redirectURL = getURLParameter('redirect_url');
+      console.log(redirectURL);
       if (redirectURL && window.opener) {
         window.opener.location.href=redirectURL;
-        window.close();
+	window.close();
       } else if (redirectURL) {
         window.location.href=redirectURL;
       } else {
