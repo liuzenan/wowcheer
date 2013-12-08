@@ -23,12 +23,12 @@ AuthSchema.statics.varifyHash = function(provider,provider_id,hash){
   return md5(provider + HASH_SECRET + provider_id) === hash;
 }
 /*Generate hash*/
-AuthSchema.statics.hash = function(){
+AuthSchema.methods.hash = function(){
   return md5(this.provider+HASH_SECRET+this.provider_id); 
 }
 
 /*Verify auth provider*/
-AuthSchema.statisc.varifyProvider = function(provider,provider_id,hash,callback) {
+AuthSchema.statics.varifyProvider = function(provider,provider_id,hash,callback) {
   var q = this.findOne({provider:provider,provider_id:provider_id});
   q.exec(function(err,providerUser) {
     if (err) throw err;
