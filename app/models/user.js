@@ -31,18 +31,14 @@ UserSchema.statics.isExistingUser = function(email, done) {
 
 
 // For signup:
-UserSchema.statics.signup = function(email, password, done){
+UserSchema.statics.signup = function(password,info,done){
 	var User = this;
 	hash(password, function(err, salt, hash){
 			if(err) throw err;
-			
-			User.create({
-					email : email,
-					salt : salt,
-					hash : hash
-			}, function(err, user){
+			info.hash = hash;
+      info.salt = salt;
+			User.create(info, function(err, user){
 					if(err) throw err;
-				
 					done(null, user);
 			});
 	});

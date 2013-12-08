@@ -1,0 +1,16 @@
+p redirecting...
+  script(type='text/javascript').
+    setTimeout(function () {
+      var redirectURL = getURLParameter('redirect_url');
+      if (redirectURL && window.opener) {
+        window.opener.location.href=redirectURL;
+        window.close();
+      } else if (redirectURL) {
+        window.location.href=redirectURL;
+      } else {
+        window.location.href="/";
+      }
+    }, 1000);
+    function getURLParameter(name) {
+      return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+    }
