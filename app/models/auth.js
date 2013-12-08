@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 /*Model for third party authentication*/
 AuthSchema = mongoose.Schema({
-  _id:{type:String},
+    user:{type:String},
 	provider_id:{type:String,required:true,index:true},
   provider:{type:String,required:true,index:true},
 	accessToken:String,
