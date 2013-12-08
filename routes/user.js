@@ -4,7 +4,8 @@
  */
 var Auth = require('./middlewares/authentication');
 var mongoose = require('mongoose')
-var User = mongoose.model('User');
+var Users = mongoose.model('User');
+var Providers = mongoose.model('Auth');
 var Util = require('./util');
 module.exports = function(app,passport){
 	/*Auth*/
@@ -31,11 +32,17 @@ module.exports = function(app,passport){
   });
 	
 	app.get("/signup", function (req, res) {
-		if (!req.user) {
-			res.render("signup",{title:"注册"});
-		} else {
+		if (req.user) {
 			res.redirect("/profile");
-		}
+		} else if (req.params.provider && req.params.provider_id && req.params.hash){
+      // If provider and provider_id are provided, it means this user is trying to login with a provider
+			var q = Providers.varifyProvider(req.params.provider,req.params.provider_id,req.params.hash,function(isVarified,providerUser){
+        if (!isVarified) res.render("signup",{title:"注册"});
+        else res.render("signup",{title:"注册",providerUser:providerUser})
+      });
+		} else {
+      res.render("signup",{title:"注册"});
+    }
 	});
 
 	app.post("/signup", function (req, res,next) {
@@ -57,12 +64,12 @@ module.exports = function(app,passport){
 		} else if (password.length < 6){
 			return res._json(false,{password:"密码至少六位"})
 		}
-		User.isExistingUser(email,function(isExistingUser){
+		Users.isExistingUser(email,function(isExistingUser){
 			if (isExistingUser) {
 				res._json(false, {email:'邮箱已被注册'});
 			} else {
         var info = {email:email,username:username,city:city};
-				User.signup(password, info, function(err, user, opt){
+				Users.signup(password, info, function(err, user, opt){
 					if(err) throw err;
 					req.login(user, function(err){
 						if(err) return next(err);
@@ -98,9 +105,8 @@ module.exports = function(app,passport){
             return res.redirect('/profile');
           });
         } else {
-          var url = 'signup?provider=' + info.provider + '&' + 'provider_id=' + info.provider_id; 
-	  console.log(url);
-	  return res.redirect('redirect?redirect_url='+ encodeURIComponent(url));
+          var url = 'signup?provider=' + info.provider + '&provider_id=' + info.provider_id + '&hash=' + info.hash; 
+          return res.redirect('redirect?redirect_url='+ encodeURIComponent(url));
         }
       })(req, res,next);
   });

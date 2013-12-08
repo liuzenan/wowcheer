@@ -19,5 +19,9 @@ block body
             br
             lable(for='city') 所在城市:
             input#city(type='text', name='city' style="width:100%" placeholder="北京")
+            - if (profile) {
+               input(type='text', name='provider' value='#{profile.provider}' style="display:none")
+               input(type='text', name='provider_id' value='#{profile.id}' style="display:none")
+            - }
             p
               input(type="submit", value="完成注册" style="float:right")
