@@ -41,6 +41,11 @@ var _ = require("underscore")
   /* User authentication*/
 	require('./user')(app,passport);
   
+  /* Redirect page*/
+  app.get("/redirect",function(req,res){
+    res.render('redirect');
+  });
+  
 	/*Other page 404*/
 	app.all('*',function(req,res) {
 		res.send(404);

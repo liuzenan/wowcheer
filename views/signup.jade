@@ -1,13 +1,23 @@
 ﻿extends layout
 block body
-	form(id="signup", method="POST", action="/signup")
-		lable(for='email') 邮箱:
-		input#email(type='text', name='email')
-		br
-		lable(for='password') 密码:
-		input#password(type='password', name='password')
-		br
-		lable(for='password_confirm') 确认密码:
-		input#password_confirm(type='password', name='password_confirm')
-		br
-		input(type="submit", value="SignUp")
+  #main-content
+    .container
+      .section
+        div(style="margin:auto; width:300px;padding-top:30px")
+          form(id="signup", method="POST", action="/signup")
+            lable(for='email') 邮箱*:
+            input#email(type='text', name='email' style="width:100%" placeholder='myemail@gmail.com')
+            br
+            lable(for='password') 密码*:
+            input#password(type='password', name='password' style="width:100%" placeholder="至少六位")
+            br
+            lable(for='password_confirm') 确认密码*:
+            input#password_confirm(type='password', name='password_confirm' style="width:100%")
+            br
+            lable(for='username') 用户名*:
+            input#username(type='text', name='username' style="width:100%")
+            br
+            lable(for='city') 所在城市:
+            input#city(type='text', name='city' style="width:100%" placeholder="北京")
+            p
+              input(type="submit", value="完成注册" style="float:right")

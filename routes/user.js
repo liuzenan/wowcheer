@@ -12,7 +12,7 @@ module.exports = function(app,passport){
 		if (req.user) {
 			res.redirect("/profile")
 		} else {
-			res.render("login");
+			res.render("login",{title:'登陆'});
 		}
 	});
 
@@ -32,17 +32,24 @@ module.exports = function(app,passport){
 	
 	app.get("/signup", function (req, res) {
 		if (!req.user) {
-			res.render("signup");
+			res.render("signup",{title:"注册"});
 		} else {
 			res.redirect("/profile");
 		}
 	});
 
 	app.post("/signup", function (req, res,next) {
-		var email = req.body.email;
-		var password = req.body.password;
-		var confirmPassword = req.body.password_confirm;
-		
+    
+		var email = req.param('email');
+		var password = req.param('password');
+		var confirmPassword = req.param('password_confirm');
+		var username = req.param('username');
+    var city = req.param('city');
+    
+    if (!(email && password && confirmPassword && username)) {
+      return res._json(false,{password:"缺少注册资料"});
+    }
+    
 		if (password!=confirmPassword) {
 			return res._json(false,{password:"请输入相同密码"});
 		} else if (!Util.validateEmail(email)) {
@@ -54,34 +61,21 @@ module.exports = function(app,passport){
 			if (isExistingUser) {
 				res._json(false, {email:'邮箱已被注册'});
 			} else {
-				User.signup(email, password, function(err, user, opt){
+        var info = {email:email,username:username,city:city};
+				User.signup(password, info, function(err, user, opt){
 					if(err) throw err;
 					req.login(user, function(err){
 						if(err) return next(err);
-            return res.redirect("/signup/profile");
+            return res.redirect("/profile");
 					});
 				});
 			}
 		});
 	});
 
-	app.get("/signup/profile",Auth.isAuthenticated, function(req,res){
-		res.render("signup_profile");
-	});
-	
-	app.post("/signup/profile", Auth.isAuthenticated, function(req,res,next) {
-		var username = req.body.username,
-			city = req.body.city,
-			description = req.body.description;
-		var data = {username:username,city:city,description:description}
-		User.update(req.user.email, data, function(err){
-			if (err) next(err);
-			res.redirect("/profile");
-		})
-	});
 
 	app.get("/profile", Auth.isAuthenticated , function(req, res){ 
-		res.render("profile");
+		res.render("profile",{title:'个人空间'});
 	});
 	
 	app.get('/logout', function(req, res){
@@ -95,14 +89,19 @@ module.exports = function(app,passport){
 		}
 		);
 
-	app.get('/auth/:provider/callback',  
-		function (req,res,next){
-			passport.authenticate(req.params.provider, { failureRedirect: '/login' })(req, res,next);
-		},  
-		function(req, res) {
-			// Successful authentication, redirect home.
-			res.redirect('/');
-		}
-	);
+	app.get('/auth/:provider/callback',  function (req,res,next){
+			passport.authenticate(req.params.provider, function(err,user,info){
+        if (err) throw err;
+        if (user) {
+         req.logIn(user, function(err) {
+            if (err) { return next(err); }
+            return res.redirect('/profile');
+          });
+        } else {
+          var url = '/signup?provider=' + info.provider + '&' + 'provider_id=' + info.provider_id; 
+          return res.render('temp');
+        }
+      })(req, res,next);
+  });
 	
 };
