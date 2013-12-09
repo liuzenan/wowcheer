@@ -6,6 +6,12 @@ div.fix-bottom {
    right:5px;  
 }
 
+img {
+  width:100%;
+}
+img.icon {
+  width:16px;
+}
 
 button.btn {
   margin-right:5px;
