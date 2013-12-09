@@ -94,7 +94,7 @@ module.exports = function(app,passport){
 		function(req,res,next) {
 			passport.authenticate(req.params.provider)(req, res,next);
 		}
-		);
+  );
 
 	app.get('/auth/:provider/callback',  function (req,res,next){
 			passport.authenticate(req.params.provider, function(err,user,info){

@@ -7,3 +7,11 @@ exports.isAuthenticated = function (req, res, next){
         res.redirect("/login");
     }
 }
+/*Check isLogged in, otherwise response 401*/
+exports.isAPIAuthenticated = function (req, res, next){
+    if(req.isAuthenticated()){
+        next();
+    }else{
+        res.send(401);
+    }
+}

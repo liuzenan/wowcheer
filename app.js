@@ -12,7 +12,7 @@ var config = require('./config/config');
 var env = config.env();
 var routes = require('./routes');
 var fs = require('fs')
-var timeFormatter = require('./app/util/the_time');
+var time = require('./app/util/the_time');
 
 var app = module.exports = express();
 
@@ -52,7 +52,8 @@ app.configure(function(){
 	// Attach user info to all page rendering
 	app.use(function(req, res, next) {
 		res.locals.user = req.user;
-    res.locals.timeFormatter = timeFormatter;
+    res.locals.timeFormatter = time.timeFormatter;
+    res.locals.get_time_difference = time.get_time_difference;
 		next();
 	});
 	app.use(app.router);

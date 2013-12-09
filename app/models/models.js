@@ -9,14 +9,19 @@ var projectSchema = require("./project");
 var venueSchema = require("./venue");
 var userSchema = require("./user");
 var authSchema = require("./auth");
+var bookingSchema = require("./booking");
+
 artistSchema.plugin(autoIncrement.plugin, 'Artist');
 citySchema.plugin(autoIncrement.plugin, 'City');
 projectSchema.plugin(autoIncrement.plugin, 'Project');
 venueSchema.plugin(autoIncrement.plugin,'Venue');
+userSchema.plugin(autoIncrement.plugin,'User');
+bookingSchema.plugin(autoIncrement.plugin,'Booking');
 
 mongoose.model('Artist',artistSchema);
 mongoose.model('City',citySchema);
 mongoose.model('Project',projectSchema);
+mongoose.model('Booking',bookingSchema);
 mongoose.model('Venue',venueSchema);
 mongoose.model('User',userSchema);
 mongoose.model('Auth',authSchema);
