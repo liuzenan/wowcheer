@@ -5,6 +5,7 @@ var mongoose = require('mongoose')
 var Artists = mongoose.model('Artist');
 var Project = mongoose.model('Project');
 var _ = require("underscore");
+var projectController = require('../app/controllers/project');
  module.exports = function (app,passport,db,config) {
  	/*Attach database,passport to every request*/
  	app.all('*', function(req, res, next) {
@@ -21,22 +22,20 @@ var _ = require("underscore");
 			if (err) throw err;
 			Artists.find(function(err,artists){
 				if (err) throw err;
-				res.render('index', {title: '我去',types:Projects.types,projects:_.shuffle(projects),artists:_.shuffle(artists)})
+				res.render('index', {title: '我去',types:Project.types,projects:_.shuffle(projects),artists:_.shuffle(artists)})
 			})
 		}); 
 	});
 	
   /* project page*/
-	 app.get("/project/:id", function(req,res,next){
-     var q = Project.findOne({_id:req.params.id}).populate('venue artist');
-     q.exec(function(err,project){
-       if (err) throw err;
-       if (project) {
-         res.render('project', {title:project.name, project:project});
-       } else {
-         next();
-       }
-     });
+	app.get("/project/:id", function(req,res,next){
+    projectController.userProject(req.user,req.param('id'),function(project){
+      if (project) {
+        res.render('project', {title:project.name, project:project});
+      } else {
+        next();
+      }
+    });
   }) 
   
   /* search page*/

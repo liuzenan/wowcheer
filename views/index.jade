@@ -49,7 +49,7 @@ block body
                 .project-card-singer
                    h3  
                     a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
-                   h5 #{project.name}
+                   h5(style="margin:0") #{project.name}
                 .project-card-date
                   h3 #{timeFormatter('Y年m月d日', project.performance_time)}
                 .project-card-des
@@ -57,11 +57,10 @@ block body
                 h5.project-card-city
                   span.venue 
                      a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}
-                .project-card-other-city
-                  a(href="http://", target="_self") 查看其它城市
                 .project-progress
                   .progress-bar(style="width:60%")
                 .project-card-number 2412/3000
+                
            - }
       .project-card-container
         - for (var i = 2; i < 5;i++) {
@@ -74,17 +73,15 @@ block body
                 .project-card-singer
                   h3  
                     a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
-                  h5 #{project.name}
+                  h5(style="margin:0") #{project.name}
                 .project-card-date
                   h3 #{timeFormatter('Y.m.d', project.performance_time)}
                 h5.project-card-city
                   span.venue 
                      a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}
-                .project-card-other-city
-                  a(href="http://", target="_self") 查看其它城市
-                .project-progress
-                  .progress-bar(style="width:40%")
                 .project-card-number 1412/3000
+                .project-progress
+                  .progress-bar(style="width:40%")            
          - }
       
       .section

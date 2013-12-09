@@ -22,20 +22,20 @@ block body
               if project.video_url
                 iframe(src='#{project.video_url}', width='600', height='337', frameborder='0', webkitallowfullscreen='webkitallowfullscreen', mozallowfullscreen='mozallowfullscreen', allowfullscreen='allowfullscreen')
               #{project.description}
-              h3 #{project.artist.name}
-              p #{project.artist.introduction}
-                .jiathis_style
-                  span.jiathis_txt 分享到:
-                  a.jiathis_button_qzone QQ空间
-                  a.jiathis_button_tsina 新浪微博
-                  a.jiathis_button_tqq 腾讯QQ
-                  a.jiathis_button_weixin 微信
-                  a.jiathis.jiathis_txt.jiathis_separator.jtico.jtico_jiathis(href='http://www.jiathis.com/share', target='_blank') 更多
-                  a.jiathis_counter_style
-                script(type='text/javascript', src='http://v3.jiathis.com/code/jia.js', charset='utf-8')
+              .jiathis_style
+                span.jiathis_txt 分享到:
+                a.jiathis_button_qzone QQ空间
+                a.jiathis_button_tsina 新浪微博
+                a.jiathis_button_tqq 腾讯QQ
+                a.jiathis_button_weixin 微信
+                a.jiathis.jiathis_txt.jiathis_separator.jtico.jtico_jiathis(href='http://www.jiathis.com/share', target='_blank') 更多
+                a.jiathis_counter_style
+              script(type='text/javascript', src='http://v3.jiathis.com/code/jia.js', charset='utf-8')
               br
           .project-comments
             h2 讨论
+            hr
+            hr
             form(action='#{project.id}/comments', method='post')
               div
               - if (!user) {
@@ -45,9 +45,7 @@ block body
                 textarea(rows="4" cols="50" name='content' placeholder="少于100字")
               p
                 input(type='submit', value='提交')
-              
-               
-                
+                   
         .project-package
           .project-stats
             span.large-number #{project.bookingCount} 
@@ -64,3 +62,8 @@ block body
               span.strike #{project.ticket_prices[2]}
               元
           a.btn-primary.block(href="booking", target="_blank") 立即预定
+          h3 #{project.artist.name}
+          img(src="/img/#{project.artist.poster}")
+          p #{project.artist.introduction}
+               
+          

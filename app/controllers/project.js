@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Project = mongoose.model('Project');
 var Booking = mongoose.model('Booking');
 module.exports.userProject = function(user,id,callback) {
-  var q = Project.findOne({_id:id});
+  var q = Project.findOne({_id:id}).populate('venue artist');
   // Find bookings with the id
   q.exec(function(err, project){
     if(err) throw err;
