@@ -49,9 +49,9 @@ block body
               h3 用户名:
               div #{user.username} 
               h3 城市:
-              div #{user.city}
+              <input type="text" style="width:90%" value=' #{user.city}' maxlength="6" name="usrname">
               h3 个人简介:
-              p 大家好! 我喜欢音乐
+              textarea(style="width:90%") 大家好! 我喜欢音乐
               br
-              div
+              h5
                 a(href="edit" style="float:right") 修改

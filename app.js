@@ -31,7 +31,7 @@ app.configure(function(){
 	app.use(express.cookieParser());
 	app.use(express.json());
 	app.use(express.urlencoded());
-	app.use(express.session({ secret: 'really cool website',cookie: { maxAge: 60000 }}));
+	app.use(express.session({ secret: 'really cool website',cookie: { maxAge: 60000 * 60 * 24 }}));
 	app.use(passport.initialize());
 	app.use(passport.session());
 	app.use(express.static(path.join(__dirname, 'public')));
