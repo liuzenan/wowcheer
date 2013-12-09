@@ -41,11 +41,13 @@ block body
             
             -} else {
               h5  你还没有预定过演出
-              
             -}
-        .project-package
+        .project-package(style="margin-top:0px;")
             .project-stats
-              small 人
-              div.text 已经提前预定
-             
-              div.text 后预定结束
+              img(src="/img/default_profile.jpg" style="width:60%")
+              h3 用户名:
+              div #{user.username} 
+              h3 城市:
+              div #{user.city}
+              h3 个人简介:
+              p 大家好! 我喜欢音乐
