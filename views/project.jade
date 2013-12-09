@@ -1,6 +1,37 @@
 extends layout
 block body
   script(type='text/javascript' src="/js/project.js").
+  script(src='/js/libs/jquery.simplemodal.js')
+
+  #booking-model(hidden="true")
+    h3 预定 #{project.name}
+    table.table
+      thead
+        tr
+          th #
+          th First Name
+          th Last Name
+          th Username
+      tbody
+        tr
+          td 1
+          td Mark
+          td Otto
+          td @mdo
+        tr
+          td 2
+          td Jacob
+          td Thornton
+          td @fat
+        tr
+          td 3
+          td Larry
+          td the Bird
+          td @twitter
+    div.fix-bottom
+      button.btn.simplemodal-close 取消
+      button.btn-primary 确认预定
+      
   #main-content(data-id='#{project._id}')
     .intro
       .hero-image(style="background-image: url(/img/#{project.artist.poster_large});")
@@ -61,10 +92,18 @@ block body
             div.text 预定票价 原价
               span.strike #{project.ticket_prices[2]}
               元
-          a.btn-primary.block(href="#{project._id}/booking", target="_blank") 立即预定
+          a.btn-primary.block#booking-btn() 立即预定
           hr
+          img(src="/img/#{project.main_poster_url}")
           h3 #{project.artist.name}
-          img(src="/img/#{project.artist.poster}")
           p #{project.artist.introduction}
-               
+          .jiathis_style_32x32
+            a.jiathis_button_qzone
+            a.jiathis_button_tsina
+            a.jiathis_button_tqq
+            a.jiathis_button_weixin
+            a.jiathis_button_renren
+            a.jiathis.jiathis_txt.jtico.jtico_jiathis(href='http://www.jiathis.com/share', target='_blank')
+            a.jiathis_counter_style
+    
           
