@@ -56,6 +56,8 @@ module.exports = function() {
         performance_time.setMinutes(0);
         performance_time.setSeconds(0);
         project.performance_time = performance_time.setTime(confirm_time.getTime() + prepare_duration);
+        // Dummy booking count
+        project.bookingCount = Math.floor(Math.random()*project.sale_limit+1) 
       }
       
 			Projects.create(projects,function(err){

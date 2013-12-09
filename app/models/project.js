@@ -1,5 +1,17 @@
 ﻿var mongoose = require("mongoose");
 var lastModified = require("./plugins").lastModifiedPlugin;
+
+var CommentSchema = mongoose.Schema({
+    content:String,
+    user:{type:String,ref:'User'},
+    updatedAt:{type:Date},
+    createdAt:{ type: Date, default: Date.now }
+});
+CommentSchema.pre('save',function(next){
+  this.updatedAt = new Date();
+  next();
+})
+
 var ProjectSchema = mongoose.Schema({
     visible:{type:Boolean,default:true,index:true},
 		name:String,
@@ -14,8 +26,8 @@ var ProjectSchema = mongoose.Schema({
 		sale_limit:Number,
 		venue:{type:Number,ref:"Venue"},
 		artist:{type:Number,ref:"Artist",index:true},
-		bookingCount:Number,
-		comments:[{content:String,user:String,createdAt:{ type: Date, default: Date.now }}],
+    bookingLimit:{type:Number, default:2},
+		comments:[CommentSchema],
 		createdAt: { type: Date, default: Date.now }
 });
 
@@ -31,6 +43,11 @@ ProjectSchema.statics.featureProjects = function(callback,limit){
 					if (err) return callback(err);
 					else return callback(null,projects);
 			});
+}
+
+ProjectSchema.methods.addComment = function(user,content,callback){
+  this.comments.push({user:user,content:content});
+  this.save(callback);
 }
 
 // Record last modified date

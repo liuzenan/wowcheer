@@ -1,10 +1,9 @@
-﻿/*Search functionality controller*/
+/*Search functionality controller*/
 var mongoose = require("mongoose");
 var Projects = mongoose.model("Project");
 var Artists = mongoose.model("Artist");
 var Venues = mongoose.model("Venue")
-module.exports = function(app) {
-  var search = function(req,res,callback){
+var search = function(req,res,callback){
     // Paging
     //var req.param('page')
     // Visibility
@@ -51,10 +50,6 @@ module.exports = function(app) {
       callback(projects)
     })
   }
-  app.get('/search', function(req,res){
-    search(req,res,function(projects){
-      console.log("Search result:" + projects.length + " record")
-      res.render("search",{title:"search",search_result:{type:'project',data:projects}})
-    })
-  })
-}
+
+  
+module.exports = search;

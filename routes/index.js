@@ -3,8 +3,7 @@
  */
 var mongoose = require('mongoose')
 var Artists = mongoose.model('Artist');
-var Projects = mongoose.model('Project');
-var _ = require("underscore")
+var _ = require("underscore");
  module.exports = function (app,passport,db,config) {
  	/*Attach database,passport to every request*/
  	app.all('*', function(req, res, next) {
@@ -17,7 +16,7 @@ var _ = require("underscore")
 
 	/* index page */
 	app.get("/", function (req, res) {
-		Projects.featureProjects(function(err,projects){
+		Project.featureProjects(function(err,projects){
 			if (err) throw err;
 			Artists.find(function(err,artists){
 				if (err) throw err;
@@ -26,26 +25,40 @@ var _ = require("underscore")
 		}); 
 	});
 	
-  /* Project routes*/
-	require('./project')(app);
+  /* project page*/
+	 app.get("/project/:id", function(req,res,next){
+     var Project = mongoose.model('Project');
+     var q = Project.findOne({_id:req.params.id}).populate('venue artist');
+     q.exec(function(err,project){
+       if (err) throw err;
+       if (project) {
+         res.render('project', {title:project.name, project:project});
+       } else {
+         next();
+       }
+     });
+  }) 
   
-  /* Artist routes*/
-	require('./artist')(app);
+  /* search page*/
+  app.get('/search', function(req,res){
+    var search = require('../app/controllers/search');
+    search(req,res,function(projects){
+      res.render("search",{title:"search",search_result:{type:'project',data:projects}})
+    })
+  })
   
-  /* Venue routes*/
-	require('./venue')(app);
-	
-  /* Search*/
-  require('./search')(app);
-  
-  /* User authentication*/
+  /* user authentication routes*/
 	require('./user')(app,passport);
+  
   
   /* Redirect page*/
   app.get("/redirect",function(req,res){
     res.render('redirect');
   });
-  
+
+   /* API*/
+  require('./api')(app);
+ 
 	/*Other page 404*/
 	app.all('*',function(req,res) {
 		res.send(404);

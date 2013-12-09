@@ -1,6 +1,7 @@
 extends layout
 block body
-  #main-content
+  script(type='text/javascript' src="/js/project.js").
+  #main-content(data-id='#{project._id}')
     .intro
       .hero-image(style="background-image: url(/img/#{project.artist.poster_large});")
       .container
@@ -12,9 +13,9 @@ block body
       .project
         .project-info
           .project-timeline
-            h2 项目进度
+            h2 项目进度  
             .project-progress
-              .progress-bar(style="width:60%")
+              .progress-bar(style="width:#{Math.floor(project.bookingCount / project.sale_limit * 100)}%")
           .project-des
             h2 项目介绍
             .project-des-wrapper
@@ -23,29 +24,43 @@ block body
               #{project.description}
               h3 #{project.artist.name}
               p #{project.artist.introduction}
-              .jiathis_style
-                span.jiathis_txt 分享到:
-                a.jiathis_button_qzone QQ空间
-                a.jiathis_button_tsina 新浪微博
-                a.jiathis_button_tqq 腾讯QQ
-                a.jiathis_button_weixin 微信
-                a.jiathis.jiathis_txt.jiathis_separator.jtico.jtico_jiathis(href='http://www.jiathis.com/share', target='_blank') 更多
-                a.jiathis_counter_style
-              script(type='text/javascript', src='http://v3.jiathis.com/code/jia.js', charset='utf-8')
+                .jiathis_style
+                  span.jiathis_txt 分享到:
+                  a.jiathis_button_qzone QQ空间
+                  a.jiathis_button_tsina 新浪微博
+                  a.jiathis_button_tqq 腾讯QQ
+                  a.jiathis_button_weixin 微信
+                  a.jiathis.jiathis_txt.jiathis_separator.jtico.jtico_jiathis(href='http://www.jiathis.com/share', target='_blank') 更多
+                  a.jiathis_counter_style
+                script(type='text/javascript', src='http://v3.jiathis.com/code/jia.js', charset='utf-8')
+              br
           .project-comments
             h2 讨论
-         
+            form(action='#{project.id}/comments', method='post')
+              div
+              - if (!user) {
+                span 匿名
+              -}
+              div
+                textarea(rows="4" cols="50" name='content' placeholder="少于100字")
+              p
+                input(type='submit', value='提交')
+              
+               
+                
         .project-package
           .project-stats
-            span.large-number 3,633
+            span.large-number #{project.bookingCount} 
             small 人
             div.text 已经提前预定
-            span.large-number 10
+            span.large-number #{get_time_difference(project.confirm_time,new Date()).days}
             small 天
+            span.large-number #{get_time_difference(project.confirm_time,new Date()).hours}
+            small 小时
             div.text 后预定结束
-            span.large-number 140
+            span.large-number #{project.ticket_prices[0]}
             small 元
             div.text 预定票价 原价
-              span.strike 400
+              span.strike #{project.ticket_prices[2]}
               元
           a.btn-primary.block(href="booking", target="_blank") 立即预定
