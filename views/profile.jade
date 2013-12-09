@@ -20,18 +20,18 @@ block body
                   .project-card-wide
                     .project-card-lead
                       .project-card-img(style="background-image:url(/img/#{project.main_poster_url})")
-                      a.project-card-button(href="/project/#{project.id}", target="_self") 我要去
+                      a.project-card-button(href="/project/#{project.id/}", target="_self") 查看
                     .project-card-detail
                       .project-card-singer
                          h3  
-                          a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
+                          a(href="/artist/#{project.artist._id/}", target="_self" style="none") #{project.artist.name}
                       .project-card-date
                         h3 #{timeFormatter('Y.m.d', project.performance_time)}
                       .project-card-des
                         p #{project.artist.introduction}
                       h5.project-card-city
                         span.venue 
-                           a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}
+                           a(href="/venue/#{project.venue._id/}" ,target="_self" style="none")  #{project.venue.name}
                       .project-card-other-city
                         a(href="http://", target="_self") 查看其它城市
                       .project-progress
@@ -42,12 +42,15 @@ block body
             -} else {
               h5  你还没有预定过演出
             -}
-        .project-package(style="margin-top:0px;")
+        .project-package(style="padding:10px;margin-top:0px;width:25%;background:#ffffff;-moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24); -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);")
             .project-stats
-              img(src="/img/default_profile.jpg" style="width:60%")
+              img(src="/img/default_profile.jpg" style="width:100%")
               h3 用户名:
               div #{user.username} 
               h3 城市:
               div #{user.city}
               h3 个人简介:
               p 大家好! 我喜欢音乐
+              br
+              div
+                a(href="edit" style="float:right") 修改
