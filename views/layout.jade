@@ -44,7 +44,7 @@ html(class='no-js', lang='zh-CN')
         else 
           ul.nav-top
               li
-                a(href="/profile")= user.username
+                a(href="/profile") #{user.username}@#{user.city}
               li
                 a(href="/logout") 登出
     block body

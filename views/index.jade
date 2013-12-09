@@ -58,8 +58,8 @@ block body
                   span.venue 
                      a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}
                 .project-progress
-                  .progress-bar(style="width:60%")
-                .project-card-number 2412/3000
+                  .progress-bar(style="width:#{project.bookingCount / project.sale_limit * 100}%")
+                .project-card-number #{project.bookingCount} / #{project.sale_limit}
                 
            - }
       .project-card-container
@@ -79,9 +79,9 @@ block body
                 h5.project-card-city
                   span.venue 
                      a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}
-                .project-card-number 1412/3000
+                .project-card-number #{project.bookingCount} / #{project.sale_limit}
                 .project-progress
-                  .progress-bar(style="width:40%")            
+                  .progress-bar(style="width:#{project.bookingCount / project.sale_limit * 100}%")            
          - }
       
       .section

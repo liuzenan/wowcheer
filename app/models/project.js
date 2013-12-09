@@ -24,6 +24,7 @@ var ProjectSchema = mongoose.Schema({
 		performance_time:Date,
 		ticket_prices:[Number],
 		sale_limit:Number,
+    bookingCount:{type:Number,default:0},
 		venue:{type:Number,ref:"Venue"},
 		artist:{type:Number,ref:"Artist",index:true},
     bookingLimit:{type:Number, default:2},
@@ -33,17 +34,7 @@ var ProjectSchema = mongoose.Schema({
 
 ProjectSchema.statics.types =  ['流行','摇滚','民族','校园','原创','比赛'];
 
-ProjectSchema.statics.featureProjects = function(callback,limit){
-	var limit = limit || 50;
-	var q= this.find({
-					visible:true, 
-          performance_time:{$gt:new Date()}
-					}).populate("venue artist").sort("bookingCount").limit(limit);
-  q.exec(function(err,projects){
-					if (err) return callback(err);
-					else return callback(null,projects);
-			});
-}
+
 
 ProjectSchema.methods.addComment = function(user,content,callback){
   this.comments.push({user:user,content:content});

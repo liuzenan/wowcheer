@@ -81,9 +81,7 @@ module.exports = function(app,passport){
 	});
 
 
-	app.get("/profile", Auth.isAuthenticated , function(req, res){ 
-		res.render("profile",{title:'个人空间'});
-	});
+	
 	
 	app.get('/logout', function(req, res){
 		req.logout();
