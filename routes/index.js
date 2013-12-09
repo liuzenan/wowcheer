@@ -3,6 +3,7 @@
  */
 var mongoose = require('mongoose')
 var Artists = mongoose.model('Artist');
+var Project = mongoose.model('Project');
 var _ = require("underscore");
  module.exports = function (app,passport,db,config) {
  	/*Attach database,passport to every request*/
@@ -27,7 +28,6 @@ var _ = require("underscore");
 	
   /* project page*/
 	 app.get("/project/:id", function(req,res,next){
-     var Project = mongoose.model('Project');
      var q = Project.findOne({_id:req.params.id}).populate('venue artist');
      q.exec(function(err,project){
        if (err) throw err;
