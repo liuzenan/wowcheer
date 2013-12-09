@@ -35,6 +35,12 @@ var bookingController = require('../app/controllers/booking');
       }
   });
   
+  /* project booking page*/
+	app.get("/booking",function(req,res,next){
+     res.render('booking');
+  });
+  
+  
   /* search page*/
   app.get('/search', function(req,res){
     var search = require('../app/controllers/search');

@@ -7,12 +7,11 @@ amplify.request.define( "project", "ajax", {
 });
 
 $(document).ready(function() {
-    amplify.request( "project",
-    {
-        id:$('#main-content').attr('data-id')
-    },
-    function( data ) {
-      console.log(data);
-    }
-);
+    $('#booking-btn').click(function (e) {
+      $('#booking-model').modal();
+      return false;
+    });
+    $('#simplemodal-overlay').click(function(e){
+         $.modal.close();
+    });
 });

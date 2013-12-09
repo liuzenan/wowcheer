@@ -12,7 +12,7 @@ block body
         .project-info
           .section
             .section-header
-              h2.main-title 我预定的演出
+              h2.main-title 我去的演出
               hr
             - if (bookings && bookings.length > 0) {
               - bookings.foreach(function(booking){
@@ -41,6 +41,7 @@ block body
             
             -} else {
               h5  你还没有预定过演出
+                a(href="/search")  现在就去搜索 
             -}
         .project-package(style="padding:10px;margin-top:0px;width:25%;background:#ffffff;-moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24); -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);")
             .project-stats
