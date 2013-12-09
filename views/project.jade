@@ -15,7 +15,7 @@ block body
           .project-timeline
             h2 项目进度  
             .project-progress
-              .progress-bar(style="width:#{Math.floor(project.bookingCount / project.sale_limit * 100)}%")
+              .progress-bar(style="width:#{Math.ceil(project.bookingCount / project.sale_limit * 100)}%")
           .project-des
             h2 项目介绍
             .project-des-wrapper
@@ -34,7 +34,7 @@ block body
               br
           .project-comments
             h2 讨论
-            hr
+            hr              
             hr
             form(action='#{project.id}/comments', method='post')
               div
@@ -61,7 +61,8 @@ block body
             div.text 预定票价 原价
               span.strike #{project.ticket_prices[2]}
               元
-          a.btn-primary.block(href="booking", target="_blank") 立即预定
+          a.btn-primary.block(href="#{project._id}/booking", target="_blank") 立即预定
+          hr
           h3 #{project.artist.name}
           img(src="/img/#{project.artist.poster}")
           p #{project.artist.introduction}

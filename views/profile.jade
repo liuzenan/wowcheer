@@ -1,6 +1,51 @@
 ﻿extends layout
 block body
-	h1 #{user.email}'s Profile	
-	p #{user.username} #{user.city} #{user.description} 	
-	a(href="/logout") 
-		h3 Logout
+  #main-content
+     .intro(style="height:200px")
+      .hero-image(style="background-image: url(/img/profile_background.jpg);")
+      .container
+        .hero-text
+          h1 #{user.username}的个人空间 
+     
+     .container
+      .project
+        .project-info
+          .section
+            .section-header
+              h2.main-title 我预定的演出
+              hr
+            - if (bookings && bookings.length > 0) {
+              - bookings.foreach(function(booking){
+              - var project = booking.project;
+                  .project-card-wide
+                    .project-card-lead
+                      .project-card-img(style="background-image:url(/img/#{project.main_poster_url})")
+                      a.project-card-button(href="/project/#{project.id}", target="_self") 我要去
+                    .project-card-detail
+                      .project-card-singer
+                         h3  
+                          a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
+                      .project-card-date
+                        h3 #{timeFormatter('Y.m.d', project.performance_time)}
+                      .project-card-des
+                        p #{project.artist.introduction}
+                      h5.project-card-city
+                        span.venue 
+                           a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}
+                      .project-card-other-city
+                        a(href="http://", target="_self") 查看其它城市
+                      .project-progress
+                        .progress-bar(style="width:60%")
+                      .project-card-number 2412/3000
+              -})
+            
+            -} else {
+              h5  你还没有预定过演出
+              
+            -}
+        .project-package
+            .project-stats
+              small 人
+              div.text 已经提前预定
+             
+              div.text 后预定结束

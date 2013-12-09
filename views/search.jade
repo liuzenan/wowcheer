@@ -1,10 +1,11 @@
 ﻿extends layout
 block body
   #main-content
-    .container
-      .section
+    .intro(style="height:100px")
+      .hero-image(style="background-image: url(/img/hero.png);")
+      .container
         .hero-search
-          form(id="search-form", method="get", action="")
+          form(id="search-form", method="get", action="search")
             input#city(type="text", name="city", placeholder="你所在的城市")
             input#singer(type="text", name="artist", placeholder="歌手")
             select(name='time' style="height:40px")
@@ -15,9 +16,11 @@ block body
               option(value='' selected='selected') 任何时间
             input#category(type="text", name="type", placeholder="类别")
             input(type="submit", value="搜索")
+    .container
       .section
         .section-header
           h2.main-title 搜索结果
+          hr
         - if (search_result.data.length > 0) {
         each project in search_result.data 
          .project-card-wide
@@ -38,8 +41,8 @@ block body
             .project-card-other-city
               a(href="http://", target="_self") 查看其它城市
             .project-progress
-              .progress-bar(style="width:60%")
-            .project-card-number 2412/3000
+              .progress-bar(style="width:#{project.bookingCount / project.sale_limit * 100}%")
+            .project-card-number #{project.bookingCount} / #{project.sale_limit}
         -} else {
           h5  抱歉,没有找到符合条件的演出
         -}

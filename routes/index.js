@@ -6,6 +6,8 @@ var Artists = mongoose.model('Artist');
 var Project = mongoose.model('Project');
 var _ = require("underscore");
 var projectController = require('../app/controllers/project');
+var Auth = require('./middlewares/authentication');
+var bookingController = require('../app/controllers/booking');
  module.exports = function (app,passport,db,config) {
  	/*Attach database,passport to every request*/
  	app.all('*', function(req, res, next) {
@@ -17,26 +19,21 @@ var projectController = require('../app/controllers/project');
  	});
 
 	/* index page */
-	app.get("/", function (req, res) {
-		Project.featureProjects(function(err,projects){
-			if (err) throw err;
-			Artists.find(function(err,artists){
+	app.get("/",  projectController.featureProjects, function (req, res) {
+		Artists.find(function(err,artists){
 				if (err) throw err;
-				res.render('index', {title: '我去',types:Project.types,projects:_.shuffle(projects),artists:_.shuffle(artists)})
-			})
-		}); 
+				res.render('index', {title: '我去',types:Project.types,artists:_.shuffle(artists)})
+    }) 
 	});
 	
   /* project page*/
-	app.get("/project/:id", function(req,res,next){
-    projectController.userProject(req.user,req.param('id'),function(project){
-      if (project) {
-        res.render('project', {title:project.name, project:project});
+	app.get("/project/:id", projectController.userProject, function(req,res) {
+      if (res.locals.project) {
+        res.render('project', {title:res.locals.project.name});
       } else {
         next();
       }
-    });
-  }) 
+  });
   
   /* search page*/
   app.get('/search', function(req,res){
@@ -49,6 +46,9 @@ var projectController = require('../app/controllers/project');
   /* user authentication routes*/
 	require('./user')(app,passport);
   
+  app.get("/profile",Auth.isAuthenticated,bookingController.userBookings,function(req, res){
+     res.render("profile",{title:'个人空间'});
+	});
   
   /* Redirect page*/
   app.get("/redirect",function(req,res){
