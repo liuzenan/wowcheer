@@ -9,14 +9,14 @@
   "passport":"*",
   "passport-weibo":"*",
   "passport-qq":"git://github.com/AndyShang/passport-qq.git",
-	"passport-local":"*",
+  "passport-local":"*",
   "mongoose":"*",
   "underscore":"*",
   "mongoose-auto-increment":"*",
   "nodemailer":"*",
   "email-templates":"*",
-	"MD5":"*",
-	"nodemon":"*"
+  "MD5":"*",
+  "nodemon":"*"
   },
   "engines": {
     "node": "0.10.x",
