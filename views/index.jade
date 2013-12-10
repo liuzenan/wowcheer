@@ -25,7 +25,7 @@ block body
         .featured-container
           - for (var i = 0; i < 4; ++i) {
             .featured-item
-              a.control(href="artist/#{artists[i]._id}",target="_self")
+              a.control(href="search?artist=#{artists[i].name}",target="_self")
                 .featured-img(style="background-image:url('img/#{artists[i].poster}')")
                 .artist-name
                   h3 #{artists[i].name}
@@ -48,7 +48,7 @@ block body
               .project-card-detail
                 .project-card-singer
                    h3  
-                    a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
+                    a(href="/search?artist=#{project.artist.name}", target="_self" style="none") #{project.artist.name}
                    h5 #{project.name}
                 .project-card-date
                   h3 #{timeFormatter('Y年m月d日', project.performance_time)}
@@ -58,7 +58,10 @@ block body
                   span.venue 
                      a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}
                 .project-progress
-                  .progress-bar(style="width:#{project.bookingCount / project.sale_limit * 100}%")
+                  if (project.bookingCount) < project.sale_limit
+                    .progress-bar(style="width:#{project.bookingCount / project.sale_limit * 100}%")
+                  else 
+                    .progress-bar(style="background:#33FF33;width:#{project.bookingCount / project.sale_limit * 100}%")         
                 .project-card-number #{project.bookingCount} / #{project.sale_limit}
                 
            - }
@@ -81,7 +84,10 @@ block body
                      a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}
                 .project-card-number #{project.bookingCount} / #{project.sale_limit}
                 .project-progress
-                  .progress-bar(style="width:#{project.bookingCount / project.sale_limit * 100}%")            
+                  if (project.bookingCount) < project.sale_limit
+                    .progress-bar(style="width:#{project.bookingCount / project.sale_limit * 100}%")
+                  else 
+                    .progress-bar(style="background:#33FF33;width:#{project.bookingCount / project.sale_limit * 100}%")         
          - }
       
       .section
