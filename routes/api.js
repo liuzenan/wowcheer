@@ -4,6 +4,7 @@ var search = require('../app/controllers/search');
 var auth = require('./middlewares/authentication');
 var projectController = require('../app/controllers/project');
 var bookingController = require('../app/controllers/booking');
+var mailController = require('../app/controllers/email');
 module.exports = function(app){
   /* Login*/
   app.get('/api/login', function(req,res,next){
@@ -38,7 +39,12 @@ module.exports = function(app){
   app.get("/api/project/:id/bookings",auth.isAPIAuthenticated,bookingController.userBookings,function(req,res){
       res._json(true,res.locals.bookings);
   });
-
+  app.get("/api/project/:id/bookings/mail", function(req,res){
+      mailController.sendTicketMail(null,function(err,response){
+         if (err) res._json(false,err);
+         else res._json(true,response);
+      });
+  });
   app.post("/api/project/:id/bookings",auth.isAPIAuthenticated, bookingController.makeBooking)
   
   app.post("/api/project/:id/comments", function(req,res,next){
