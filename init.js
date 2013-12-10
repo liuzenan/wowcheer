@@ -52,12 +52,15 @@ module.exports = function() {
         project.confirm_time = confirm_time.setTime(confirm_time.getTime() + presale_duration);
         var performance_time = new Date();
         var prepare_duration = 24* 1000*60*60* Math.floor(Math.random()*60+2);
+        performance_time.setTime(confirm_time.getTime() + prepare_duration);
         performance_time.setHours(20);
         performance_time.setMinutes(0);
         performance_time.setSeconds(0);
-        project.performance_time = performance_time.setTime(confirm_time.getTime() + prepare_duration);
-        // Dummy booking count
+        project.performance_time = performance_time;
+         // Dummy booking count
         project.bookingCount = Math.floor(Math.random()*project.sale_limit+1) 
+        // Dummy discount
+        project.presale_discount = (Math.random() / 5 + 0.8).toFixed(2) //0.8 ~ 1
       }
       
 			Projects.create(projects,function(err){

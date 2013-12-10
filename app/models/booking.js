@@ -1,11 +1,10 @@
 var mongoose = require('mongoose');
 var BookingSchema = mongoose.Schema({
-    project:{type:String,ref:"Project"},
-    user:{type:String,ref:"User"},
-    number:{type:Number,default:1},
+    project:{type:Number,ref:"Project"},
+    user:{type:Number,ref:"User"},
     createdAt:{type:Date, default:Date.now},
     updatedAt:{type:Date},
-    pricePackage:{type:Number},
+    tickets:[{ticket_price:Number,ticket_count:Number}],
     paid:{type:Boolean,default:false}
 });
 BookingSchema.pre('save',function(next){

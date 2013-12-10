@@ -23,11 +23,12 @@ var ProjectSchema = mongoose.Schema({
 		confirm_time:Date,
 		performance_time:Date,
 		ticket_prices:[Number],
+    presale_discount:{type:Number,default:1},
 		sale_limit:Number,
     bookingCount:{type:Number,default:0},
 		venue:{type:Number,ref:"Venue"},
 		artist:{type:Number,ref:"Artist",index:true},
-    bookingLimit:{type:Number, default:2},
+    booking_limit:{type:Number, default:2},
 		comments:[CommentSchema],
 		createdAt: { type: Date, default: Date.now }
 });
