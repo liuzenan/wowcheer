@@ -1,9 +1,10 @@
-var path           = require('path')
-var templatesDir   = path.resolve(__dirname, '../..', 'templates')
-var emailTemplates = require('email-templates');
-var nodemailer     = require('nodemailer');
+
 
 module.exports.sendTicketMail = function(data,callback) {
+  var path           = require('path')
+  var templatesDir   = path.resolve(__dirname, '../..', 'templates')
+  var emailTemplates = require('email-templates');
+  var nodemailer     = require('nodemailer');
   emailTemplates(templatesDir, function(err, template) {
     if (err) {
       console.log(err);
