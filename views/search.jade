@@ -39,8 +39,6 @@ block body
             h5.project-card-city
               span.venue 
                  a(href="/venue/#{project.venue._id}" ,target="_self" style="none")  #{project.venue.name}
-            .project-card-other-city
-              a(href="http://", target="_self") 查看其它城市
             .project-progress
               .progress-bar(style="width:#{project.bookingCount / project.sale_limit * 100}%")
             .project-card-number #{project.bookingCount} / #{project.sale_limit}
