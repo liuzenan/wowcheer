@@ -129,10 +129,10 @@ block body
             small 小时
             div.text 后预定结束
             if !isConfirmed
-              span.large-number #{project.presale_discount}
+              span.large-number #{project.presale_discount * 10}
               small  预定折扣
             else
-              span.large-number.strikeout #{project.presale_discount}
+              span.large-number.strikeout #{project.presale_discount * 10}
               small  预定已截止
             
           - if (!project.booking) {

@@ -16,7 +16,7 @@ module.exports.makeBooking = function(req, res, next){
         Project.findOne({_id:projectID},function(err,project){
           if (err) throw err;
           var bookingCount = project.bookingCount +1; 
-          Project.findOneAndUpdate({_id:projectID,bookingCount:bookingCount},function(err,updatedProject){
+          Project.findOneAndUpdate({_id:projectID},{bookingCount:bookingCount},function(err,updatedProject){
             if (err) throw err;
             res._json(true,updatedProject);
           })
