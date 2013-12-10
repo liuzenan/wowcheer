@@ -1,37 +1,70 @@
 extends layout
 block body
-  script(type='text/javascript' src="/js/project.js").
   script(src='/js/libs/jquery.simplemodal.js')
-
+  script(src='/js/libs/jquery.tmpl.min.js')
+  script(type='text/javascript' src="/js/project.js").
+      
   #booking-model(hidden="true")
     h3 预定 #{project.name}
-    table.table
+    p.model-booking-notification 注意:在演出确认时间之后,如果 
+      <br> 1. 预定人数没有达到演出目标人数, 
+      <br> 2. 或者演出因为不可抗力量取消, 我们会将会全额返还您的预订款.  
+      <br> *一旦演出确认,预付款将不能退换.
+    div
+      dl.model-booking-info
+        dt 
+          h5 演出时间
+        dd.booking-time(data='#{project.performance_time}') #{timeFormatter('Y年m月d日 H:i',project.performance_time)}
+        dt 
+          h5 演出地点
+        dd.booking-venue(data='#{project.venue._id}')
+          span #{project.venue.name} 
+            a(href="/venue/#{project.venue._id}" target="_blank") 查看具体信息
+        dt 
+          h5 享受预定折扣
+        dd.booking-discount(data='#{project.presale_discount}')
+          span #{project.presale_discount}
+        if !project.booking
+          dt 
+            h5 选择价格
+          dd.booking-prices(data-limit='#{project.booking_limit}') 
+            - for (var i = 0;i< project.ticket_prices.length;i++) {
+            - var price = project.ticket_prices[i];
+              a.price-btn(href='javascript:void(0);', rank='#{i}' data='#{price}') #{price}
+            -}
+    div#template-container
+    table.table.table-booking(border='1')
       thead
         tr
-          th #
-          th First Name
-          th Last Name
-          th Username
-      tbody
-        tr
-          td 1
-          td Mark
-          td Otto
-          td @mdo
-        tr
-          td 2
-          td Jacob
-          td Thornton
-          td @fat
-        tr
-          td 3
-          td Larry
-          td the Bird
-          td @twitter
-    div.fix-bottom
-      button.btn.simplemodal-close 取消
-      button.btn-primary 确认预定
+          th 价格
+          th 折扣
+          th 数量
+          th 小计
       
+      tbody#booking-summary(data='0')
+        if project.booking
+          - var total = 0;
+          - for (var i=0;i<project.booking.tickets.length;i++) {
+          - var ticket = project.booking.tickets[i];
+          - var price = ticket.ticket_price * project.presale_discount * ticket.ticket_count;
+              tr.booking-price-entry(rank='#{i}', data='#{ticket.ticket_price}')
+              td(data='#{ticket.ticket_price}') #{ticket.ticket_price}
+              td(data='#{project.presale_discount}') #{project.presale_discount}
+              td(data='#{ticket.ticket_price}') #{ticket.ticket_price}
+              td(data='#{price}') #{price}
+          - total = total + price}
+        tr.total
+          td(colspan="3") 总计
+          td.total #{total}
+    
+    
+    div.model-bottom
+      - if (!project.booking || project.booking.length == 0) {
+        button.btn.simplemodal-close 取消
+        button.btn-primary#booking-confirm-btn  确认预定
+      - }else{
+        button.btn.simplemodal-close 关闭
+      -}
   #main-content(data-id='#{project._id}')
     .intro
       .hero-image(style="background-image: url(/img/#{project.artist.poster_large});")
@@ -39,20 +72,25 @@ block body
         .hero-text
           h1.artist-name #{project.artist.name} 
           h3.artist-name #{project.name} 
-          h2.location #{timeFormatter('Y年m月d日', project.performance_time)} #{project.venue.name}
+          h2.location #{timeFormatter('Y年m月d日 H:i', project.performance_time)} #{project.venue.name}
     .container
       .project
         .project-info
           .project-timeline
-            h2 项目进度  
+            h2 项目进度 
+             if project.bookingCount < project.sale_limit
+              h5(style="color:#7bd3f3") 项目还在预售阶段
+             else
+              h5(style="color:rgb(67, 219, 186)") 项目确定
             .project-progress
               .progress-bar(style="width:#{Math.ceil(project.bookingCount / project.sale_limit * 100)}%")
+              .project-card-number #{project.bookingCount} / #{project.sale_limit}
           .project-des
             h2 项目介绍
             .project-des-wrapper
               if project.video_url
                 iframe(src='#{project.video_url}', width='600', height='337', frameborder='0', webkitallowfullscreen='webkitallowfullscreen', mozallowfullscreen='mozallowfullscreen', allowfullscreen='allowfullscreen')
-              #{project.description}
+              #{project.description}.
               .jiathis_style
                 span.jiathis_txt 分享到:
                 a.jiathis_button_qzone QQ空间
@@ -87,12 +125,13 @@ block body
             span.large-number #{get_time_difference(project.confirm_time,new Date()).hours}
             small 小时
             div.text 后预定结束
-            span.large-number #{project.ticket_prices[0]}
-            small 元
-            div.text 预定票价 原价
-              span.strike #{project.ticket_prices[2]}
-              元
+            span.large-number #{project.presale_discount}
+            small  预定折扣
+          - if (!project.booking) {
           a.btn-primary.block#booking-btn() 立即预定
+          - } else {
+          a.btn-info.block#booking-btn() 查看预定详情
+          -}
           hr
           img(src="/img/#{project.main_poster_url}")
           h3 #{project.artist.name}

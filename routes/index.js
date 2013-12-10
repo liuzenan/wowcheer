@@ -27,7 +27,7 @@ var bookingController = require('../app/controllers/booking');
 	});
 	
   /* project page*/
-	app.get("/project/:id", projectController.userProject, function(req,res) {
+	app.get("/project/:id", projectController.userProject, function(req,res,next) {
       if (res.locals.project) {
         res.render('project', {title:res.locals.project.name});
       } else {

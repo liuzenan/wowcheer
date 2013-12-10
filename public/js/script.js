@@ -1,11 +1,15 @@
 /*Define rules to parse returning JSON*/
 amplify.request.decoders.envelope =
     function ( data, status, xhr, success, error ) {
-        if ( data.status === "success" ) {
+        console.log(data);
+        var statusCode = xhr.status;
+        if (statusCode != 200) {
+           error(xhr.statusText,xhr.status);
+        } else if ( data.status === "success" ) {
             success( data.data );
         } else if ( data.status === "fail" || data.status === "error" ) {
-            error( data.message, data.status );
+            error( data.data.message, data.status );
         } else {
-            error( data.message , "fatal" );
+            error( data.data.message , "fatal" );
         }
     };

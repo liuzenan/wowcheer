@@ -49,7 +49,7 @@ block body
                 .project-card-singer
                    h3  
                     a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
-                   h5(style="margin:0") #{project.name}
+                   h5 #{project.name}
                 .project-card-date
                   h3 #{timeFormatter('Y年m月d日', project.performance_time)}
                 .project-card-des
@@ -73,7 +73,7 @@ block body
                 .project-card-singer
                   h3  
                     a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
-                  h5(style="margin:0") #{project.name}
+                  h5 #{project.name}
                 .project-card-date
                   h3 #{timeFormatter('Y.m.d', project.performance_time)}
                 h5.project-card-city

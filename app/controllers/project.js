@@ -11,9 +11,9 @@ module.exports.userProject = function(req,res,next) {
     if (project) {
       if (req.user) {
         // Append booking information of current user
-        Booking.find({user:req.user.id},function(err, bookings){
+        Booking.findOne({user:req.user.id,project:projectID},function(err, booking){
           if (err) throw err;
-          project.bookings = bookings;
+          project.booking = booking;
           res.locals.project = project;
           next();
         });

@@ -1,9 +1,76 @@
 #basic-modal-content {display:none;}
+.btn-info {
+background-color: rgba(67, 219, 186, 0.95);
+text-decoration: none;
+cursor: pointer;
+outline: none;
+-webkit-appearance: none;
+display: inline-block;
+text-align: center;
+font-weight: bold;
+border-radius: 4px;
+border: 0;
+color: white;
+padding: 10px 19px;
+}
 
-div.fix-bottom {
+div.model-bottom {
    position:absolute;
-   bottom:5px;
-   right:5px;  
+   bottom:-49px;
+   background: #b6dcc1;
+   width:100%;
+   padding:4px; 
+   right:-4px;
+}
+
+#booking-model{
+  padding-bottom:30px;
+}
+
+tr.total {
+   font-size:20px;
+   font:bold;
+}
+
+.table.table-booking  {
+  border:2px solid rgba(204,255,204,1);
+  width:100%;
+  text-align:center;
+}
+
+a.price-btn {
+  color:#A0A0A0;
+  background:#ffffff;
+  border:1px solid rgba(204,255,204,0.6);
+  padding-left:10px;
+  padding-right:10px;
+  margin-top:10px;
+  margin-right:10px;
+}
+
+a.price-btn.active {
+  color: #ffffff;
+  background:#df0001;
+  border: 2px solid #df0001;
+}
+
+a.price-btn:hover {
+  color: red;
+  border:1px solid rgba(204,255,204,1);
+}
+a.price-btn.active:hover {
+  color: #FFFFFF;
+  border:2px solid #df0001;
+}
+
+.model-booking-notification {
+  background:rgba(255,229,204,0.8);
+  padding:5px;
+}
+
+.model-bottom button {
+  margin:5px;
+  float:right;
 }
 
 img {
@@ -13,9 +80,13 @@ img.icon {
   width:16px;
 }
 
+h5 {
+  margin:2px;
+}
+
 button.btn {
   margin-right:5px;
-  background-color: #e0e0e0;
+  background-color: #ffffff;
   text-decoration: none;
   cursor: pointer;
   outline: none;
@@ -33,6 +104,6 @@ button.btn {
 #simplemodal-overlay {background-color:#000;}
 
 /* Container */
-#simplemodal-container {height:360px; width:600px; background-color:#FFFFFF; border:4px solid rgba(67, 219, 186, 0.95); padding:12px;}
+#simplemodal-container {height:360px; width:600px; background-color:#FFFFFF; border:4px solid rgba(182, 220, 193, 0.95); padding:12px;}
 #simplemodal-container .simplemodal-data {padding:8px;}
 #simplemodal-container a.modalCloseImg {background:url(/img/basic/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-16px; cursor:pointer;}

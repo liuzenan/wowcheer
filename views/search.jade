@@ -31,6 +31,7 @@ block body
             .project-card-singer
                h3  
                 a(href="/artist/#{project.artist._id}", target="_self" style="none") #{project.artist.name}
+                h5 #{project.name}
             .project-card-date
               h3 #{timeFormatter('Y.m.d', project.performance_time)}
             .project-card-des

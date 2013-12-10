@@ -24,9 +24,7 @@ app.configure(function(){
 	app.set('port', env.port);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
-	app.set('view options', {
-		layout: false
-	});
+	app.set('view options');
 	app.use(express.methodOverride());
 	app.use(express.cookieParser());
 	app.use(express.json());
@@ -44,8 +42,12 @@ app.configure(function(){
 				var status = 'fail';
 			}
 			var data = data || {};
-			var errorCode = errorCode || 200;
-			res.send(errorCode,{status:status,data:data});
+			var errorCode = errorCode ? errorCode : 200;
+      if (errorCode && errorCode != 200) {
+        res.send(errorCode);
+      } else {
+        res.send({status:status,data:data});
+      }
 		}
 		next();
 	})
