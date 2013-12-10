@@ -3,7 +3,7 @@ block body
   script(src='/js/libs/jquery.simplemodal.js')
   script(src='/js/libs/jquery.tmpl.min.js')
   script(type='text/javascript' src="/js/project.js").
-      
+  - var isConfirmed = project.bookingCount >= project.sale_limit;
   #booking-model(hidden="true")
     h3 预定 #{project.name}
     p.model-booking-notification 注意:在演出确认时间之后,如果 
@@ -83,7 +83,10 @@ block body
              else
               h5(style="color:rgb(67, 219, 186)") 项目确定
             .project-progress
-              .progress-bar(style="width:#{Math.ceil(project.bookingCount / project.sale_limit * 100)}%")
+              if !isConfirmed
+                .progress-bar(style="width:#{project.bookingCount / project.sale_limit * 100}%")
+              else 
+                .progress-bar(style="background:#33FF33;width:#{project.bookingCount / project.sale_limit * 100}%")        
               .project-card-number #{project.bookingCount} / #{project.sale_limit}
           .project-des
             h2 项目介绍
@@ -125,12 +128,18 @@ block body
             span.large-number #{get_time_difference(project.confirm_time,new Date()).hours}
             small 小时
             div.text 后预定结束
-            span.large-number #{project.presale_discount}
-            small  预定折扣
+            if !isConfirmed
+              span.large-number #{project.presale_discount}
+              small  预定折扣
+            else
+              span.large-number.strikeout #{project.presale_discount}
+              small  预定已截止
+            
           - if (!project.booking) {
-          a.btn-primary.block#booking-btn() 立即预定
+          a.btn-primary.block#booking-btn() 立即订票
           - } else {
-          a.btn-info.block#booking-btn() 查看预定详情
+          a.btn-info.block#booking-btn 查看订单详情
+          a.btn-info.block#email-btn(style="margin-left:5px") 点击领取电子票
           -}
           hr
           img(src="/img/#{project.main_poster_url}")
