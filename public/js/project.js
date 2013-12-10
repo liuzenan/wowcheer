@@ -14,11 +14,35 @@ amplify.request.define( "project_booking", "ajax", {
     decoder: "envelope"
 });
 
-
+amplify.request.define( "project_booking_mail", "ajax", {
+    url: "/api/project/{id}/bookings/mail",
+    dataType: "json",
+    type: "POST",
+    cache: "persist",
+    decoder: "envelope"
+});
 
 $(document).ready(function() { 
     var markup = '<tr class="booking-price-entry" rank="${rank}" data="${price}"><td data="${price}">${price}</td><td data="${discount}">${discount}</td><td data= "${number}">${number}</td><td data="${total}">${total}</td></tr>';
     $.template( "bookingTemplate", markup );
+    var id = $("#main-content").attr('data-id');
+
+    $("#email-btn").click(function(){
+      amplify.request({
+            resourceId: "project_booking_mail",
+            data : {
+                  id:id
+            },
+            success: function(data){
+              window.alert("您的电子票已发送,请到您的邮箱查收");
+              console.log("success:" + data);
+            },
+            error: function(message,status){
+              window.alert("您的电子票已发送,请到您的邮箱查收");
+              console.log("error:" + message + ":" + status)
+            }  
+      });
+    });
     
     // Booking confirm
     $('#booking-confirm-btn').click(function(){
@@ -36,7 +60,6 @@ $(document).ready(function() {
             tickets.push({ticket_price:entry.attr('data'),ticket_count:1});
           }
           console.log(tickets);
-          var id = $("#main-content").attr('data-id');
           
           amplify.request({
             resourceId: "project_booking",
@@ -55,10 +78,13 @@ $(document).ready(function() {
                   window.location.href="/login?backurl="+encodeURIComponent(window.location.href);
                 }
               } else {
-                  window.alert(message);
+                  console.log(message);
+                  window.alert("购票成功");
+                  location.reload();
               }
             }  
           });
+          window.alert("购票成功");
         } 
     })
     var discount = parseFloat($("#booking-model dd.booking-discount").attr('data'));
