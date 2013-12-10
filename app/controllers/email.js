@@ -1,5 +1,5 @@
 var path           = require('path')
-var templatesDir   = path.resolve(__dirname, '../..', 'templates')
+var templatesDir   = path.resolve(__dirname, '../../views/', 'templates')
 var emailTemplates = require('email-templates');
 var nodemailer     = require('nodemailer');
 
