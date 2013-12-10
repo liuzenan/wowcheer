@@ -30,8 +30,9 @@ block body
                         #{project.description.substr(1,150)}
                       .project-timeline
                         .project-progress
-                          .progress-bar(style="width:#{Math.ceil(project.bookingCount / project.sale_limit * 100)}%")
-                          .project-card-number #{project.bookingCount} / #{project.sale_limit}
+                          if (project.bookingCount >= project.sale_limit)
+                            .progress-bar(style="width:#{Math.ceil(project.bookingCount / project.sale_limit * 100)}%")
+                            .project-card-number #{project.bookingCount} / #{project.sale_limit}
             -}
         
             
