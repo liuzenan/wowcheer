@@ -60,7 +60,7 @@ module.exports = function() {
          // Dummy booking count
         project.bookingCount = Math.floor(Math.random()*project.sale_limit+1) 
         // Dummy discount
-        project.presale_discount = (Math.random() / 5 + 0.8).toFixed(2) //0.8 ~ 1
+        project.presale_discount = (Math.random() / 5 + 0.7).toFixed(2) //0.8 ~ 1
       }
       
 			Projects.create(projects,function(err){

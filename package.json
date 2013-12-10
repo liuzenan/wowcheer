@@ -13,6 +13,8 @@
   "mongoose":"*",
   "underscore":"*",
   "mongoose-auto-increment":"*",
+  "nodemailer":"*",
+  "email-templates":"*",
 	"MD5":"*",
 	"nodemon":"*"
   },
