@@ -7,7 +7,7 @@
   "jade": "latest",
   "mocha":"*",
   "passport":"*",
-  "passport-weibo":"*",
+  "passport-weibo":"git://github.com/AndyShang/passport-weibo.git",
   "passport-qq":"git://github.com/AndyShang/passport-qq.git",
   "passport-renren":"git://github.com/auth0/passport-renren.git",
   "passport-local":"*",
@@ -16,8 +16,7 @@
   "mongoose-auto-increment":"*",
   "nodemailer":"*",
   "email-templates-windows":"*",
-  "MD5":"*",
-  "nodemon":"*"
+  "MD5":"*"
   },
   "engines": {
     "node": "0.10.x",
