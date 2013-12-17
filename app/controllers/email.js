@@ -1,60 +1,34 @@
-var path           = require('path')
-var templatesDir   = path.resolve(__dirname, '../../views/', 'templates')
-var emailTemplates = require('email-templates');
 var nodemailer     = require('nodemailer');
 
-
 module.exports.sendTicketMail = function(data,callback) {
-  var path           = require('path')
-  var templatesDir   = path.resolve(__dirname, '../..', 'templates')
-  var emailTemplates = require('email-templates');
-  var nodemailer     = require('nodemailer');
-  emailTemplates(templatesDir, function(err, template) {
-    if (err) {
-      console.log(err);
-    } else {
-      // ## Send a single email
-      // Prepare nodemailer transport object
-      var transport = nodemailer.createTransport("SMTP", {
-        service: "Gmail",
-        auth: {
-          user: "ticketing@5-qu.com",
-          pass: "5Qu5Qu.com"
-        }
-      });
+  var nodemailer = require("nodemailer");
+  // create reusable transport method (opens pool of SMTP connections)
+  var smtpTransport = nodemailer.createTransport("SMTP",{
+      service: "Gmail",
+      auth: {
+          user: "gmail.user@gmail.com",
+          pass: "userpass"
+      }
+  });
 
-      // An example users object with formatted email function
-      var locals = {
-        email: 'mamma.mia@spaghetti.com',
-        name: {
-          first: 'Mamma',
-          last: 'Mia'
-        }
-      };
+  // setup e-mail data with unicode symbols
+  var mailOptions = {
+      from: "Fred Foo ✔ <foo@blurdybloop.com>", // sender address
+      to: "bar@blurdybloop.com, baz@blurdybloop.com", // list of receivers
+      subject: "Hello ✔", // Subject line
+      text: "Hello world ✔", // plaintext body
+      html: "<b>Hello world ✔</b>" // html body
+  }
 
-      // Send a single email
-      template('newsletter', locals, function(err, html, text) {
-        if (err) {
-          console.log(err);
-        } else {
-          transport.sendMail({
-            from: '我去网 <ticketing@5-qu.com>',
-            to: locals.email,
-            subject: '演出预售成功!',
-            html: html,
-            // generateTextFromHTML: true,
-            text: text
-          }, function(err, responseStatus) {
-            if (err) {
-              console.log(err);
-              callback(err,null);
-            } else {
-              console.log(responseStatus.message);
-              callback(null,responseStatus.message);
-            }
-          });
-        }
-      });
-    }
+  // send mail with defined transport object
+  smtpTransport.sendMail(mailOptions, function(error, response){
+      if(error){
+          console.log(error);
+      }else{
+          console.log("Message sent: " + response.message);
+      }
+
+      // if you don't want to use this transport object anymore, uncomment following line
+      //smtpTransport.close(); // shut down the connection pool, no more messages
   });
 }
