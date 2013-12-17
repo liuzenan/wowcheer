@@ -1,34 +1,26 @@
-var nodemailer     = require('nodemailer');
+/*Sending mail controller*/
+var nodemailer = require("nodemailer");
 
-module.exports.sendTicketMail = function(data,callback) {
-  var nodemailer = require("nodemailer");
-  // create reusable transport method (opens pool of SMTP connections)
-  var smtpTransport = nodemailer.createTransport("SMTP",{
-      service: "Gmail",
-      auth: {
-          user: "gmail.user@gmail.com",
-          pass: "userpass"
-      }
-  });
+// create reusable transport method (opens pool of SMTP connections)
+var transport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+        user: "elleryjiao@gmail.com",
+        pass: "Wapypyaw#3"
+    }
+});
 
-  // setup e-mail data with unicode symbols
-  var mailOptions = {
-      from: "Fred Foo ✔ <foo@blurdybloop.com>", // sender address
-      to: "bar@blurdybloop.com, baz@blurdybloop.com", // list of receivers
-      subject: "Hello ✔", // Subject line
-      text: "Hello world ✔", // plaintext body
-      html: "<b>Hello world ✔</b>" // html body
-  }
-
-  // send mail with defined transport object
-  smtpTransport.sendMail(mailOptions, function(error, response){
-      if(error){
-          console.log(error);
-      }else{
-          console.log("Message sent: " + response.message);
-      }
-
-      // if you don't want to use this transport object anymore, uncomment following line
-      //smtpTransport.close(); // shut down the connection pool, no more messages
-  });
+// boilerplate mail option
+var mailOption = {
+    from: "elleryjiao@gmail.com",
+    subject: "Hello world!",
+    text: "Plaintext body"
 }
+
+var sendMail = function(){
+
+
+}
+
+
+module.exports.sendMail = sendMail;
