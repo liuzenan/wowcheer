@@ -24,7 +24,7 @@ var search = function(req,res,callback){
       q.where('performance_time').gte(new Date());
     }
     // Query limit
-    var limit = req.param('limit') ? req.param('limit'):50;
+    var limit = (req.param('limit') <= 50) ? req.param('limit'):50;
     q.limit(limit);                      
     
     // Reference query is a bit tricky, this is the best solution I can get

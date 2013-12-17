@@ -14,6 +14,7 @@ module.exports = function(app){
       res._json(false,null,401);
     }
   })
+  
   /*Search*/
   app.get('/api/search',function(req,res,next){
     search(req,res,function(projects){
@@ -39,6 +40,7 @@ module.exports = function(app){
   app.get("/api/project/:id/bookings",auth.isAPIAuthenticated,bookingController.userBookings,function(req,res){
       res._json(true,res.locals.bookings);
   });
+  
   app.get("/api/project/:id/bookings/mail", function(req,res){
       mailController.sendTicketMail(null,function(err,response){
          if (err) res._json(false,err);
