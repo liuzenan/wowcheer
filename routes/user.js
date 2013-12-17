@@ -76,14 +76,14 @@ module.exports = function(app,passport){
 
 
 	app.get('/:provider/bind',function(req,res,next){
-      if (!req.cookies.provider_info) return res.redirect('/login');
-      var provider_id = req.cookies.provider_info.provider_id;
-      var provider = req.cookies.provider_info.provider;
+      if (!req.signedCookies.provider_info) return res.redirect('/login');
+      var provider_id = req.signedCookies.provider_info.provider_id;
+      var provider = req.signedCookies.provider_info.provider;
       if (provider != req.param('provider') || !provider_id) return res.redirect('/login');
       Providers.findOneSecure({provider_id:provider_id,provider:provider}, function(err, providerUser){
           if (err) next(err);
           if (!providerUser) return res.redirect('/login');
-          var hash = req.cookies.provider_info.hash;
+          var hash = req.signedCookies.provider_info.hash;
           if (providerUser.hash() != hash) return res.redirect('/login'); //invalid cookie
           return res.render("bind",{providerUser:providerUser.profile,titile:"连接我去"})
       });
@@ -117,7 +117,7 @@ module.exports = function(app,passport){
         } else {
          // else first time login with current provider, goto bind page, set auth cookie
           var five_minutes = 60 * 1000 * 5;
-          res.cookie('provider_info',info,{maxAge:five_minutes});
+          res.cookie('provider_info',info,{maxAge:five_minutes,signed:true,httpOnly: true});
           var url = '/' + info.provider + '/bind';
           return res.redirect('redirect?redirect_url='+ encodeURIComponent(url));
         }
