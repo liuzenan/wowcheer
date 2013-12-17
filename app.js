@@ -26,10 +26,10 @@ app.configure(function(){
 	app.set('view engine', 'jade');
 	app.set('view options');
 	app.use(express.methodOverride());
-	app.use(express.cookieParser());
+	app.use(express.cookieParser(env.server_secret));
 	app.use(express.json());
 	app.use(express.urlencoded());
-	app.use(express.session({ secret: 'really cool website',cookie: { maxAge: 60000 * 60 * 24 }}));
+	app.use(express.session({ secret:env.server_secret,cookie: { maxAge: 60000 * 60 * 24 }}));
 	app.use(passport.initialize());
 	app.use(passport.session());
 	app.use(express.static(path.join(__dirname, 'public')));
@@ -51,8 +51,9 @@ app.configure(function(){
 		}
 		next();
 	})
-	// Attach user info to all page rendering
+	// Attach title,user info to all page rendering
 	app.use(function(req, res, next) {
+    res.locals.title = "我去"
 		res.locals.user = req.user;
     res.locals.timeFormatter = time.timeFormatter;
     res.locals.get_time_difference = time.get_time_difference;
