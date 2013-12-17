@@ -9,7 +9,7 @@
   "passport":"*",
   "passport-weibo":"*",
   "passport-qq":"git://github.com/AndyShang/passport-qq.git",
-  "passport-renren":"*",
+  "passport-renren":"git://github.com/auth0/passport-renren.git",
   "passport-local":"*",
   "mongoose":"*",
   "underscore":"*",
