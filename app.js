@@ -32,7 +32,9 @@ app.configure(function(){
 	app.use(express.session({ secret:env.server_secret,cookie: { maxAge: 60000 * 60 * 24 }}));
 	app.use(passport.initialize());
 	app.use(passport.session());
+  app.use(express.csrf());
 	app.use(express.static(path.join(__dirname, 'public')));
+  
 	// Define global returning json format
 	app.use(function(req,res,next){
 		res._json = function(status, data, errorCode) {
@@ -51,9 +53,11 @@ app.configure(function(){
 		}
 		next();
 	})
+  
 	// Attach title,user info to all page rendering
 	app.use(function(req, res, next) {
-    res.locals.title = "我去"
+    res.locals.title = "我去";
+    res.locals._csrf = req.session._csrf;
 		res.locals.user = req.user;
     res.locals.timeFormatter = time.timeFormatter;
     res.locals.get_time_difference = time.get_time_difference;
