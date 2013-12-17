@@ -1,0 +1,36 @@
+extends layout
+block body
+  #main-content
+    .container
+      if providerUser
+        div(style="width:500px")
+          div(style="width:50%;float:left")
+            div(style="width:100px")
+              img(src='#{providerUser.avatar.large}')
+            h5 #{providerUser.nickname}
+          div(style="width:50%;")
+            p 通过 #{providerUser.provider_chinese} 连接  
+          div(style="")
+            h3 注册我去并绑定#{providerUser.provider_chinese}
+            form(id="signup", method="POST", action="/signup")
+              lable(for='email') 邮箱*:
+              input#email(type='text', name='email' style="width:100%" placeholder='myemail@gmail.com')
+              br
+              lable(for='password') 密码*:
+              input#password(type='password', name='password' style="width:100%" placeholder="至少六位")
+              br
+              lable(for='password_confirm') 确认密码*:
+              input#password_confirm(type='password', name='password_confirm' style="width:100%")
+              p
+                input(type="submit", value="完成注册" style="float:right")
+            h5 或者
+            h3 绑定已有的我去账号
+            form(action='/login', method='post')
+              div
+                  label 邮箱:
+                  input(type='text', name='email' style="width:100%" )
+              div
+                  label 密码:
+                  input(type='password', name='password' style="width:100%")
+              p
+                  input(type='submit', value='登陆' style="float:right")
