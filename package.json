@@ -6,7 +6,7 @@
   "express": "3.1.x",
   "jade": "latest",
   "mocha":"*",
-  "validator":"*",
+  "express-validator":"*",
   "passport":"*",
   "passport-weibo":"git://github.com/AndyShang/passport-weibo.git",
   "passport-qq":"git://github.com/AndyShang/passport-qq.git",
