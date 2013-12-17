@@ -93,8 +93,13 @@ module.exports = function(app,passport){
 			passport.authenticate(req.params.provider)(req, res,next);
 		}
   );
-
+  
+  /*Auth callback*/
 	app.get('/auth/:provider/callback',  function (req,res,next){
+      if (!req.param('code')) { // Something went wrong
+         var url ="/login";
+         return res.redirect('redirect?redirect_url='+ encodeURIComponent(url));
+      }
 			passport.authenticate(req.params.provider, function(err,user,info){
         if (err) throw err;
         if (user) {
