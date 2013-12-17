@@ -6,7 +6,8 @@ UserSchema = mongoose.Schema({
     salt:       String,
     hash:       String,
     username:String,
-		city:String,
+		profile:{username:String,city:String,description:String},
+    city:String,
 		description:String,
     createdAt:{type:Date,default:Date.now},
 		updatedAt: { type: Date}

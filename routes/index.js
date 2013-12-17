@@ -45,7 +45,7 @@ var bookingController = require('../app/controllers/booking');
   app.get('/search', function(req,res){
     var search = require('../app/controllers/search');
     search(req,res,function(projects){
-      res.render("search",{title:"search",search_result:{type:'project',data:projects}})
+      res.render("search",{search_result:{type:'project',data:projects}})
     })
   })
   

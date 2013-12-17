@@ -6,7 +6,10 @@ AuthSchema = mongoose.Schema({
   user:{type:String},
   provider_id:{type:String,required:true,index:true},
   provider:{type:String,required:true,index:true},
-	accessToken:String,
+  nickname:{type:String},
+  avatar: mongoose.Schema.Types.Mixed,
+  gender:String,
+  accessToken:String,
 	refreshToken:String,
 	profile:mongoose.Schema.Types.Mixed,
 	createdAt:{type:Date,default:Date.now},
@@ -17,6 +20,13 @@ AuthSchema.pre('save', function(next){
   this.updated_at = new Date;
   next();
 })
+
+/*Quick method to select secure field from provider user*/
+AuthSchema.statics.findOneSecure = function(param,callback) {
+    var q = this.findOne(param);
+    q.select('-accessToken -refreshToken');
+    q.exec(callback);
+}
 
 /*Verify cash*/
 AuthSchema.statics.varifyHash = function(provider,provider_id,hash){
